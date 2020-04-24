@@ -1,0 +1,50 @@
+In this lesson, we will identify
+the different types of Kubernetes services as well as discuss load balancers. There are three principle
+types of services. Cluster IP, node port and load balancer. These services build
+conceptually on one another, adding functionality with each step. We will start with the basis of
+all the Kubernetes services, the cluster IP service. A Kubernetes ClusterIP service
+has a static IP address, and operates as a traffic
+distributor within the cluster. But ClusterIP services aren't accessible
+by resources outside the cluster. Other pods will use this ClusterIP as their destination IP address when
+communicating with the service. Let's consider the step-by-step process
+of setting up a ClusterIP service type. Here, you create a service
+object by defining its kind. If you don't specify a service type
+during the creation of the service, it will default to a service
+type of ClusterIP. Next, you use a label selector
+to select the podsthat will run the target application. In this case, the pods with the label
+of app:backend are selected and included as endpoints for this service. You should always create a service
+before creating any workloads that need to access that service. If you create a service before its
+corresponding backend workloads, such as deployments or stateful sets, the pods that make up that
+service get a nice bonus. They get the host name and IP address of
+the service in an environment variable. But remember that relying on
+environment variables for service discovery is not
+as flexible as using DNS. So this practice isn't mandatory. Next, you specify the port that
+the target containers are using, which, in this case is TCP port 9376. This service will receive
+traffic on port 80 and then remap it to 9376,
+as it delivers it to the target pods. Creating, loading, or applying this
+manifest will create the cluster IP service name my-service, but
+how does this service work? In this example, you have frontend pods that must be
+able to locate the backend pods. When you create the service, the cluster master assigns a virtual
+IP address, also known as cluster IP, from a resolved pool of Cluster IP
+address in the ClusterIPC. This IP address won't change throughout
+the lifespan of this service. The cluster master selects pods
+to include in the service's endpoint based on the label selector and
+the labels on the pods. These endpoints are mapped to TCP Port
+9376 on each of the backend pods. The clusterIP service will
+answer requests on TCP Port 80. Kubernetes manages all the endpoint
+resources automatically. ClusterIP is useful for
+internal communications within a cluster. But what about external communications? NodePort enables this. NodePort is built on top
+of cluster IP's service. Therefore, when you create
+a NodePort service, a cluster IP service is automatically
+created in the process. Let's see how this works. This service can now be reached from
+outside of the cluster using the IP address of any node, and
+the corresponding node port number. Traffic through this port is
+directed to a service on port 80 and further redirected to one of
+the backend pods on port 9376. NodePort Service can be useful to expose
+a service through an external load balancer that you set up and
+manage yourself. Using this approach, you would
+have to deal with node management, making sure there are no port collisions. In addition to the setup
+of the cluster IP service, a specific port is exposed on every node. This port, also known as nodePort,
+is automatically located from the range 30,000 to 32,767. In some cases,
+users may want to manually specify it, which is allowed as long as the value
+also falls within that range. But this is not usually necessary.

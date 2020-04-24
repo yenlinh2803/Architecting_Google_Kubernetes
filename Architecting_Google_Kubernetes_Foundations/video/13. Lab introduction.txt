@@ -1,0 +1,8 @@
+In this lab, you'll access and
+become familiar with the GCP Console. You'll also become familiar with
+the features of Cloud Shell including the Cloud Shell Code Editor. You'll create buckets, VMs and
+service accounts using the GCP Console and Cloud Shell, and execute several other
+commands using Cloud Shell as well. You have multiple attempts at
+doing this lab inside of Qwiklabs. So once you're satisfied, come back and
+you'll watch the solution video, we'll walk through each of these
+steps that you just performed.

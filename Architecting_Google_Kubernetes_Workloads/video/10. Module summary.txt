@@ -1,0 +1,21 @@
+That concludes the Kubernetes
+operation module. Let me recap some of
+the key learning points. Kubectl transforms
+your command line entries into an API call that can be sent to
+the cube ATI server within your selected
+Kubernetes cluster. Before it can do
+any work for you, kubectl must be configured with the location and credentials
+of a Kubernetes cluster. Kubectl syntax is composed
+of several parts, the command, the type, the name, and optional flags. The command specifies the action
+you want to perform such as get the scribe,
+logs [inaudible]. Type, defines the Kubernetes object that the command acts on, and name specifies
+the object defined in type. Some commands support
+additional optional flags that you can include at
+the end of the command. You can use kubectl
+command to create, view, interact with, and
+delete Kubernetes objects. The kubectl get Pods
+command returns a list of all deposit in a cluster
+and tells you their status. Kubectl describe my [inaudible] and gives you detailed
+information about the name Pod. Kubectl [inaudible] allows you to test and debug
+within your name Pod. The kubectl logs command allows you the view
+the logs of a Pod.

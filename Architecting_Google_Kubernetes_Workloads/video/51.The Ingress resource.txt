@@ -1,0 +1,75 @@
+Now we will discuss one of the most
+powerful tools to direct traffic into your cluster, the ingress resource. The ingress resource operates one
+layer higher than the services. In fact, it operates a bit
+like service for services. Ingress is not a service,
+or even a type of service. It's a collection of rules that
+direct external inbound connections to a set of services within the cluster. In GKE, an ingress resource exposes
+those services using a single public IP address bound to an HTTP or
+HTTPS load balancer provisioned with NGCP. On GKE, Kubernetes' ingress resources are
+implemented using Cloud load balancing. When you create an ingress resource in
+your cluster, GKE creates and HTTP or an HTTPS load balancer and configures it
+to route traffic to your application. Ingress builds on the prior
+service contract and can deliver traffic to either NodePort
+Services or LoadBalancer Services. Even with ingress, LoadBalancer Services can still
+suffer from the double-hop problem. But as before,
+this problem can be mitigated by using the local external-traffic
+policy in the service manifest. Here's an example of
+a simple ingress resource. The ingress controller creates an HTTP or HTTPS load balancer using the ingress
+objects specification here. In the object, you've selected backend
+service by specifying the service name demo and the service port 80. This configuration tells the HTTP or
+HTTPS load balancer to route all client traffic to
+the service named demo on port 80. By default, the HTTP or HTTPS load
+balancer exposes port 80 to the clients. It also exposes port 443 if the manifest
+has included the TLS field, or if you populate the annotation ingress dot
+kubernetes dot IO dot preshared dash cert. With a valid SSL certificate name,
+obviously, here's another ingress manifest. Inside the specifications,
+there are rules. Only HTTP rules are currently supported,
+and each rule is named with the host name. The host name can be further
+filtered based on the path. A path will have a service backend
+defining the service's name and port. You can set up multiple hosts and paths. This will become clear through
+some of the examples that follow. Ingress supports multiple host names for
+the same IP address. Here, the code is split for readability. As you see, there are two host names
+demo.example.com and lab.user.com. The traffic will be redirected from
+the HTTP or HTTPS load balancer based on the host names to their
+respective backend services. For example,
+the load balancer will route traffic for demo.example.com to the service
+named demo1 on port 80. This example considers
+rules based on URL path. Here, the traffic from
+demo.example.com/demo1path will be directed to the backend
+service named demo1. Similary, demo.example.com/demo2 path will
+be directed to its backend service demo2. A single ingress can have multiple
+host names nested with multiple paths. So what happens to the traffic that
+doesn't match any of these host-based or path-based rules. Well, the traffic with no matching rules
+is simply sent to the default backend. You could even create a default backend
+to deliver customized 404 pages. Ingress can be updated by
+a single kubectl edit command. When the ingress resource
+has been updated, the API server will tell the ingress
+controller to reconfigure the HTTP or HTTPS load balancer according
+to the changes you made. You can also update ingress by
+using kubectl replace command, which replaces the ingress
+object manifest file entirely. Cloud identity aware proxy provides
+granular access control at the application level. With this,
+your authenticated users can have HTTPS access to the applications within
+a cluster without any VPN setup. Cloud armor provides built-in protection
+against distributed denial of service and web attacks for your cluster using HTTP or
+HTTPS load balancer. You can set up security rules to
+whitelist or blacklist IP address ranges. You can also use predefined rules to
+defend against cross-site scripting or SQL injection application aware attacks. You can customize security rules to
+mitigate multi-vector attacks and restrict access using geo-location. Cloud content delivery network allows you
+to bring your application's content closer to the users. It does so by using more than
+100 edge points of presence. You can configure these
+settings using backend config. Backend config is a custom resource
+used by ingress controller to define configuration for all these services. Ingress gains many security features from
+the underlying GCP resources it relies on. Ingress provides TLS termination support
+at the load balancer at the edge of the network. From there, the load balancer creates
+another connection to the destination. Although the second connection isn't
+secure by default, but it can be secured. This allows you to manage all your
+SSL certificates in one place. So you'll be happy to know that ingress
+can solve multiple SSL certificates. It also supports the HTTP/2 standard
+in addition to HTTP 1.0 and 1.1. Why should you care about that? Well, if you are developing
+a microservices-based application, you need to ensure that each microservices
+communication with all the other uses a high performance,
+low overhead remote procedure call system. GRPC is an increasingly popular way to
+solve this problem and it needs HTTP/2. So you can use gRPC along with
+HTTP/2 to create performant low latency scalable micro-services
+within your cluster.

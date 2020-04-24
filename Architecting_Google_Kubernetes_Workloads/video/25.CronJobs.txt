@@ -1,0 +1,44 @@
+Now that you understand jobs, is there any way
+to schedule them? If you guessed a Cron
+job you are right. Cron job is a Kubernetes
+object that creates jobs in repeatable manner
+to a defined schedule. Cron jobs are called that because they are
+named after Cron, the standard Unix Linux mechanism for
+scheduling a process. The schedule field
+except the time in the Unix Linux standard format
+for scheduling a Cron job. In this example, a Cron schedule
+has been set up under the Cron job specification
+to run every one minute. The job template defines
+the job specification, just as I told you about in the previous lessons about jobs. If the job defined
+in this benefits is scheduled to
+start every minute, what happens if the job isn't started at the scheduled time? By default the Cron job
+looks at how many times the job has failed to run
+since it was last scheduled. If that failure count
+exceeds 100 and an error is logged and
+the job is not scheduled, this will prevent
+an error with a Cron job resulting in
+an endless accumulation of failed attempts overtime. This behavior can be controlled using the starting
+deadlines seconds value. Instead of looking at the number of
+failed attempts to run the jobs since it last
+successfully run, you can define the starting deadlines seconds attribute which defines a window of time to sum the number
+of failed attempts. This changes the window that
+the controller examines. Now, instead of looking back
+to the last time the job was scheduled when starting
+deadlines seconds is set, the window starts at starting deadlines seconds before it know. Depending on how
+frequently jobs are scheduled and how long it takes to finish the define test, the Cron job might end up executing more than
+one job concurrently. You use the concurrency
+policy value to define whether concurrent
+executions are permitted. With the values allow,
+forbid, or replace. In the case of forbid, if the existing job hasn't finished the Cron job
+won't execute a new job. With replace, the existing job will be
+replaced by the new job. This policy only applies to jobs that were created using
+the same Cron job. Other Cron jobs in their jobs aren't considered or effected. You can stop execution
+of individual jobs by a Cron job by setting
+the suspended property to true. When this is set all new job
+executions are suspended. Suspended executions are
+still counted as missed jobs. The limit to the number of
+successful and failed jobs to be retained in history is
+configured by the fields, successful jobs history limit and failed jobs history limit. Cron jobs operate in the same
+manner as the job itself. You can create, inspect, and delete Cron jobs using
+Kubectl command shown. You'll learn how to execute
+a Cron job in the labs.

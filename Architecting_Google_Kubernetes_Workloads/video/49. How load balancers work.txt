@@ -1,0 +1,55 @@
+Conceptually, the LoadBalancer
+Service type builds on the cluster IP service
+and can be used to expose a service to resources
+outside the cluster. With GKE, the
+LoadBalancer Service is implemented using
+GCP's network LoadBalancer. Let's look at the process. When you create a
+LoadBalancer Service, GKE automatically
+provisions a GCP network LoadBalancer for inbound access to the services from
+outside the cluster. Traffic will direct to the IP address of
+the network LoadBalancer, and the LoadBalancer forwards the traffic onto the nodes
+for the service. Here's how you create a
+LoadBalancer Service. You only need to specify
+the type LoadBalancer. GCP will assign a static
+LoadBalancer IP address that is accessible from
+outside your project. When the LoadBalancer
+Service is used, client traffic is
+directed through the network LoadBalancer
+to the nodes. The network LoadBalancer chooses a random node in the cluster and forwards the traffic to it. Here, we've chosen node one. Next, to keep the pod use
+as even as possible, Cute proxy will select a pod at random to handle
+the incoming traffic. The selected pod might be on this node or on another
+node in the cluster. In our example, node
+one chooses pod five, which isn't on this node. Therefore, node one forwards the traffic to pod
+five on node three. On node three, pod five directs its response back via
+node one, the double-hop. Node one then forwards the traffic back to
+the network LoadBalancer, which sends it to the client. This process keeps
+pod use even but also results in increased latency
+and extra network traffic. So if you're using traditional
+Kubernetes networking, you should choose which
+is most important to you, the lowest possible latency or the most even cluster
+load balancing. Suppose that the lowest
+possible latency is most important, you can configure the
+LoadBalancer Service to force Q proxy to choose a pod local to the node that receives
+the client traffic. To do that, set the external traffic policy field to local in the service manifest. This choice eliminates
+the double-hop to another node, why? Because Q proxy will always choose a pod on
+the receiving node. In addition, when packets are forwarded from node to node, the source client IP address is preserved and directly visible
+to the destination pod. Although this preserves
+the source IP address, it introduces the risk of creating imbalance in
+the load of the cluster. What's the best choice? Well, it depends on
+your application. You can profile board
+configurations and choose the one that gives the best overall
+application performance. But later in this module, you will learn about
+GKE's continue need of load balancing which means, you don't have to choose. You've seen
+how cluster IP service can be used within
+the cluster to provide a stable endpoint that
+allows pods to connect to other pods without the risk
+of IP address changing. You learned how NodePort Services extend the cluster IP
+services concept to expose and then
+bind a port number on each of the nodes in
+the cluster to the service. This allows you to
+access resources within the cluster from extra resources such as GCP compute instances. Finally, you saw how the LoadBalancer Service
+type implementation in GKE improved on
+the NodePort Service by using the cloud
+provider API to create a GCP network LoadBalancer for traffic distribution
+across the nodes. Now, let's look at a way to group services together
+using the ingress resource.

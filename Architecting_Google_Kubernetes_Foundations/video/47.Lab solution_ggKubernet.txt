@@ -1,0 +1,30 @@
+Let's start by confirming that the Kubernetes engine
+API is enabled. In the APIs and services
+area of the GCP Console, we click, enable
+APIs and services, and search for Kubernetes engine. It's enabled, if it had not been enabled there would have
+been a button to enable. Now, let's make
+a Kubernetes engine cluster. Let's take all the defaults. We're going to build
+a zonal cluster named standard cluster one, in the US-Central-1-a zone. We'll have one node pool with three nodes. We click, create. It takes a few minutes for Kubernetes engine to
+build the cluster. Because we chose a zonal cluster composed of N1
+standard one nodes, the total cluster size is three virtual CPUs and just
+over 11 gigabytes of memory. Let's examine the details by clicking on the cluster name. We'll learn about cluster storage later in this specialization. Here are the nodes, each has a computer engine
+virtual machine instance. Let's click edit
+and see what we can change on an already
+created cluster. Many attributes of the cluster can be changed or expanded. Let's change the size of the default node pool
+to four nodes. As with the cluster creation, expansion takes a few minutes. Now, the cluster has
+additional capacity, later in this specialization, you will learn how to auto-scale
+the cluster capacity. Now, let's use GCP console to deploy a workload
+to the cluster. In this example, we'll
+use the nginx web server. We'll accept the defaults
+for its deployment, and we'll launch the deployment. The deployment is done. Later in this specialization, we will learn how to
+expose it as a service, so the traffic can reach
+our ngnix web servers. Let's examine the deployment
+by clicking on its name. Deployment is new, so the graphs
+are not yet populated. We will learn about labels, annotations, update strategies, pod specifications and
+the horizontal pod auto scaler, later in this specialization. Also see the deployments
+revision history, events in its life and the YAML that
+defines the deployment. Let's return to the overview tab, and scroll down to
+the managed pods section. Here's information about one of the pods that makes
+up the deployment. YAML specifications are
+a very powerful way to define Kubernetes objects. You'll learn more in
+this specialization.

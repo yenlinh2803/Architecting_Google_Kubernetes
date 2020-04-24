@@ -1,0 +1,79 @@
+In the previous lesson, we discussed
+the command part of kubectl's syntax. It's the way to specify
+the action you want to perform. When your application is running, you'll
+inevitably need to debug problems with it. Introspection is the act of gathering
+information about the containers, pods, services and
+other engines running within the cluster. In this lesson,
+we'll revisit kubectl syntax and discuss its get, describe, exec,
+and log commands in more detail. You can retrieve a list of the objects
+using a command like kubectl get pods, which returns a list of all the pods in
+the cluster and tells you their status. For more information on a specific pod, run the command kubectl
+describe my-dash-name, which gives you detailed information
+about the pod name, my-pod-name. You can even test and debug within
+your pod using the kubectl exec my-pod-name command to execute
+commands and applications. And the logs command provides
+a powerful tool to see what's happening inside of a pod. Logs are always useful in troubleshooting. The logs command allows you to quickly and
+easily view errors or debugging messages written out by
+applications running inside pods. The logs command is particularly useful
+when you need to find out more information about containers that
+are failing to successfully run. Now let's focus on top of
+a simple kubernetes and GKE. A good place to start, is with pods,
+the basic unit of kubernetes. A simple kubectL get pods command
+tells you whether your pod is running. It show the pod's phase status, such as
+pending, running, succeeded, failed or unknown. A pod's phase provides a high-level
+summary of its life cycle, not the comprehensive details
+about a pod or its containers. Pending means a pod has been
+accepted by Kubernetes, but it's still being scheduled. This means that the container
+images are defined for the pod, but they haven't been created
+by the container run time. For example, when images are being
+pulled from the repository, the pod will be in the pending phase. A pod is running when it has been
+successfully attached to a node and all it's containers have been created. Containers inside a pod could be starting,
+restarting, or running continuously. Succeeded means that all containers
+have finished running successfully. In other words, they've terminated
+successfully and they won't be restarting. Failed means a container has
+terminated with a failure. Unknown is where the state of
+a pod simply cannot be retrieved. Probably because of a communication error
+between the master and the kubelet. It's not a commonly seen mistake. CrashLoopBackOff means that one of the
+containers in the pod exited unexpectedly, even after it was restarted at least once. This is a common error. Usually, CrashLoopBackOff means that
+the pod isn't configured correctly. To investigate a pod in more detail, use the kubectl describe pod
+command to fetch details. This gives you information about a pod and its container, such as labels,
+resource requirements, and volumes. It also details the status
+information about the container and pod, such as state, readiness,
+restart count, and events. A containers state can be either waiting,
+running, or terminated. You can view restart counts in
+configuration options like the restart policy. For example,
+with restart policy set to always, the container will be
+restarting continuously. At the end of the output,
+you can review events, imagine a pod and its container running successfully, you
+then attempt to update the container image to a newer version but
+the new container image fails to download. In this case, the pod will change to the
+pending phase and the container state will become waiting state with the reason
+being image pulled back off. If you need to troubleshoot
+an application, you can run a single command
+in the container, or if you need to do more than that,
+you can get a shell in the container. You might need to
+troubleshoot connectivity or another application for example. Single command execution,
+using the exec command, as shown here, allows you to run
+a single command inside a container, and view the results in
+your own command shell. This is useful when a sale
+command such as ping will do. If you need to install a package like
+a network monitoring tool or text editor, before you can begin troubleshooting,
+you can launch a interactive shell using the dash IT switch which connects
+your shell to the container, so that you can work inside the container. Note that it is the best practice
+to install software directly into a container. Changes made by containers to their
+file systems are usually ephemeral. You should build container images that
+have exactly the software you need, instead of temporarily
+repairing them at runtime. The interactive shell will allow you to
+figure out what needs to be changed to solve a problem. But you should then integrate those
+changes into your container images and then redeploy them. This syntax attaches
+the standard input and the standard output of the container to
+your terminal window or command shell. The -i argument tells kubectl to pass
+the terminal's standard input to the container, and the -t argument
+tells kubectl that the input is a TTY. If you don't use these arguments,
+then the exact command will be executed in the remote container and
+returned immediately to your local shell. If a pod has more one container, use the -c argument to specify the
+specific container to attach into the pod. You can use a kubectl command
+to view the logs of pod. If the pod has multiple containers, you
+can use the -c argument to show the logs for a specific container inside the pod. The logs contain both the standard
+output and standard error messages that the applications within
+the container have generated.

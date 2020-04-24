@@ -1,0 +1,30 @@
+When you make a change to a deployments port specification
+such as changing the image version an automatic update
+rollout will happens. Again, note that
+these automatic updates are only applicable to the changes
+in port specifications. You can update a deployment
+in different ways. One way is to use a kubectl apply command with an updated deployments
+specification YAML file. This method allows you to
+update other specification of a deployment such
+as the number of replicas outside
+the pod template. Another way is to use
+a kubectl set command. This allows you to
+change the pod template, specifications for the
+deployment such as the image, resources, or selector values. Another way is to use the
+kubectl edit command. This opens a
+specification file using the Vim editor that allows
+you to make changes directly. Once you exit and save the file, kubectl automatically
+applies the updated file. The last option for you to update a deployment is through
+the GCP Console. You can edit
+an employment manifest from the GCP Console and perform a rolling update along with this
+additional options. Rolling updates are
+discussed next. Let's look at how
+a deployment is updated. When a deployment is
+updated it launches a new ReplicaSet and creates a new set of Pods in
+a controlled fashion. First, new Pods are launched
+in a new ReplicaSet. Next, all Pods are deleted
+from the old ReplicaSet. This is an example of a rolling update strategy also
+known as a rampt strategy. It's advantage is that
+updates her slowly release, which ensures the availability
+of the application. However, this process can take time and there's no control over how the traffic is directed
+to the old and new Pods.

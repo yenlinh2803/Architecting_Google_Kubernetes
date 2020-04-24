@@ -1,0 +1,10 @@
+In this Lab, you'll build
+a Docker container image from provided source code and
+a Docker file using Cloud Build. You'll then upload the container
+to contain a registry. The tasks that you'll perform include: using Cloud
+build to build and push containers and then using container Registry to store
+and deploy containers. Remember that you have multiple tries to complete the Lab, so don't worry if
+your lab timer runs out. You can always start again. Now, try out the Lab and come back and watch
+the solution walkthrough video where we'll
+highlight each of the critical points
+you just practiced.

@@ -1,0 +1,29 @@
+A blue/green deployment
+strategy is useful when you want to deploy
+a new version of an application, and also ensure that
+application services remain available while
+the deployment is updated. With the blue/green
+update strategy, a completely new deployment is created with a newer version
+of the application. In this case, it's
+my dash app dash v2. When the pods in
+the new deployment are ready, the traffic can be switched
+from the old blue version, to the new green version. But how can you do this? This is where our
+Kubernetes service is used. Services allow you to
+manage the network traffic flows through
+a selection of pods. This set of pods is selected
+using a label selector. Lets take a closer look at
+how this is implemented. Here, in the service definition, pods are selected based
+on the label selector where pods in this example
+belong to my dash app, and to version v1. When a new deployment labeled v2 in this case is
+created and is ready, the version label on the service is changed to the newer version, labeled v2 in this example. Now, the traffic will be directed to the
+nearest set of pods. The green deployment with
+the v2 version label. Set up the old blue
+deployment pods that have the v1 version label. The blue deployment with the older version
+can then be deleted. The advantage of
+this update strategy, is that robots can
+be instantaneous, and the newer versions
+can be tested internally before releasing them to
+the entire user base. For example, by using
+a separate service definition for test user access. The disadvantage, is
+that the research you sit is doubled during
+the deployment process.

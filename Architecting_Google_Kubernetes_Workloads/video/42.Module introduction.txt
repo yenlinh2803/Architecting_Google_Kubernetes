@@ -1,0 +1,14 @@
+Hi I'm Priyanka. Welcome to the Google
+Kubernetes Engine networking module. When designing your applications, you need to understand
+what other types of services it will talk to and
+where they may be located. You also need to consider how to expose your applications
+to the outside world for consumption and how to balance incoming traffic to cope with
+wearing workload demands. That's the theme for this module. In this module, you will
+learn how to create services to expose applications
+running within a pod, allowing them to
+communicate with each other and with the outside world. Use load balancers to expose services to external clients, and spread incoming
+traffic across your cluster as
+evenly as possible. Create ingress resources for HTTP or HTTPS load balancing, and leverage
+container native load balancing to allow
+you to directly configure pods as
+network endpoints with Google Cloud Load Balancing.

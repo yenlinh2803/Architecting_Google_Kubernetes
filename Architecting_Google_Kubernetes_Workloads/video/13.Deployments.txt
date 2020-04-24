@@ -1,0 +1,50 @@
+Deployments describe
+a desired state of pods. For example, a desired state could be that you want to make sure that five engine X pods
+are running at all times. It's a stands means
+that Kubernetes will continuously make sure that configuration is running
+across the cluster. Kubernetes also supports various update mechanism
+for deployments, which I'll tell you about
+later in this module. The desired state is described in a deployment yaml file containing the
+characteristics of the pods. Coupled with how to
+operationally run these pods and handle
+their life cycle events. After you submit this file
+to the Kubernetes master, it creates a
+deployment controller which is responsible
+for converting the desired state into reality and keeping that desired
+state over time. Remember what a controller is, it's a loop processes created by Kubernetes that takes
+care of routine tasks to ensure the desires save
+an object or a set of objects running on a cluster
+matches the observed state. During this process,
+a replica set is created. A replica set is a
+controller that ensures that a certain number of pod replicas are running at any given time. The deployment is
+a high level controller for a pod to declares that state. The deployment
+configures a replica set controller to instantiate and maintain a specific version of the pods specified
+in the deployment. Deployments are declared
+a state of pods. Every time you update the
+specification of the pods for example updating them to use
+a newer container image, a newer replica set
+is created that matches the altered version
+of the deployment. This is how deployments roll out updated pods in
+a controlled manner. All pods from the old
+replica set are replaced with newer pods and
+a new replica set. If the updated pods
+are not stable, the administrator can roll back the pod to a previous
+deployment revision. You can scale pods manually by modifying the deployment
+configuration. You can also configure
+the deployment to manage the workload
+automatically. Deployments are designed
+for stateless applications. Stateless applications
+don't store data or application state to a cluster
+or to persistent storage. A typical example of a stateless application
+is a web front end. Some backend owns
+the problem of making sure that data gets
+stored durably, and they'll use
+Kubernetes objects other than deployments to
+manage these backends. Here's a simple example of a deployment object file
+in YAML format. The deployment named my-app is created with
+three replicated pods, and a spec.template section, a pod template defines
+some metadata and specification of each of
+the pods in this replica set. In the pods specification
+an image is pulled from Google Container Registry
+and port 8080 is exposed to send and accept
+traffic for the container.

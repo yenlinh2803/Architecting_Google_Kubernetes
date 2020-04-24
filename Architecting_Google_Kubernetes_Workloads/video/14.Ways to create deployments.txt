@@ -1,0 +1,43 @@
+You can create a deployment
+in three different ways. First, you create a deployment declaratively using
+a manifest file, such as a YAML file you've just seen and a kubectl apply command. The second method creates
+a deployment imperatively, using a kubectl run command that specifies
+the parameters in line. Here, the image and
+tag specifies which image and image version
+to run in the container. This deployment will launch three replicas, expose port 8080. Labels are defined using key and value dash
+hash generator, specifies the API
+version to be used, and dash hash save dash config saves the configuration
+for future use. Your third option is to use the GKE workloads menu
+in the GCP console. Here, you can specify
+the container image and version, or even selected directly
+from the container registry. You can specify
+environment variables and initialization commands. You can also add
+an application name, and namespace along with labels. You can use the view
+YAML button on the last page of the deployment wizard to view that deployment specification
+in YAML format. The replica set created
+by the deployment ensure that the desired number
+of pods are running, and always available
+at any given time. If a pod fails or is evicted, the replica set automatically
+launches a new pod. You can use the kubectl
+get in the scribe commands to inspect the state and details of the deployment. As shown here, you
+can get the desired, current, up to date
+and available status, of all the replicas within an deployment along
+with their ages, using the kubectl get
+deployment command. Desired, shows the desired number of replicas in the
+deployment specification. Current is the number of
+replicas currently running. Up-to-date, shows the number
+of replicas that are fully up-to-date as per the current
+deployment specification. Available displays the number of replicas available
+to the users. You can also output the deployment configuration
+in a YAML format. This is a useful trick. Maybe you originally created a deployment with kubectl run, then you decided
+you'd like to make it permanent managed part
+of your infrastructure. Edit that YAML file to remove the unique details of the
+deployment you created it from. Then you can add it
+to your repository of YAML files for
+future deployments. For more detailed information
+about the deployment, use the kubectl describe command. You'll learn more about
+this command in the lab. Another way to inspect a deployment is to
+use of GCP console. Here you can see
+detailed information about the deployment,
+revision history, the pods, events, and also view the live configuration
+in YAML format.

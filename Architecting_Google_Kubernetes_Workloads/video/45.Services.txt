@@ -1,0 +1,34 @@
+In an ever-changing
+container amendments, services give pods
+a stable IP address and name that remains the
+same through updates, upgrades, scalability changes,
+and even pod failures. Instead of connecting
+to a specific pod, applications on Kubernetes
+rely on services to locate suitable pods
+and forward the traffic, we add those services rather
+than directly to pods. In this lesson, you
+will learn about the different ways to
+find services in GKE. Virtual machines and pods have
+very different lifecycles. VMs are typically
+designed to be durable and persistent through
+application updates and upgrades, whereas pods are typically terminated and replaced
+with newer pods. As a result of
+new pod deployment, the updated
+containerized version of the application gets
+a new IP address. Also, if a pod is
+rescheduled for any reason, then the pod gets
+a new IP address. This unexpected change
+of addresses could cause significant service
+disruptions in large, quickly
+changing environments. Pod IP addresses are ephemeral. Therefore, you need
+a more dependable way to locate the applications
+running in your cluster. Fortunately, Kubernetes
+has an answer, services. A Kubernetes service is an object that creates a dynamic
+collection of IP addresses called end
+points that belong to pods matching the services
+labeled selector. When you create a service, that service issued
+a static virtual IP address from the pool of IP addresses that the cluster reserves
+for services. The virtual IP is durable. It is published to
+all nodes in the cluster. It doesn't change even if
+all the pods behind it change. In GKE, this range is
+automatically managed for you, and by default, contains over 4,000 addresses per cluster.

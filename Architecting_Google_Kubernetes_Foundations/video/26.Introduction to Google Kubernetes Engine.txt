@@ -1,0 +1,49 @@
+Google Cloud's managed service
+offering for Kubernetes, it's called Google
+Kubernetes Engine or GKE. So why do people choose it? What if you'd begun using
+Kubernetes in your environment, but the infrastructure has become too much of a burden
+for you to maintain? Is there anything within Google Cloud Platform that can help you? Absolutely totally,
+that's going to be Google Kubernetes Engine or GKE. GKE, let's talk about
+what it can do. It'll help you deploy, manage, and scale Kubernetes
+environments for your containerized
+applications on GCP. More specifically, GKE is a component of the GCP
+compute offerings. It makes it easy to bring your Kubernetes workloads
+into the Cloud. GKE is fully managed, which means that
+you don't have to provision the
+underlying resources. GKE uses a container
+optimized operating system. These operating systems
+are maintained by Google, and are optimized to scale quickly and with
+a minimal resource footprint. The container optimized OS, as we will be discussed
+later on in this course. When you use GKE, you start by directing
+the service to instantiate a Kubernetes
+system for you. This system is called a cluster. GKE's auto upgrade feature can be enabled to ensure
+that your clusters are automatically upgraded with the latest and greatest
+version of Kubernetes. The virtual machines that
+host your containers inside of a GKE cluster
+are called nodes. If you enable GKE's auto
+repair feature, the service will automatically repair unhealthy nodes for you. It'll make periodic health checks on each node in the cluster. If a node is determined to be unhealthy and requires repair, GKE would drain the node. In other words, it'll
+cause it's workloads to gracefully exit and then
+recreate that node. Just as Kubernetes support
+scaling workloads, GKE supports scaling
+the cluster itself. GKE seamlessly integrates with Google Cloud Build and
+Container Registry. This allows you to
+automate deployment using private container
+images that you've securely stored in
+Container Registry. GKE also integrates with Google's Identity
+and Access Management, which allows you to
+control access through the use of accounts
+enroll permissions. Stackdriver is
+Google Cloud's system for monitoring and
+management for services, containers, applications,
+and infrastructure. GKE integrates with
+Stackdriver monitoring to help you understand
+your application's performance. GKE is integrated with Google Virtual Private
+Clouds or VPCs, and makes use of
+GCP's networking features. Finally, the GCP console provides insights into GKE clusters
+and the resources. It allows you to view, inspect, and delete resources
+in those clusters. You might be aware
+that open-source Kubernetes contains a dashboard, but it takes a lot of work
+to set it up securely. But the GCP Console
+is a dashboard for your GKE clusters and workloads that you
+don't have to manage, and it's more powerful than
+the Kubernetes dashboard.

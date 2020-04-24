@@ -1,0 +1,57 @@
+The canary method is another
+update strategy based on the blue-green method but traffic is gradually shifted
+to the new version. The main advantages of using canary deployments are
+that you can minimize excess research usage during the update and because
+the roll-out is gradual, issues can be
+identified before they affect all instances
+of the application. In this example, 100 percent of the application
+traffic is directed initially to my dash-app-v1. When the canary
+deployment starts, a subset of the traffic, 10 percent in this case, is redirected to
+the new version, my-app-v2. When the stability of the new
+version is confirmed, 100 percent of the traffic
+can be routed to the new version.
+How is this done? In the blue-green update
+strategy covered previously, both the app and version labels were selected by the service, so traffic would only be sent to the pods that are running the version defined
+in the service. In canary update strategy, the service selector
+is based only on the application label and
+does not specify the version. The selector in this example
+covers all pods with the app: my-app label. This means that with this canary update strategy
+version of the service, traffic is sent to all pods, regardless of the version label. The setting allows the service
+to select and direct the traffic to the pods
+from both deployments. Initially, the new version of the deployment will start
+with zero replicas running. Over time as a new version
+is scaled up, the old version of
+the deployment can be scaled down, and
+eventually deleted. With the canary update strategy, a subset of users will be
+directed to the new version. This allows you to monitor for errors and performance issues as these users use the new version and you can roll back quickly, minimizing the impact on your overall user base
+if any issues arise. However, the complete roll-out
+of a deployment using the canary strategy can be a slow process and
+may require tools, such as SDO, to accurately
+shift the traffic. There are other
+deployment strategies, such as AB testing
+and Shadow testing. These strategies are outside
+the scope of this course. Recreate is a strategy type where all the old pods are deleted
+before new pods are created. This clearly affects the availability of
+your application, because the new pods must be created and will not be
+available instantly. For example, what if the contract of
+communication between parts of your application is changing and you need
+to make a clean break? In such situations, a continuous deployment strategy
+doesn't make sense. All the replicas need
+to change at once. That's when the recreate
+strategy is recommended. So that's roll-out. Next, we'll discuss how to roll back updates, especially in rolling update
+and recreate strategies. You roll back using kubectl
+roll-out undo command. A simple roll-out
+undo command will revert the deployment to
+its previous revision. You roll back to
+a specific version by specifying
+the revision number. If you're not sure
+of the changes, you can expect
+the roll-out history using the kubectl roll-out
+history command. The GCP console doesn't have
+a direct role back feature. However, you can start Cloud Shell from your console
+and use these commands. The GCP console also shows
+you the revision list, with summaries and
+creation dates. By default, the details of 10 previous replica sets are retained so that you
+can roll back to them. You can change this default by specifying a revision
+history limit, under the deployment
+specification.

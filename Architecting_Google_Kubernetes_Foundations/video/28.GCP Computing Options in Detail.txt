@@ -1,0 +1,187 @@
+In this last lesson, you'll learn more about the
+computing options available. In our previous module, I briefly introduced
+your choices for running compute workloads in GCP. Now that we know more
+about how containers work, we can compare these
+choices in more detail. The services are Compute Engine, GKE, App Engine, Cloud
+Run, and Cloud Functions. At the end of this lesson, you'll understand why
+people choose each. Compute Engine offers virtual
+machines that run on GCP. You can select predefined
+VM configurations. At the time this
+course was developed, these virtual machines
+can be as large as a 160 VCPUs with more than
+three terabytes of memory. You can also create
+customized configurations to precisely match
+your performance and cost requirements. Virtual machines
+need block storage. Compute Engine offers
+you two main choices, persistent disks and local SSDs. Persistent disks
+offer network storage that can scale up
+to 64 terabytes, and you can easily
+take snapshots of these disks for
+backup and mobility. You can also choose local SSDs, which enable very high input output
+operations per second. You can place your Compute
+Engine workloads behind global load balancers that
+support auto-scaling. Compute Engine offers a feature called managed instance groups. With these, you can define
+the resources that are automatically deployed
+to meet demand. GCP enables fine-grained
+control of costs of Compute Engine resources by
+providing per second billing. This granularity helps reduce
+your costs when deploying compute resources for
+short periods of time, such as batch processing jobs. Compute Engine offers
+preemptible virtual machines, which provides significantly
+cheaper pricing for your workloads that can
+be interrupted safely. So why do people
+choose Compute Engine? With Compute Engine, you have complete control over
+your infrastructure. You can customize
+operating systems, and even run applications
+that rely on a mix of operating systems. You can easily lift and shift your on-premises workloads into GCP without rewriting
+your applications or making any changes. Compute Engine is the
+best option while other competing
+options don't support your applications
+or requirements. App Engine has a completely different orientation
+from Compute Engine. App Engine is a fully managed
+application platform. Using App Engine and means zero sever management and zero
+configuration deployments. So if you're a developer,
+you can focus on building applications and not really worrying about the
+deployment part. So you can simply use
+your code and App Engine will deploy that required
+infrastructure for you. App Engine supports popular
+languages like Java, Node.js, Python, PHP, C#,.NET,
+Ruby, and Go. You can also run
+Container workloads. Stackdriver monitoring, logging,
+and diagnostics such as debugging and error reporting are also tightly integrated
+with App Engine. You can use Stackdriver's
+real-time debugging features to analyze and debug
+your source code. Stackdriver integrates with
+tools such as Cloud SDK, Cloud Source
+Repositories, InteliJ, Visual Studio and PowerShell. App Engine also supports a version control and
+traffic splitting. App Engine is a good choice. If you simply want
+to focus on writing code and you don't want to worry about building the
+highly reliable and scalable infrastructure
+that it will run on, you can just focus on
+building applications instead of deploying and
+managing the environment. Use cases for App Engine
+include websites, mobile apps, gaming backends, and has a way to present a RESTful
+API to the Internet. What's a RESTful API? In short, is an application
+program interface that resembles the way a web browser interacts with a web server. Restful APIs are easy for developers to
+work with and extend, and App Engine makes
+them easy to operate. Finally, the main topic of this course, Google
+Kubernetes Engine. We learned that communities as an orchestration system for
+applications in Containers. It automates deployment, scaling, load balancing, logging
+and monitoring, and other management features. Google Kubernetes Engine extends Kubernetes management on GCP by adding features and
+integrating with other GCP services automatically. GKE supports cluster
+scaling, persistent disks, automated updates to
+the latest version of Kubernetes and auto repair
+for unhealthy nodes. It has built-in integration
+with Cloud build, Container Registry, Stackdriver monitoring,
+and Stackdriver logging. Existing workloads running
+with an on-premise clusters can easily
+be moved onto GCP. There's no vendor log in. Overall, GKE is very well suited for containerized
+applications, Cloud native distributed systems
+and hybrid applications. Kubernetes and GKE are discussed in depth
+throughout this course. Cloud Run is a managed compute platform
+that enables you to run stateless Containers
+via built web requests or Cloud Pub/Sub events. Cloud Run is serverless. It abstracts away all the
+infrastructure management so you can focus on
+developing applications. It's built on Knative and open-source
+Kubernetes-based platform. It builds, deploys, and manages modern
+serverless workloads. Cloud Run gives you the choice of running your
+Containers either fully managed or in your
+own GKE cluster. Cloud Run enables you
+to run request or event-driven stateless
+workloads without having to worry about servers. It abstracts away all the infrastructure management
+such as provisioning, configuring, managing of servers, so you can focus on
+just writing code. It automatically scales
+up and down from zero depending upon traffic
+almost instantaneously. So you never have to worry
+about scale configuration. Cloud Run charges you for
+only the resources that you use calculated down to the
+nearest 100 milliseconds. So you'll never have to pay for those over-provisioned
+resources. With Cloud Run, you can choose to deploy your stateless
+Containers with a consistent developer
+experience to a fully managed environment
+or to your own GKE cluster. This common experiences
+enabled by Knative in open API and runtime environment built on top of Kubernetes. It gives you the freedom
+to move your workloads across different
+environments and platforms, either fully managed on GCP, on GKE or anywhere Knative runs. Cloud Run enables you to deploy
+stateless Containers that listen for requests or events delivered via HTTP requests. With Cloud Run, you can build your applications in any language using
+whatever frameworks and tools you wish and
+deploy them in seconds without having a manager maintain that server infrastructure. Cloud Functions is an event-driven serverless
+compute service for simple
+single-purpose functions that are attached to events. In Cloud Functions,
+you simply upload your code written in JavaScript or Python or Go and then
+GCP will automatically deploy the appropriate
+computing capacity to run that code. These servers are
+automatically scaled and are deployed from highly available in a fault-tolerant design. You're only charged for the
+time that your code runs. For each function, invocation, memory and CPU use is measured in 100 millisecond increments rounded to the nearest increment. Cloud Functions also provides
+a perpetual free tier. So many Cloud Function use
+cases could be free of charge. With Cloud Functions,
+your code is triggered within a few milliseconds
+based on it events. For example, a file is uploaded a Google Cloud Storage or a message is received
+from Cloud Pub/Sub. Cloud Functions can
+also be triggered based on HTP endpoints that you define and events in the Firebase mobile
+application backend. What are some of the use
+cases for Cloud Functions? They generally uses part of a Microservices
+application architecture. You can also build simple
+serverless mobile IoT backends, or integrate with third
+party services and APIs. Files uploaded into
+your GCS bucket can be processed in real time. Similarly, the data
+can be extracted, transformed, and loaded
+for querying and analysis. GCP customers often use
+Cloud Functions as part of intelligent applications
+such as virtual assistants, video or image analysis,
+and sentiment analysis. So which computes service
+should you adopt? A lot depends on where
+you're coming from. If you're running applications on physical server hardware, it'll be the path
+of least resistance to move into Compute Engine. Where if you're running
+applications in long lived virtual machines in which each VM is
+managed and maintained. In this case, you'll also find moving to Compute Engine is the quickest GCP service for getting your applications
+to the Cloud. What if you don't want to
+think about operations at all? Well, App Engine and Cloud
+Functions are good choices. You can learn more about
+the differences between App Engine and Cloud Functions in the courses under developing applications with
+Google Cloud Platform. I hope that this course so
+far has helped you understand why software Containers
+are so beneficial. Containerization is
+the most efficient, importable way to package
+up an application. The popularity of containerization
+is growing very fast. In fact, both Compute Engine and App Engine can launch
+Containers for you. Compute Engine will accept
+the Container image from you and launch your Virtual Machine instance that contains it. You can use Compute
+Engine technologies to scaling and manage
+the resulting VM. App Engine flexible
+environment will accept the Container
+image from you and then run it with the same
+NoOps environment that App Engine
+delivers for code. But what if you want more control over your containerized
+workloads than what App Engine offers and denser packing of what
+Compute Engine offers? That increasingly
+popular use case is what GKE is
+designed to address. The Kubernetes paradigm of container orchestration
+is incredibly powerful and it's vendor-neutral, and abroad and vibrant community has developed all around it. Using Kubernetes as a managed
+service from GCP saves your work and lets
+you benefit from all the other GCP resources too. You can also choose
+Cloud Run to run stateless containers on a
+managed Compute Platform. Of course, if you're
+already running Kubernetes in your
+on-premises data centers, moving to GKE is a great
+choice because you'll be able to bring along both
+your workloads and your management approach. That concludes introduction
+to containers and Kubernetes. In this module, you'll learn how to create a container using Cloud build to build and manage
+your application images. You then review the
+Compute solutions offered by Google Cloud Platform, starting from Compute Engine for lift and shift workloads, App Engine, GKE, Cloud Functions, and Cloud Run, and you weigh the benefits of each
+with common use cases. In your labs, you created docker formatted container
+images and you saw how you can privately store
+them in container registry. You'll also learn how
+to securely manage your bills with a native
+integration with Cloud IAM. Lastly, you'll learn that GKE supports automatic
+Kubernetes version updates, automatic repair for
+unhealthy nodes, and even the scaling of the
+cluster itself for you. All of this allows you
+to focus your time on dreaming up and writing your
+next great application. This means less time worrying
+about infrastructure, managing and maintaining deployment
+environments, securely, building and sharing
+your containers, and having to solve
+for massive scale when your amazing idea hits that
+next big user milestone. In this next module,
+you'll learn about the architecture of Kubernetes.

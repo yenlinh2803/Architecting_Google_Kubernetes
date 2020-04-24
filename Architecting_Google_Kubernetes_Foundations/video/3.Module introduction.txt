@@ -1,0 +1,15 @@
+Hi, I'm Evan. Welcome to Introduction to Google Cloud
+Platform, the first module of this course. I'm excited to share with you the stuff
+that you need to know to use Google Kubernetes Engine, and the other services
+that make up Google Cloud Platform. In this first module, I'll share a simple
+explanation of what Google Cloud computing is, so that we start off
+with the right framework of concepts. So here's a quick preview, cloud computing entails resources
+being provided to you as a service. GCP offers several services that let you
+run general purpose compute workloads on Google's hardware, and
+we're going to meet them. Google Cloud Platform
+has a global footprint. I'll explain how GCP's resources around
+the world are organized into regions and zones. You can then use these resources,
+but of course, it's your job to define
+the policies you want to use. GCP offers a hierarchical structure for
+organizing and use of cloud resources and we'll meet it in this module. Finally, you meet the tools that lets you
+connected to GCP and allocate change and release those resources

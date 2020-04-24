@@ -1,0 +1,12 @@
+That concludes Google
+Kubernetes Engine networking, the sixth module in
+architecting with GCP container
+infrastructure course. In this module, you
+learnt how to create services to expose applications
+running within pods, allowing them to communicate
+with each other, and the outside world. Use load balancers to explore services to external clients, and spread incoming
+traffic across your clusters as
+evenly as possible. Create ingress resources for HTTP or HTTP(S) load balancing, for specialized external
+load balancing of traffic. Leverage container native load balancing to allow
+you to directly configure pods as
+network endpoints with Google Cloud load balancing.

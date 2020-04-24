@@ -1,0 +1,10 @@
+In this lab, you will define
+a run jobs and cron jobs. In GKE, job as a controller object that
+represents a finite task. Your first task will be
+to create a GKE cluster. Create a job, inspect
+its status, and then remove it. You can create
+cron Jobs to perform finite time-related task that run once or repeatedly at
+a time that you specify. For your second task, you'll
+create and run a cron job. In order to stop the cron job and clean up the jobs
+associated with it, you will then delete
+the cron job.

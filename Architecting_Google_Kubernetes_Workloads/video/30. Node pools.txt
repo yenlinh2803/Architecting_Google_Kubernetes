@@ -1,0 +1,21 @@
+Cluster will contain
+one or more node pools. The node pool size can be set by specifying a minimum
+and maximum size. You can scale down some of the node pools in
+a cluster to zero. However, the overall cluster size can never be scaled to zero. At least one node
+is required within a cluster to have
+system pods running. The cluster auto scaler has
+been tested to a maximum of 1000 nodes with
+each running 30 pods. However, standard
+GCP quota limits for your total number of Compute
+Engine instances will apply. If you haven't increased
+your default quota, you'll eventually see
+disruption and new VMs won't be started until
+the quota limit is raised. Here's some gcloud commands
+for autoscaling. You can start a cluster with autoscaling enabled
+for the default pool. You can add a new pool
+with autoscaling enabled or enable autoscaling
+for an existing node pool. You can also disable autoscaling for
+an existing node pool. If autoscaling is disabled, the node pool size
+will be fixed at the clusters
+current node pool size. You can also carry out all of these actions from
+the GCP console.

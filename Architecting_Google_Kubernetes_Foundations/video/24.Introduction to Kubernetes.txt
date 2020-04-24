@@ -1,0 +1,64 @@
+Now, let's introduce
+a popular container management and orchestration solution
+called Kubernetes. Let's say your organization is really embraced
+the idea of containers. Because containers are so lean, your coworkers are
+creating them in numbers far exceeding the counts
+of virtual machines you used to have and
+the applications running in them need to
+communicate over the network. But you don't have
+a network fabric that lets containers
+find each other. You need help. How can you manage your container
+infrastructure better? Kubernetes is an
+open source platform that helps you orchestrate and manage your container
+infrastructure On-premises or in the Cloud. So what is Kubernetes? It's a container centric
+management environment. Google originated it and then donated it to
+the open source community. Now, it's a project of the Vendor Neutral Cloud
+Native Computing Foundation. It automates
+the deployment scaling, load balancing,
+logging, monitoring, and other management features of containerized applications. These are the features
+that are characteristic of a typical platform
+as service solutions. Kubernetes also
+facilitates the features of an infrastructure
+as a service, such as allowing a wide range of user preferences and
+configuration flexibility. Kubernetes supports
+declarative configurations. When you administer your
+infrastructure declaratively, you describe the desired state you want to achieve instead of issuing a series of commands to achieve that desired state. Kubernetes job is to make
+the deployed system conform to your desired state and then keep it there in
+spite of failures. Declarative configuration
+saves you work. Because the system is desired
+state is always documented, it also reduces
+the risk of error. Kubernetes also allows
+imperative configuration in which you issue commands
+to change the system state. But administering Kubernetes
+as scale imperatively, will be a big missed opportunity. One of the primary
+strengths of Kubernetes is its ability to
+automatically keep a system in a state
+that you declare. Experienced Kubernetes
+administrators use imperative configuration only for quick temporary fixes
+and as a tool in building a declarative
+configuration. Now that you know
+what Kubernetes is, let's talk about some
+of its features. Kubernetes supports
+different workload types. It supports
+stateless applications such as an Engine acts
+or Apache web server, and stateful applications where user in session data can
+be stored persistently. It also supports batched jobs
+and demon tasks. Kubernetes can automatically
+scale in and out containerized applications
+based on resource utilization. You can specify
+resource requests levels and resource limits
+for your workloads and Kubernetes will obey them. These resource controls
+like Kubernetes, improve overall workload
+performance within the cluster. Developers extend
+Kubernetes through a rich ecosystem of
+plugins and add-ons. For example, there's a lot
+of creativity going on currently with Kubernetes
+custom resource definitions which bring the Kubernetes declarative Management Model
+to amazing variety of other things that
+need to be managed. The primary focus of
+this specialization though, is architecting with Kubernetes because it's provided as
+a service by Google Cloud. So extending Kubernetes
+is not within our scope. Because it's open source, Kubernetes also supports
+workload portability across On-premises or multiple
+Cloud service providers such as GCP and others. This allows Kubernetes
+to be deployed anywhere. You can move Kubernetes workloads freely without a vendor login.

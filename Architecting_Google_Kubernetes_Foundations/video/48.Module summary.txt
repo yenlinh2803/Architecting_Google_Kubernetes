@@ -1,0 +1,15 @@
+This concludes the Kubernetes
+architecture module. In this module, you learned about
+the Kubernetes operating philosophy. Every item under Kubernetes control
+is represented by an object. And Kubernetes tries to keep the state of
+its cluster matching the state you have declared that you want. You learned about the control playing
+components that make up Kubernetes. You learned about Cube API server,
+which is the point of control for your Kubernetes cluster. And you learned about Cubelet, which
+is your cluster's agent on each node. And you also learned that a GKE managed
+cluster implements the master for you, behind the scenes, and that you
+are not charged separately for it. To tell Kubernetes what you want
+the state of your cluster to be, create manifest files. Typically, you'll build
+those files in YAML format. These files name and describe the objects you want
+Kubernetes to keep alive and healthy. They also documented the desired
+state of your cluster. So you should keep these files
+in a source control system.

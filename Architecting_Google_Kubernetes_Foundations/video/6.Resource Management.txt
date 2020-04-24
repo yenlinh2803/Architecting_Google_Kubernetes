@@ -1,0 +1,118 @@
+In this video, you'll learn
+about that topology of GCP services and how they're distributed
+geographically in zones, regions, and at a global scale. You'll also learn how
+you can structure your resources you
+use hierarchically, using organizations,
+folders, and projects, to manage your access
+control and your billing. Behind the services provided
+by Google Cloud Platform, lay a huge range
+of GCP resources. Physical assets such as physical
+servers and hard drives, and virtual resources such as virtual machines
+and containers. These resources are managed by Google within
+its global datacenters. Google Cloud provides
+resources in multi-region, regions, and zones. It divides the world up into
+three multi-regional areas, the Americas, Europe,
+and Asia Pacific. Next, the three
+multi-regional areas are divided into regions, which are independent
+geographic areas on the same continent. Within a region, there's
+fast network connectivity, generally round-trip network latencies of under a millisecond, and that's at
+the 95th percentile. Finally, regions are
+divided into zones, which are deployment areas for GCP resources within
+a focus geographic area. You can think of a zone as like a datacenter within a region, although strictly
+speaking, a zone isn't necessarily a single datacenter. Now, we mentioned
+Compute Engine earlier. Compute Engine virtual
+machine instances reside within a specific zone, if that zone became unavailable, so at your virtual machines
+and the workload is running in them,and GKE uses
+Compute Engine, so your GKE workloads
+can be affected as well. Deploying applications
+across multiple zones enables fault tolerance
+and high availability. In this specialization, we'll learn how to
+do exactly that. Google's datacenters
+around the world are interconnected by
+the Google network, which by some publicly
+available estimates, carries as much as 40 percent of the world's Internet
+traffic every day. This is the largest
+network of its kind on earth and it
+continues to grow. It's designed to provide the highest possible throughput in the lowest possible latencies for applications,
+including years. The network interconnects with the public Internet and
+more than 90 internet exchanges, and more than 100 points
+of presence worldwide. When an Internet users
+sends traffic to a Google resource,Google responds to the user's request from an edge network location that'll provide the lowest
+latency or delay. Google's edge caching
+network places the content close to users
+to minimize that latency. Your applications in GCP, including those running in GKE, can take advantage of
+this edge network too. When you take advantage of
+GCP services and resources, you get to specify those resources
+geographical locations. In many cases, you can also specify whether or not
+you're doing something at a zonal level or regional level or
+a multi-regional level. Zonal resources operate
+within a single zone, which means that if the zone
+becomes unavailable, the resources won't
+be available either. A simple example would be a Compute Engine virtual
+machine instance and its persistent disks. GKE has a component
+called the node, and these are zonal too. Regional resources operate
+across multiple zones, but within one region. Now, application
+using these resources can be redundantly deployed
+to improve its availability. Later in this specialization, you'll learn how to use GKE, so that's resources spread across different zones within a region. Cloud Datastore is an example of another GCP service that can be deployed in a similar
+redundant way. Finally, global resources can be managed across
+multiple regions. These resources can
+further improve the availability
+of an application. Some example of
+such resources include HTTPS load balancers and VPC or virtual private
+cloud networks, which GKE users benefit from too. The GCP resources you use, no matter where they reside, must belong to a project. So what's a project? A project is the base
+level organizing entity for creating and using
+resources and services, and managing billing APIs
+and permissions. Zones and regions physically
+organize the GCP resources you use and projects
+logically organized them. Projects can be easily
+created, managed, deleted or even recovered
+from accidental deletions. Each project is identified by a unique project ID
+and project number. You can name your project and
+apply labels for filtering. These labels are changeable, but the project ID and
+project number remain fixed. Projects can belong to a folder, which is another
+grouping mechanism. You should use folders to
+reflect their hierarchy of your enterprise and apply policies at the right levels
+within your enterprise. Yes I know what you're asking, you can nest folders inside
+of folders if you want. For example, you have
+a folder for each department, and with each departments folder, you can have sub folders for each of the teams
+that make it up. Each team's projects
+belong to its folder. A single organization owns
+all the folders beneath it. An organization is the root node of a GCP resource hierarchy. Although you're not
+required to have an organization to use GCP, organizations are very useful. Organizations let
+you set policies that apply throughout
+your entire enterprise. Also having organization, is required for you to use folders. If you're already a GCP customer, you have an organization already, and if not, you can get one for free through
+Google Cloud identity. Your organization will have a fixed organization ID and
+a changeable display name. The GCP resource hierarchy
+helps you manage resources across multiple departments and multiple teams within
+an organization. You can define a hierarchy
+that can creates trust boundaries and
+resource isolation. For example, should members of your human resources
+team be able to delete running database servers, and showed your engineers
+be able to delete the database of
+employees salaries, probably not in either case. Cloud Identity and
+Access Management, also called IM, lets you fine tune access controls
+all the GCP resources you use. You define IM policies that control user access to resources. You apply these policies
+at the level you choose, and those policies
+inherit downwards. For example,
+an IM policy applied at the organizational level will
+be inherited by a folder, the project, and
+even the resources beneath it. Additional policies at
+lower levels of the hierarchy, can grant additional permissions. Building on the other hand, accumulates at the project level. Most GCP customers have a resource hierarchy
+that looks like their employee
+organization chart, while their project billing looks like their cost
+centers structure. The resource hierarchy
+matters because of GCP is shared security model. When you build an application on your own premises infrastructure, you're responsible for
+the entire stack security, for the physical security of the hardware and the premises in which they're housed through the encryption of
+the data on disk, the integrity of your network, all the way up to securing the content stored in
+those applications. But when you move
+an application at GCP, Google handles many of
+those lower levels of security, like the physical security of the hardware and its premises, the encryption of data on disk, and the integrity of
+the physical network. Because of its scale, Google can deliver
+a higher level of security at these layers than most customers could afford to on their own. The upper layers of
+the security stack, including the securing
+of the data, remain your responsibility. Google does provide tools
+to help you implement the policies you can
+define at those layers. The resource hierarchy
+we just explored, is one of those tools. Cloud IM is another. You will learn more
+about that security in depth later on in
+this specialization.

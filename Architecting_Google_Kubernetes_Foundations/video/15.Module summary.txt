@@ -1,0 +1,14 @@
+That concludes the introduction
+to Google Cloud Platform module. Let me remind you of what you've learned. Cloud computing is a way to organize your
+use of IT in which a provider gives you on-demand access over the network to
+resources from a pool that they maintain. You pay for what you use or reserve. The provider maintains
+the infrastructure for you, and you can turn it off when you're done. Google Cloud Platform offers lots of
+different kinds of cloud computing resources, including four that run
+your code for you on Google hardware. In this course,
+we're focusing on Kubernetes engine. All the resources offered by GCP
+are organized into regions and zones. You can use resources in several zones in a region to increase your
+application's resiliency. GCP has a shared security model. You're responsible for defining security
+policies for your GCP resources, and the cloud resource management hierarchy
+helps you do that in a manageable way. Two important tools that you can use
+to manage your use of GCP resources are the GCP Console and Cloud Shell. We'll be using both of those throughout
+the rest of this specialization.

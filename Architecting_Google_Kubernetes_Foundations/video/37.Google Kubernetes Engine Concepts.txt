@@ -1,0 +1,82 @@
+Next, we'll introduce concepts specific to Google
+Kubernetes Engine. That diagram of the
+Kubernetes control plane had a lot of
+components, didn't it? Setting up a Kubernetes cluster
+by hand is tons of work. Fortunately, there's
+an open-source command called Kuber ADM, that can automate much of
+the initial setup of a cluster. But if a node fails
+or needs maintenance, a human administrator
+has to respond manually. I suspect you can see
+why a lot of people like the idea of a managed
+service for Kubernetes. You may be wondering,
+how that picture we just saw it differs for GKE. Well, here it is. From the user's perspective, it's a lot simpler. GKE manages all the control
+plane components for us. It's still exposes an IP address, to which we send all of
+our Kubernetes API requests. But, GKE takes responsibility for provisioning and managing all the master
+infrastructure behind it. It also abstracts away
+having a separate master. The responsibilities of
+the master are absorbed by GCP, and you are not separately
+billed for your Master. Now let's talk about nodes. In any Kubernetes environment, nodes are created externally
+by cluster administrators, not by Kubernetes itself. GKE automates
+this process for you. It launches Compute Engine
+virtual machine instances, and registers them as nodes. You can manage nodes settings directly from the GCP console. You pay per hour of
+life of your nodes, not counting the master. Because nodes run
+on Compute Engine, you choose your node machine type when you create your cluster. By default, the node machine
+type is N1 standard one. Which provides one virtual CPU and 3.75 gigabytes of memory. Google Cloud offers
+a wide variety of Compute Engine options. At the time this video was made, the generally available maximum
+was 96 virtual CPU cores. That's a moderately
+big virtual machine. You can customize
+your nodes number of cores and their memory capacity, you can select a CPU platform, you can choose a baseline
+minimum CPU platform for the nodes or node pool. This allows you to
+improve node performance. GKE will never use
+a platform that is older than the CPU platform
+you specified, and if it picks a newer platform, the cost will be the same
+as the specified platform. You can also select multiple node machine types by creating multiple node pools. A node pool is a subset
+of nodes within a cluster that share
+a configuration, such as their amount of memory
+or their CPU generation. Node pools also provide
+an easy way to ensure that workloads run on the right hardware
+within your cluster. You just label them with
+a desired node pool. By the way, no pools
+are a GKE feature, rather than a Kubernetes feature. You can build
+an analogist mechanism within open-source Kubernetes, but you would have to
+maintain it yourself. You can enable
+automatic node upgrades, automatic node repairs, and cluster auto-scaling at
+this node pool level. Here's a word of caution. Some of each node, CPU, and memory are needed to run the GKE and Kubernetes components that let it work as
+part of your cluster. So for example, if you allocate nodes with 15
+gigabytes of memory, not quite all of that 15 gigabytes will be
+available for use by pods. This module has
+a documentation link, that explains how much CPU
+and memory are reserved. By default, a cluster launches in a single GCP compute zone with three identical nodes. All in one node pool. The number of nodes
+can be changed during or after the creation
+of the cluster. Adding more nodes and deploying multiple replicas
+of an application, will improve an
+applications availability. But only up to a point, what happens if the entire
+compute zone goes down? You can address
+this concern by using a GKE regional cluster. Regional clusters have a single API endpoint
+for the cluster. However, it's masters
+and nodes are spread out across multiple Compute
+Engine zones within a region. Regional clusters ensure,
+that the availability of the application is maintained across multiple zones
+in a single region. In addition, the availability of the master is also maintained. So that both, the application and management functionality, can withstand the loss
+of one or more, but not all zones. By default or regional, cluster is spread
+across three zones, each containing one master
+and three nodes. These numbers can be
+increased or decreased. For example, if you have
+five nodes in zone one, you will have exactly the
+same number of nodes in each of the other zones for
+a total of 15 nodes. Once you build a zonal cluster, you can't convert it into a regional cluster
+or vice versa. Regional and zonal GKE clusters can also be set up as
+a private cluster. The entire cluster, that is, the master and its nodes, are hidden from
+the public Internet. Cluster masters can be accessed
+by Google Cloud products, such as Stackdriver, through
+an internal IP address. They can also be accessed by authorized networks through
+an external IP address. Authorized networks are
+basically IP address ranges, that are trusted to
+access the master. In addition, nodes
+can have limited outbound access through
+private Google excess, which allows them to communicate
+with other GCP services. For example, nodes can pull container images from
+Google Container Registry, without needing
+external IP addresses. The topic of private clusters
+is discussed in more detail in another module
+in this specialization.

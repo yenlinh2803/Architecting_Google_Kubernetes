@@ -1,0 +1,24 @@
+Here's an example that combines pod affinity and anti-affinity. Pod number one with label app:webserver has both a hard limit
+and a soft limit. In this pod, the hard limit
+has an anti-affinity rule, saying that other pods with the label app:webserver aren't
+allowed in the same zone. On the other hand, the soft limit has an affinity
+where it prefers to have other positive label
+app:cache on the same node. The cached pods however, prefer to be scheduled on the same node as
+a webserver but have a hard limit that prevents multiple cache pods from being
+deployed in the same zone. The resulting distribution has the two webserver
+pods repelling each other at the zone level and attracting cache pods
+at the node level. Both cache pods also
+repel each other at the zone level and attract webserver pods at the node level. Let's walk through the example. Pod one is already running
+on a node in zone one. Now pod two is being scheduled. Pods one and two repel each other based on the hard limit. Therefore, pod two is scheduled to run in
+a different zone, zone two and on a different node. Pod three has
+a soft limit preference to run on the same node
+as webserver pods, so it can be scheduled on the same node as either
+pod one or pod two. Here, it's scheduled to
+run alongside pod one. Finally, pod four
+has to be scheduled. It will be repelled from pod
+three with it's hard limit, but can run on a different zone
+alongside pod two. Additionally, the soft limit
+has a preference to run on the same node as a webserver pod instead of on a different node. This allows you to specify affinity rules to
+co-locate pods at different topological
+layers and control the distribution of pods
+across topological layers.

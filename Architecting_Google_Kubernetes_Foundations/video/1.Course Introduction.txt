@@ -1,0 +1,27 @@
+Hi, I'm Brian. Thanks for taking part
+in the Architecting with Google Kubernetes
+Engine specialization. You're here because you're
+interested in Kubernetes, a software layer
+that sits between your applications and
+your hardware infrastructure. Because it abstracts away
+your underlying infrastructure, it's easier to consistently run and manage your applications. Google Kubernetes Engine
+brings you Kubernetes as a managed service on
+Google Cloud Platform. The specialization as
+a whole will teach you how to implement solutions
+using Google Kubernetes Engine. Including, building, scheduling, load balancing, and
+monitoring workloads. As well as providing for
+discovery of services. Managing role-based access
+control and security and providing persistent storage
+to these applications. In this course, Architecting with Google
+Kubernetes Engine foundation, each module aims to
+build on your ability to architect with GKE, and includes hands-on
+labs for you to experience
+functionalities firsthand. In the first module, you'll be introduced to a range of Google Cloud Platform services and features with a view to helping you choose
+the right GCP services, to create your own
+cloud solution. You'll learn about
+creating a container using Cloud Build and storing a container in
+Container Registry. You'll also compare and
+contrast the features of Kubernetes and
+Google Kubernetes engine, also referred to as GKE. In addition to conceptualizing the Kubernetes architecture, you'll deploy a Kubernetes
+cluster using GKE, deploy pods to a GKE cluster and view and managed
+Kubernetes objects.

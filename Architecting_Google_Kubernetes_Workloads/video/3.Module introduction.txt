@@ -1,0 +1,9 @@
+Hi I'm Alex. The Kubectl command, is the command line utility use
+to interact with and manage resources inside
+Kubernetes clusters. In this module, you'll learn
+about the Kubectl command, how to connect it to Google
+Kubernetes ended clusters, and easier to create inspect, interact and delete pods and other objects within
+Kubernetes clusters. In this module, you'll
+learn how to work with the Kubectl command to
+connect a GK clusters. Inspect the cluster and pods. View Pods console output and sign in
+interactively to a pod.

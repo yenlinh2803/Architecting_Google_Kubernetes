@@ -1,0 +1,10 @@
+In this lab, you'll build and use GKE clusters and
+deploy a sample pod. The tasks that you'll learn
+to perform include using the GCP Console to build and
+manipulate GKE clusters, deploy a pod, and examine
+the cluster and pods. Now, go ahead and
+try the quick lab. You have multiple attempts
+to complete it, so don't worry if you need more time or want
+to practice more. Afterward, come back here
+and we'll walk through the lab solution and
+key learning points together.

@@ -1,0 +1,9 @@
+In this lab, it's more of the basics
+of using deployment manifests. The first task that
+you'll learn to perform, is to create a deployment manifest for
+a pod inside of the cluster. You'll then use both the GCB Console and Cloud Shell to immediately
+scale pods up and down. The next task will be to
+trigger deployment roll out and a deployment rollback. Parts can be of various service types. Cluster IP, node port, load balancer,
+which can be defined in the manifest. You'll perform a task where you define
+service types in the manifest and verify load balancer creation. In your final task,
+you'll create a new canary deployment for the release of your application.

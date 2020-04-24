@@ -1,0 +1,40 @@
+In this lesson, we'll look at
+controlling pod placement. In Kubernetes,
+pod placement can be controlled to labels
+and taints on nodes, and node affinity rules and toleration in
+deployment specification. When you specify a pod, you can optionally specify how much CPU and RAM
+each container needs. When containers have
+resource requests specified, the scheduler can make better decisions about which
+nodes to place pods on. When containers have
+their limits specified, contention for
+resources on a node can be handled in
+a specified manner. A pod sums each containers
+resource, requests, and limits and sets up its own requested limits depending on the number of
+containers it's running. A scheduler assigns
+a pod to a node based on resource requests and limits set by the containers
+within the pod. The scheduler ensures
+that a pod's requests and limits are within
+a node's capacity. It also spreads pods across
+nodes automatically. These nodes could be set up across different compute sense. When nodes are started, the Kublet automatically assigns labels to them within
+a zone information. Kubernetes will automatically
+spread the pods in a replication controller or a service across nodes
+in a single node, single zone cluster to reduce
+the impact of failures. With multiple zone clusters, the spreading behavior
+is it send it across zones to reduce the impact
+of zone failures. But what if you want to
+run certain types of obligations on a specific node? For example, if you want to run a web server on a
+node with an SSD. For a pod to run on
+a specific node, that node must match
+all the labels present under the nodes
+selector field in a pod. Node selector is
+a pod specification field that specifies
+one or more labels. The node labels may be
+automatically assigned. For example, the labeled Kubernetes.io/hostname is
+automatically created by GKE, or you may need to add
+labels directly to identify nodes that
+meet specific criteria. For example, this pod
+will only run on a node that is
+labeled with a GKE label that indicates that
+the node is running on an AMD or an Intel
+64-bit platform. If the nodes labels are changed, running pods are not affected. Node selector is only used
+during pod scheduling

@@ -1,0 +1,63 @@
+In this lesson, we'll explore jobs and cronjobs in more detail. Let's start with jobs. A job is a Kubernetes
+object like a deployment. A job creates one or more pods to run a specific task reliably. In its simplest form, a job will create one pod and track the task completion
+within that pod. When the task is completed, it will terminate the
+pod and then report that the job has
+successfully finished. Consider a scenario
+where you're transcoding some video files using
+a single standalone pod. What if the node that the pod is running on suddenly shuts down? What will happen to the task
+that was being performed? It'll be lost. When the pod is terminated for any reason,
+it won't be restarted. Jobs provide a mechanism to
+hail this type of failure. Unlike other Kubernetes
+controllers, jobs manages a task up to its completion rather than to an open-ended desired state. In a way, the desired state
+of a job is its completion. Kubernetes will make sure it reaches that state
+successfully. In this scenario,
+the first step in this process involves
+a user uploading a video file to a web server for conversion or transcoding. The web server
+creates a job object manifests for
+this transcoding task. A job is created on the cluster. The job controller schedules
+a pod for the job on a node and the job controller
+monitors the pod. If a node failure occurs
+and the pod is lost, the job controller is aware that the task has
+not been completed. The job controller reschedules the job pod to run
+on a different node. The job controller
+continues to monitor the pod until the task completes. When the task has completed, the job controller removes the finished job and any
+pods associated with it. There are two main ways
+to define a job. Non-parallel and parallel. Non-parallel jobs create
+only one pod at a time. Of course, that pod is recreated if it terminates
+unsuccessfully. These jobs are completed
+when the pod terminates successfully or if a
+completion counter's defined, when the required number
+of completions is reached. Parallel jobs are jobs that
+have a parallelism value defined where multiple pods are scheduled to work on
+the job at the same time. If they also have
+a completion count defined, there're used for
+tasks that must be completed more than once. Kubernetes considers
+parallel jobs complete when the number of pods that had terminated successfully reaches
+the completion count. A second type of parallel job or processing work cues can also be defined which you'll see later. Let's start by looking
+at how to create a simple non-parallel job. Here's a simple example
+of a non-parallel job which computes pi to
+2,000 decimal places. A job object is specified
+through it's kind. Within a job spec, there's a pod template. This is where
+a pod specifications in its restart policy
+are defined. In this example, the restart
+policy is set to Never. This means that if a container in a pod fails for any reason, the entire pod fails and
+the job controller will respond to this pod failure
+by launching a new pod. The other restart policy option
+that can be used for jobs is to set the restart
+policy to OnFailure. In this case, the pod remains on the node but the
+container's restarted. Where application failures
+are possible or expected, the backoff limit
+field can be used. Backoff limits specifies
+the number of retries before a job is considered
+to have failed entirely. The default is six. This allows you to
+halt jobs that would otherwise get stuck
+in a restart loop. Failed pods are recreated with an exponentially increasing
+delay: 10 seconds, 20 seconds, 40 seconds, and so on up to a maximum
+of six minutes. In this example, if the pods continued to fail four times, the job will fail with backoff limit exceeded
+given as the reason. If the pods exceeded for
+the backoff limit is reached, the counter is reset. Like other Kubernetes objects, the job objects can be created using a kubectl apply command. Alternatively, a job
+can be created using the kubectl run command. A non-parallel job is where a single pod is created
+to start the job or task. The pod has created as usual and the job or task
+finishes successfully. If the pod fails for any reason, it's restarted and
+ensuring that the job gets another opportunity to
+finish successfully.

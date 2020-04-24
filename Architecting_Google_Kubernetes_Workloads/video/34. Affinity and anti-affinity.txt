@@ -1,0 +1,66 @@
+Next, let's look at nodeAffinity and
+anti-affinity features. Like nodeSelectors,
+nodeAffinity also allow you to constrain which nodes your pod can be
+scheduled on based on labels. But the features are more expressive and
+it can be use to constrain against labels about nodes,
+another pods running on nodes. Unlike nodeSelector where a pod won't be
+scheduled if the nodeSelector requirements aren't met, it's possible to define
+affinity and anti-affinity preferences that won't prevent a pod from being
+launched if the preferences aren't met. Think of these as allowing you to
+set soft preferences in addition to hard requirements. Affinity and anti-affinity are denoted by the
+requiredDuringSchedulingIgnoredDuringExec- ution and preferredDuringSchedulingIgnoredDuringExe-
+cution rules. Wow, those are amazingly long names. I think these keywords are maybe
+the longest in any computing system, certainly hope they are. The keywords contain the string
+IgnoredDuringExecution. A part to remind us that
+if the label is change, pods already running aren't affected. The requiredDuringScheduling rule
+shown here is a hard requirement, similar to nodeSelector. There must be met for
+the pod to be scheduled. In this hard requirements example, the pod
+can only run on nodes with the label whose key is accelerator type, and
+whose value is either GPU or TPU. These could be any labels you want to use. In this case, the pod runs on an
+application that can benefit from either GPU or TPU accelerator. Those labels must have been added
+to compute nodes previously. Note that a single node
+selector terms is used here. You can use multiple node selector terms
+but only one is required for scheduling. In this example,
+only one match expression is mentioned. But you can add multiple
+match expressions. The node must satisfy all listed match
+expressions in each node selector. Logically, they are joined
+using Boolean And. With the In operator,
+you can have multiple values, but only one is required to match. Two values are noded here for
+a single key. Logically, the In operator
+acts as a Boolean Or. You can use other operators such
+as not in, exist, .notexist, gt for greater than, and lt for less than. For example, if the not in
+operator was used in this example, you would be configuring
+a node anti-affinity rule. Specifying preferred during scheduling, ignored during execution
+creates a soft preference rule. The value for the weight ranges from one, the weakest preference level to 100 for
+the highest preference. In this example, the soft preference
+is also given a weight set to one. What makes it a soft preference
+rather than a hard requirement is our use of the word preferred
+instead of the required keyword. When the scheduler evaluates
+these preferences, each node that the pod might be scheduled
+on, receives a total weight score, based on all the requirements it meets. Such as resource requests, resource
+limits, and other node affinity rules, such as required during scheduling,
+ignored during execution. The weight of
+preferredDuringSchedulingIgnoredDuringExe- cution is also added to this total score. The scheduler then assigns the pod to
+the node with the highest total score. The weight defines the intensity
+of the preference. Inter-pod affinity and anti-affinity
+features extend the node affinity concept to include rules based on pod labels
+that are already running on the node. And instead of on labels
+of a node themselves. A pod that is required over first to
+run on the same node as other pods can be configure about pod affinity rules. Pods that most not or should not be
+scheduled on the same node as other pods can be configured with
+pod anti-affinity rules. You can see this is similar to node
+affinity with the addition of some additional fields. Notice in this case that this pod
+strongly prefers not to be scheduled on the same node as pods with the label
+key: value of app: webserver. This is strong but still soft preference
+because the way that this pod anti-affinity rule has the highest
+possible value of 100. But the rule is still
+preferred during scheduling. Using topology keys,
+you can also specify affinity and non-affinity rules at a higher
+level than just specific nodes. For example, to ensure that pods
+are not co-located in the same zone, not just the same node,
+you define a topology key to specify a pod anti-infinity rule
+should apply at the zone topology level. You can use topologyKey to specify
+topology domains such as node, zone, and region. The pod shown here has a pod
+anti-infinity rule with topologyKey set, so that it prefers not to be
+scheduled in the same zone that's already running one pod with label ke: and
+value of app: webserver

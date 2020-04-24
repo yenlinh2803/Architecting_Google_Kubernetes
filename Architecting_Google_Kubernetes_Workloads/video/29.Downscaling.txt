@@ -1,0 +1,60 @@
+Deploying your pod to an existing running
+node may only take a few seconds but it
+might take a few minutes before the node added by
+the autoscalar can be used, and adding nodes means
+spending money too. So you should think
+of cluster scaling as a coarse-grain operation
+that should happen infrequently in pods scaling with deployments as
+a fine-grain operation that should happen frequently. You can use both kinds of scaling together to balance your
+performance and your spending. The GKE cluster auto-scalar
+can also scale down nodes. Let's look at how the auto-scalar
+manages to scale them. First, the cluster autoscaling ensures that there's
+no scale-up event pending. If a scale-up event happens
+during the scale-up process, the scale down isn't executed. Second, it checks at the
+node can be deleted safely. If a node contains pause that meet an any of
+the following conditions, then the node can't be deleted. Pods that are not managed
+by the controller, these are Pods that are
+not set in a deployment, represents set, job,
+statements set, etc. Pods that have local storage. Pods centered restricted
+by constraint rules that prevent them from
+running on any other node, which will be explained
+later in the module. Pods that have the safe-to-evict
+annotation set to false. The safe-to-evict annotation
+provides a direct sitting at the pod level that tells the auto-scalar that
+the pod cannot be evicted. As a result, the node that
+it's running on won't be selected for deletion when
+the cluster is scaled down. Pods that have a restricted
+PodDisruptionBudget can also prevent a node
+from being deleted. You can define
+PodDisruptionBudget to specify the number of controller replicas that must be available at any given time. For example, in a deployment with three replicas and
+PodDestructionBudget set to two, only one replica can be evicted
+or disrupted at a time. At the node level, if the node scale-down-disabled
+annotation is set to True, that node will always be suited
+from scaled-down actions. For each of the remaining nodes, the cluster auto-scalar adds up the total CPU and memory
+requests for the running pods. If this total is
+less than 50 percent of a node's allocatable capacity, the cluster auto-scalar will monitor that node for
+the next 10 minutes. If the total remains
+below 50 percent, the node is deleted. After deleting a node, cluster auto-scalar
+re-analyzes a cluster to see whether additional
+nodes can be deleted. Let's look at some best practices for working with
+auto-scalar clusters. First, don't run
+Compute Engine autoscaling for managed instance groups
+on these nodes. The GKE auto-scalar is separate from Compute
+Engine autoscaling. Don't manually resize
+a node pool using a gcloud command when the
+cluster auto-scalar is enabled. This might lead to
+cluster instability and result in the cluster having
+wrong node pool sizes. Don't modify auto-scalar
+nodes manually. All nodes in a node pool
+should have the same capacity, labels, and system pods. In addition, if you
+change the labels for one node directly using kubectl, the changes won't
+be propagated to the other nodes in the node pool. Do specify correct resource
+requests for pods. This will allow pods to work efficiently with
+the cluster auto-scalar. If you don't know
+the resource needs the pods to measure
+them under a test load. Finally, do use
+PodDestructionBudgets. It's expected that
+the pods belonging to the controller can be safely
+terminated and relocated. If your application cannot
+tolerate such disruption, maintain your
+applications availability using PodDestructionBudgets.

@@ -1,0 +1,34 @@
+In a rolling update strategy,
+the max unavailable and max search fields control
+how the pods are updated. These fields of final range for the total number of pods within
+the deployment regardless of replica sets. The max unavailable field lets you specify
+the maximum number of pods that can be unavailable during the rollout process. This number can either be absolute or
+a percentage. For example, you can say you want to have
+two pods unavailable during the process. Specifying max unavailable at 25%
+means you want to have at least 75% of the desired pods running at the same time. The default max unavailable is 25%. Max surge allows you to specify the
+maximum number of pods that can be created concurrently in a new replica set. For example, you can specify that you want to add two
+new pods at a time in a new replica set. And the deployment controller
+will do that exactly. You can also set max
+surge as a percentage. The deployment controller looks at
+the total number of running pods in both ReplicaSets old and new. In this example, a deployment with
+the desired number of Pods as four and a max surge of 25% will allow a maximum
+of 5 Pods running at any given time. In other words, it'll allow 125% of
+the desired number of pods, which is five. Again, the default maxSurge is 25%. Let's look at a deployment with
+the desired number of pods set to ten, maxUnavailable set to 30% and
+maxSurge set to 5. The old replica set has 10 pods. The deployment will begin by creating 5
+new pods in a new replica set based on max surge. When those new pods are ready,
+the total number of pods changes to 15. With max unavailable set to 30%,
+the minimum number of pods running, regardless of old or new replica set is 10
+minus 30%, which equates to seven pods. A total of eight pods can be
+removed from the old replica set. This keeps the minimum
+total at seven pods. Five in the new ReplicaSet and
+two in the the old replica set. Next, five more pods will
+launch in a new ReplicaSet. This creates a total of 10
+parts in a new ReplicaSet and a total of 12 across all ReplicaSets. Finally, the remaining two pods
+in the old set are deleted. This leaves 10 pods in a new replica set. There are a few additional options
+,such as minready seconds and progress deadline seconds. Minready seconds defines the number
+of seconds to wait before our pod is considered available without
+crashing any of its containers. The default for min ready seconds is zero, meaning that as soon as the pod is ready,
+it is made available. Another option is progress deadline
+seconds, where you specify the wait period before a deployment reports
+that it has failed to progress.

@@ -1,0 +1,59 @@
+Remember that Pods are created
+and destroyed dynamically. Although Pods can
+communicate using their assigned Pod IP addresses, these IP addresses are ephemeral. They're not guaranteed to
+remain constant when Pods are restarted or when scaling changes which nodes
+are used to run Pods. Imagine you have
+two sets of Pods; front-end Pods and back-end Pods. How will the front-end Pods
+discover and keep track of dynamically scaling
+back into Pods. This is where the concept of Kubernetes Services comes in. A Kubernetes service is
+a static IP address that represents a service or a function in
+your infrastructure. It's a network abstraction for a set of Pods that
+deliver that service. It hides the ephemeral nature of the IP addresses of
+the individual Pods. In the example, a set
+of back-end Pods are exposed to the front-end Pod
+using a Kubernetes service. Basically, the service defines
+a set of Pods and assigns a policy by which you
+can access those Pods. The Pods are selected
+using a label selector. By the way, you can also
+get a service quickly, by asking Kubernetes to
+expose a deployment. When you do that, Kubernetes handles selecting
+the right Pods for you. Whenever a service is created, Kubernetes automatically
+creates endpoints for the selected Pods by
+creating endpoint resources. By default, the master assigns a virtual IP address also known as a cluster IP to the service
+from internal IP tables. With GKE, this is assigned
+from the clusters VPC network. You will learn more
+about services in a later module in
+this specialization. GKE offers other ways
+your service can be exposed, not just through Cluster IPs. Overall, a service provides
+durable endpoints for Pods. These endpoints
+can be accessed by exposing the surface
+internally within a cluster, or externally to
+the outside world. The option to expose
+a service internally or externally depends on
+the service type itself. The front-end Pod can reliably access the back-end
+Pods internally, within the cluster
+using a service. A container application
+can easily write data to the read-write layer inside the container, but
+it's ephemeral. So when the container terminates, whatever was written
+will be lost. What if you want to
+store data permanently? Or what if you need
+storage to be shared between tightly coupled
+containers within a Pod? That's why a Kubernetes volume is used for more
+persistent storage. Kubernetes volume is
+another abstraction. A volume is simply
+a directory that is accessible to all the
+containers in a Pod. The requirements for a volume are defined through
+the Pod's specification. This declares how
+the directory is created, what storage medium
+should be used, and its initial contents. You don't want failure
+of containers or restarts of containers to affect the data
+within these volumes. You want your volume to be shared among multiple containers
+within a Pod. Docker containers have
+their own file system. Therefore, in order to
+access these volumes, they must be mounted specifically on each container within a Pod. However, Pods themselves
+are also ephemeral. A failing node or deleted Pod could be due its volume
+being deleted too. To avoid this, you
+can configure volumes using network-based storage
+from outside of your Pods, to provide durable
+storage that is not lost when a Pod or node fails. You'll learn about
+persistent volumes later in this specialization.

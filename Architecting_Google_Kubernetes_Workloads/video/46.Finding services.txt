@@ -1,0 +1,86 @@
+There are several ways to
+find a service in GKE. Let's start by
+looking at the use of an environment variables
+for service discovery. This is enabled by
+default but it is not the most robust
+mechanism for discovery. The new pod starts
+running on a node, Kubelet adds a set of environment variables
+for each active service, in the same name space
+as the pod. In our example, we have a
+service that matches pod 2. Therefore if pod 2 is started after the demo
+service has been created, it has a set of an
+environment variables, for that service. When pod 3 starts running which
+also matches the service, node 1 adds the
+environment variables for the service to pod 3. The problem with this method can be seen if you consider pod 1. Pod 1 was already running
+when the service was created, and it will not have the environment variables
+for the service set. Similarly, if changes are made to a service after pods
+have been started, those changes will not be visible to pods that
+are already running. Pods will only see
+the changes that were made to the point where
+they are started, because the environment
+variables are defined inside the pod when
+the pods are started. Here's an example of the environment variables
+for a service named demo, showing information such as
+the host IP and port address. Generally speaking
+it's better practice to use DNS for service discovery, than to rely on
+environment variables. DNS names are more discoverable than
+environment variables, and DNS changes can be visible to pods during their lifetimes. That's different from
+the environment variables that pods inherit from
+their Kubernetes. Because the initial value
+that pods get when they are started remains the same
+throughout their lifetimes. So if you need pods to see the effect of a change you make, you must kill them and let
+Kubernetes restart them. Since using environment variables for service discovery
+has drawbacks, let's look at how Kubernetes DNS can help you with
+service discovery. In Kubernetes, DNS has
+an option add-on however, DNS is pre-installed in
+Google Kubernetes Engine. Kubernetes DNS server watches the API server for
+the creation of new services. When a new service has created, kube DNS automatically creates a set of DNS records for it. Kubernetes is configured to
+use the cube DNS servers IP, to resolve DNS names
+for all pods. With this all the pods
+in the cluster can resolve Kubernetes service
+names automatically. By default, a client
+pods DNS search list, will include the pods, or name space, and
+the clusters default domain. For example, our pod can now
+resolve the IP address of the demo service by querying DNS using its short_name lab, provided the services in
+the same name space as the pod. A pod in any other name space can resolve the IP address
+of the service, using the fully
+qualified domain name lab.demo.service.cluster.local
+or just the part of the name that includes the
+namespacelab.demo. This resolves to the
+services cluster IP, which the DNS server returns so that the pod can make
+its connection to the service. Kubernetes currently includes a pod based DNS solution
+called kube DNS, to facilitate service
+discovery within the pods. Kube DNS maintains the DNS record of the pods and services. To maintain high performance
+for service discovery, GKE auto scales kube DNS, based on the number of
+nodes in the cluster. Every service defined
+in the cluster is assigned a DNS A record. In this example, there
+is a service named lab, in the demo namespace. The name of the namespace
+and the label SVC are added to the DNS name resulting in a fully qualified domain name of
+lab.demo.svc.cluster.local. Kubernetes DNS also supports
+SRV records for named pods. For example, with a pod named
+HTTP with protocol TCP, you can do a DNS, SRV query, for
+http.tcp.lab.demo.svc.local. Notice the underscores
+around the pod name. The whole fully qualified
+domain name results to the pod number and the
+domain name lab.demo. Headless Kubernetes services. Those that are defined
+without a cluster IP also have DNS A and
+service records defined, but those results to the set of IP addresses of the pod
+selected by the servers. GKE makes using DNS for service discovery
+a much simpler task, but there are
+other solutions such as the open-source
+service mesh istio. A service mesh provides
+an infrastructure layer that is configurable for
+micro-services applications. Istio is a service mesh to
+aid in service discovery, control, and visibility in your micro-services
+deployments. Istio is an open-source project started by teams at Google, IBM and the envoy team from Lyft. Istio is available as
+an add-on for GKE. It lets you quickly
+create a cluster with all components you need to create and run
+an istio service mesh, in a single step. Once it's installed, your istio control
+plane components are automatically
+kept up to date. At the time I'm
+recording this video the istio plugin
+for GKE is in beta. Now that you have
+service configured, and it's in the clusters DNS, can your compute instances in
+the VPC reach this service? Well no, you have one more step. You need to change
+the service type, which means you
+need to learn about the types of Kubernetes services.

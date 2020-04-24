@@ -1,0 +1,33 @@
+We haven't yet discussed
+how to locate and connect to the applications
+running on these pods, especially as new pods are created or updated
+by your deployments. While you can connect to
+individual pods directly, pods themselves are transient. The Kubernetes service
+is a static IP address that represents a service or a function in
+your infrastructure. It's a network
+abstraction for a set of pods that deliver
+that service in, it hides the ephemeral nature
+of the individual pods. Services will be covered in detail in a networking module. You now understand
+that a deployment will maintain the desired number of replicas for an application. However, at some point, you'll probably need to
+scale the deployment. Maybe you need more web front
+end instances for example. You can scale the deployment
+manually using a Cube CTL command or the GCP console by defining
+the number of replicas. Also manually changing the manifest will
+scale the deployment. You can also auto-scale
+the deployment by specifying the minimum and maximum number of desired pods along with
+the CPU utilization threshold. Again, you can perform
+auto-scaling by using the Cube CTL auto-scale command, or from the GCP console directly. This leads to the creation
+of a Kubernetes object called horizontal
+pod auto scaler. This object performs
+the actual scaling to match the target
+CPU utilization. Keep in mind that we're not scaling the cluster as a whole, just a particular deployment
+within that cluster. Later in this module you'll
+learn how to scale clusters. Thrashing sounds
+bad and it is bad. It's a phenomenon
+where the number of deployed replicas frequently fluctuate because
+the metric we use to control scaling also
+frequently fluctuates. The horizontal pod auto-scaler supports a cool down
+or delay feature. It allows you to specify
+as a wait period before performing
+another scale down action. The default value
+is five minutes.

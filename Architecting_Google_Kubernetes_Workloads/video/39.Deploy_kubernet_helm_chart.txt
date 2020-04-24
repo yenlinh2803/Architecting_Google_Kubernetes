@@ -1,0 +1,3 @@
+In this lab, you will use a helm chart to deploy
+a full Kubernetes solution. The task that you'll learn to
+perform include installing helm and using helm charts to deploy a Kubernetes solution.

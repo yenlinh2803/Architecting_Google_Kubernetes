@@ -1,0 +1,13 @@
+In this lab, you set up
+an application in GK, and then use a Horizontal
+Pod Autoscaler to autoscale the web application. You'll then work with
+multiple node pools of different types, and apply taints and
+tolerances to control the scheduling of parts with respect to the
+underlying node pool. Your first task will be to
+create a GK cluster and a deployment manifest for a set of pods within the cluster, that you will then use to test DNS resolution of the pods
+and service names. In the next task, you will configure
+the cluster to automatically scale the sample application
+that you deployed earlier. Finally, you create a new pool of nodes using preemptible
+instances and then you'll constraint
+the web deployment to run only on
+the preemptible nodes.

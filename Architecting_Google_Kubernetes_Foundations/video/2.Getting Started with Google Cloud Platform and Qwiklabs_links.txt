@@ -1,0 +1,11 @@
+Firefox
+https://support.mozilla.org/en-US/kb/private-browsing-use-firefox-without-history
+
+Safari
+https://support.apple.com/en-vn/guide/safari/ibrw1069/mac
+
+Chrome:
+https://support.google.com/chrome/answer/95464
+
+Microsoft
+https://support.microsoft.com/en-us/help/4026200/microsoft-edge-browse-inprivate

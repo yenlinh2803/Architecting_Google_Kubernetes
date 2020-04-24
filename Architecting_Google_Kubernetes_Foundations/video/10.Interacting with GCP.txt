@@ -1,0 +1,75 @@
+This next video looks at
+how you interact with GCP. You learned about the Google
+tools and interfaces that allow you to manage and
+configure your GCP resources. There are four ways
+to interact with GCP. The Google Cloud
+Platform Console, the Cloud Shell and Cloud SDK, the Cloud Console mobile app
+and REST-based APIs. Now, we're not going
+to focus very much on APIs in this specialization. Developers use them
+to build applications that allocate and
+manage GCP resources, but our present focus
+is on letting Kubernetes manage those
+resources for us. The GCP Console is a Web-based Graphical
+User Interface from where you manage
+your GCP resources. It allows you to execute
+common tasks using simple mouse clicks with no need to remember commands and avoiding typos. It also provides visibility into your GCP project
+and its resources. Now, you can sign in to
+the GCP Console from a web browser at
+console.cloud.google.com. All GCP services are
+accessible through the simple menu button in
+the top left hand corner. You can pin frequently used
+services to this menu. You'll learn how to
+use the GCP Console during an upcoming lab. Alternatively, you can
+download and install the Google Cloud SDK onto
+a computer of your choice. The Cloud SDK contains a set of command line tools for
+the Google Cloud Platform. Most notably for us, it contains the gcloud and the kubectl commands which we will use a lot
+of in this course. It also contains the gsutil
+and bq utilities. You can run these tools
+interactively or in your automated scripts. The Cloud SDK contains client libraries for various
+programming languages too. But what if it isn't
+convenient to install the Cloud SDK in the machine
+that you're working with? Cloud Shell provides
+command line access to your cloud resources directly from within your web browser. Using Cloud Shell, you can manage your projects and
+resources easily without having to install the Cloud SDK or
+other tools locally. The Cloud SDK, gcloud and kubectl command line tools and
+other utilities are always available up to date
+and fully authenticated. So how does Cloud Shell do that? It's built using a Compute Engine virtual
+machine instance that you're not built for. Each GCP user has one. Your Cloud Shell
+virtual machine is ephemeral which means
+it'll be stopped whenever you stop using
+interactively and it'll be restarted for you every time
+you re-enter Cloud Shell. So you wouldn't want to run a production web server in
+your Cloud Shell for example. You'll also get five gigabytes of persistent disk storage that is reattached for you every time a new Cloud Shell
+session is started. It also provides
+a web preview functionality and built-in
+authorization process for access to GCP Console
+projects and resources including
+your GKE resources. The Cloud Shell code editor
+is a tool for editing files inside of your Cloud
+Shell environment in real time within
+your web browser. At the time I'm
+recording this video, the Cloud Shell code editor
+is still in beta. You can also use text editors from within the Cloud
+Shell command prompt. This tool is extremely
+convenient more working with code
+first applications or container-based workloads
+because you can easily edit files without the needed
+download and upload changes. But is the easy way always
+the best way? Of course not. Later on in this specialization, we'll talk about
+the best management practices for these code files. Here's a screenshot of
+the GCP Console GKE area showing you its
+web-based interface for administering your GKE resources. The bottom third of the screenshot is
+your Cloud Shell and operation where you can launch commands to administer
+those resources as well. Some of those commands are from the Google Cloud SDK and others will be
+specific to your workload. Later in this course,
+we'll learn about the kubectl command and you can see it being launched
+from Cloud Shell here. Finally, there's
+the Cloud Console mobile app available for IOS and Android. It offers many capabilities like, managing virtual machines
+and viewing their logs, getting up-to-date billing
+information for your projects, getting billing alerts for
+projects that are going over budget and setting up
+customizable graphs, showing key metrics
+such as CPU usage, network usage, requests per
+second and any server errors. We will not use it
+in this course, but it's a resource
+you might find convenient and of course, it's at no additional charge.

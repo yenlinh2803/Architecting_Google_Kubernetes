@@ -1,0 +1,78 @@
+Let's start by introducing
+the relationship between Cloud computing and GCP. Cloud computing has
+five fundamental attributes. First, computing resources are on-demand and self-service. Cloud computing customers use an automated interface
+and get the processing, power, storage, and
+network they need, with no human intervention. Second, resources are accessible over a network from any location. Providers allocate resources to customers from a large pool, allowing them to benefit
+from economies of scale. Customers don't have
+to know or care about the exact physical location
+of these resources. Resources themselves are elastic. Customers who need more
+resources can get them rapidly, and when they need less,
+they can scale back. Finally, customers
+pay for only what they use or reserve as they go. If they stop using resources, they simply stop paying. That's how public Clouds such as Google Cloud
+Platform work. GCP offers a variety of services, and architects and
+developers like you can choose among those services
+to build your solutions. Many of these Cloud services
+are very familiar, such as virtual
+machines on demand. Other services represent
+an entirely new paradigm. One of those services is
+Google Kubernetes engine, and that's the focus
+of this course, and the ones that follow. By the way, we informally
+call this service GKE, and you can too. The first thing that
+many people ask of GCP is: please run some of
+my code in the Cloud. GCP provides a range of services
+for doing exactly that. Each aimed at satisfying a different set of
+user preferences. Here's a quick summary
+of those choices. In a later module, we'll compare each of them
+in greater detail. The service that may be most
+familiar to newcomers is Compute Engine which lets you run virtual machines on
+demand in the Cloud. It's Google Cloud's infrastructure
+as a service solution. It provides maximum
+flexibility for people who prefer to manage those
+server instances themselves. Now, GKE is different. It lets you run
+containerized applications on a Cloud environment that Google Cloud manages for you under your
+administrative control. So, what's a containerized application, and
+what's Kubernetes? We'll learn a lot about each of those topics later
+on in this course. For now, you can think of containerization as
+a way to package code that's designed to
+be highly portable and to use resources
+very efficiently. You can think of
+Kubernetes as a way to orchestrate code in
+those containers. App Engine is GCP's
+fully managed platform as a service framework. That means it's
+a way to run code in the Cloud without having to
+worry about infrastructure. You can focus on just
+your code and let Google deal with
+all the provisioning and resource management. You'll learn a lot more about App Engine and
+the specialization, developing applications
+in Google Cloud Platform. Cloud Functions is a completely serverless
+execution environment, or functions as a service. It executes your code
+in response to events, whether those occur
+once a day or many, many, many, many
+times per second. Google scales
+resources as required, but you only pay for the service
+while your code runs. The specialization,
+developing application in the Google Cloud Platform, also discusses Cloud functions. In this specialization, GKE is going to be
+our main focus. GKE is built on top
+of Compute Engine, so we'll learn more about
+that service too along the way. Most applications need
+a database of some kind. If you've built
+a cloud application, you can install and run
+your own database forward on a virtual machine inside
+of Compute Engine. You simply start up
+the virtual machine, install your database
+engine, set it up, just like you would
+in a data center, or you can run
+your own database server in Google Kubernetes too. However, with either approach, you have to manage and support
+the database yourself. Alternatively, you can use Google's fully managed
+database and storage services. What all of these have
+in common is that they reduce the work it takes to
+store all kinds of data. GCP offers relational and
+non-relational databases as well as worldwide
+object storage. You'll learn more
+about these later on in the specialization. GCP also offers fully managed in big data and
+machine learning services. Just as with storage
+and database services, you could build and implement
+these services yourself, and some GCP customers do. But the fact that they're
+available as a service, means that you can
+get started faster, and deal with a lot less
+routine work along the way.

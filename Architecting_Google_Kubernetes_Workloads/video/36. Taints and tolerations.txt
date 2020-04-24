@@ -1,0 +1,70 @@
+Note affinity attracts Pods and anti-affinity repels them. You can also use
+taints to prevent Pods from being scheduled
+on specific nodes. You're probably wondering, why do I need both taints
+and affinity settings? Having the choice gives you
+more management flexibility. You can pick your Node selector, affinity and anti-affinity
+rules on Pods. By contrast, you can
+figure taints on nodes, and they apply to
+all Pods in the cluster. You should use whichever
+mechanism lets you most economically suppress
+the behavior you want. To taint to node, use the kubectl taint command. The taint has a key with
+a value and a taint effect. This taint was the
+NoSchedule effect, limits all possible scheduling
+on this particular node. You can apply
+multiple taints to a node. In this case, Pods
+can be scheduled, and all running Pods
+will be evicted. So, how can you
+schedule a node here? Well, here's the hint, check
+the title. That's right. Toleration enabled this. Tolerations are applied to Pods. A toleration is a mechanism that allows a Pod to
+counteract the effect of a taint that would
+otherwise prevent the Pod from being scheduled or
+continue to run on at node. A toleration field
+consists of a key, value, effect, and operator. A Pod's toleration will
+match taint if the keys in the toleration and
+the taint are the same, the effects are the same, and the operator
+accepts the values. The operator field
+allows some flexibility. When an operator field
+is equal as shown here, the value must also be equal. However, when an operator
+field set to exist, only the keys and the effects must match for the toleration to apply even if the value field
+isn't specified. Three effects settings
+can be applied. NoSchedule is a
+scheduling hard limit that prevents
+scheduling and Pods, unless there is a Pod toleration with the NoSchedule
+effect that matches. Preferred NoSchedule tells us because we're to try to not place a Pod that doesn't have matching Pod toleration for
+the nodes taint. But this is only a soft limit, and a Pod might
+still be scheduled. Now, execute will evict running Pods from the nodes
+unless the Pods each have at least one matching toleration with
+the no execute effect. You've learned a lot
+of techniques for constraining pause
+to particular nodes. You may be wondering, what's the simplest way to
+manage this situation? In GKE, the concept of node pools allows us to abstract away a lot
+of the complexity, because one of the most common
+reasons to manage where Pods run is to get them
+onto the right hardware. Remember that the nodes in a node pool always have
+the same hardware. So, for example,
+you can use nodes selectors to direct pause
+to the right node pool. In this example,
+this GKE cluster has two node pools: One node pool
+is called small, because the nodes
+that make it up are comparatively small
+virtual machines. The other is called big, because it's virtual machines has 16 virtual CPUs and
+104 gigabytes of memory. GKE automatically
+labels some nodes and each node pool with
+the node pool name you supply. You can use the full logical
+power of node selectors, direct Pods to nodes
+using these names. For a sample, if
+you have a fleet of front end web servers that do little processing themselves, it might be most economical to constrain those Pods
+to smaller nodes. In this example,
+the engine x Pod name, by the YAML template must run on a node in the small node pool. If node selectors are
+not expressive enough, you can also use
+the affinity specification we learned in this module
+with node pool names. In this example, we've specified that this Pod
+which performs a computer intensive
+activity can be scheduled onto any node pool other than the one named small. In this lesson, you
+saw how to control the scheduling of based
+on node selector, node affinity, Pod affinity, Pod anti-affinity and
+taints of toleration. Using these, Pods can be
+distributed across zones. Co-located with Pods, they
+need to remain close to you. Schedule on nodes
+for certain features are prevented from running on
+nodes that are unsuitable.

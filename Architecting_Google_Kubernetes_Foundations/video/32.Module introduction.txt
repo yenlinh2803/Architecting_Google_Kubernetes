@@ -1,0 +1,9 @@
+Welcome to the
+Kubernetes architecture, module of our course. It helps to know
+the parts of Kubernetes and to understand
+the philosophy it implements. How does Kubernetes expect
+you to tell it what to do? What choices do you have for
+describing your workloads? That's the theme of this module. In this module,
+you'll learn how to understand how the Kubernetes
+architecture is laid out, deploy a Kubernetes cluster using Google Kubernetes engine, deploy pods to a GKE cluster, and view and manage several very useful
+Kubernetes objects.

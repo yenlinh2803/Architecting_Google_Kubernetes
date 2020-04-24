@@ -1,0 +1,37 @@
+Any deployment has three
+different lifecycle states. The deployments progressing
+state indicates that a task is being
+performed, what tasks? Creating a new replica set, or scaling up or scaling
+down a replica set. The deployments' complete state indicates that
+all the replicas have been updated to the latest
+version and are available and no old
+replicas are running. Finally, the failed state
+occurs when the creation of a new replica set could not be completed. Why might that happen? Maybe Kubernetes couldn't pull the images for the new pods, or maybe there wasn't enough of some resource quota to
+complete the operation, or maybe the user who lost the operation lacks permissions. When you apply many small fixes
+across many rollouts that translates to a large number of revisions and to
+management complexity. You have to remember
+which small fix was applied to which rollout, which can make it
+challenging to figure out which revision to rollback
+to when issues arise. Remember, earlier in
+this specialization, we recommended that you keep your YAML files in
+a source code repository. That will help you manage
+some of this complexity. When you edit a deployment, your action normally triggers
+an automatic rollout. But if you have
+an environment where small fixes are
+released frequently, you will have a large
+number of rollouts. In a situation like that, you'll find it more
+difficult to link issues with specific roll-outs. To help, you can temporarily
+pause these roll-outs by using the kubectl
+rollout pause command. The initial state of
+the deployment prior to pausing will
+continue its function. But new updates suite to
+the deployment will not have any effect where
+the rollout is paused. The changes will only be [inaudible]
+once a rollout is resumed. When you resume the rollout, all these new changes will be rolled out with
+a single revision. You can also monitor
+the rollout status by using the kubectl rollout
+status command. What if you're done
+with the deployment? You can delete it easily using the kubectl delete command. You can also delete it
+from the GCP Console. Either way, Kubernetes
+will delete all resources managed by the deployment,
+especially running pods.

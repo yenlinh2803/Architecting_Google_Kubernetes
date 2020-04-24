@@ -1,0 +1,68 @@
+In this lesson, we'll lay out the fundamental components of the Kubernetes
+operating philosophy. To understand how
+Kubernetes works, there are two related concepts
+you need to understand. The first is the
+Kubernetes object model. Each thing Kubernetes manages is represented by an object, and you can view and change these objects,
+attributes, and state. The second is the principle
+of declarative management. Kubernetes expects you
+to tell it what you want the state of the objects
+under which management to be. It will work to bring to that state into being
+and keep it there. Formally, a Kubernetes
+object is defined as a persistent entity that represents the state of
+something running in a cluster, its desired state and
+its current state. Various kinds of objects represent containerized
+applications, the resources that are
+available to them, and the policies that
+affect their behavior. Kubernetes objects have
+two important elements. You give Kubernetes
+an objects spec for each object you
+want to create. With this spec, you define
+the desired state of the object by providing the characteristics
+that you want. The object status is simply
+the current state of the object provided by
+the Kubernetes control plane. By the way, we use this term,
+Kubernetes control plane, to refer to the various
+system processes that collaborate to make
+a Kubernetes cluster work. You'll learn about these
+processes later in this module. Each object is of
+a certain type or kind, as Kubernetes calls them. Pods are the basic building block of the standard Kubernetes model, and they're the smallest
+deployable Kubernetes object. You may be surprised
+to hear me say that. Maybe you were expecting
+me to say that the smallest Kubernetes object
+is the container. Not so. Every running container in a Kubernetes system is in a pod. A pod embodies the environment
+where the containers live, and that environment can accommodate one or
+more containers. If there is more than
+one container in a pod, they are tightly coupled and share resources including
+networking and storage. Kubernetes assigns each
+pod a unique IP address. Every container
+within a pod shares the network namespace including IP address and network ports. Containers within the same pod can communicate
+through local host, the famous 127.0.0.1 IP address that you pranked your friends
+with back in the 1990s. A pod can also specify a set of storage volumes to be shared
+among its containers. By the way, later in
+this specialization, you'll learn how pods can share
+storage with one another, not just within a single pod. Let's consider a simple example, where you want three instances
+of the nginx web server, each in its own container, running all the time. How is this achieved
+in Kubernetes? Remember that Kubernetes embodies the principle of
+declarative management. You declare some objects to represent those nginx containers. What kind of object? Perhaps pods. Now, it's Kubernetes
+job to launch those pods and keep
+them in existence. But be careful. Pods
+are not self-healing. If we want to keep
+all our nginx web servers not just in existence but also
+working together as a team, we might want to ask for them using a more sophisticated
+kind of object. I'll tell you how
+later in this module. Let's suppose that we
+have given Kubernetes a desired state that consists of three nginx pods
+always kept running. We did this by telling
+Kubernetes to create and maintain one or more objects
+that represent them. Now, Kubernetes compares
+the desired state to the current state. Let's imagine that
+our declaration of three nginx containers
+is completely new. The current state does not
+match the desired state. So Kubernetes, specifically
+its control plane, will remedy the situation. Because the number of desired
+pods running we declared as three and zero are
+presently running, three will be launched, and the Kubernetes
+control plane will continuously monitor
+the state of the cluster, endlessly comparing
+reality to what has been declared and remedying
+the state has needed.

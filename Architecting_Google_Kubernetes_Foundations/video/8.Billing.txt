@@ -1,0 +1,47 @@
+Billing, it's no fun. It's a fact of life. Let's learn more about it. Billing in GCP is set up
+at the GCP project level. When you define a GCP project,
+you'll link a billing account to it. This billing account is where you'll
+configure all your billing information, including your payment option. You can link your billing
+account to one or more projects. Projects that you don't link to any
+billing account could only use free GCP services. Your billing account can be charged
+automatically and invoiced every month, or at every threshold limit. You can separate project billings
+by setting up billing sub-accounts. Some GCP customers who resell GCP
+services use those sub-accounts for each of their own clients. And you're probably thinking how can
+I make sure I don't accidentally run up a big GCP bill? GCP provides three tools to help. Budgets and alerts,
+taking a look at the billing export, and also looking at your reports. You can define budgets at
+the billing account level or even at the project level. To be notified when costs approach your
+budget limit, you can create an alert. For example, with a budget limit of
+$20,000 and an alert set at 90%, you'll receive a notification alert when your
+expenses reach that threshold or $18,000. You can also set up a webhook to
+be called in response to an alert. This webhook can control automation
+based on billing alerts. For example, you can trigger the script to shut down
+resources when a billing alert occurs. Or you can use this webhook to file
+a trouble ticket with your team. The billing export allows you to
+store detailed billing information in places where it's easy to retrieve for external analysis, such as a BigQuery
+dataset or a Cloud Storage bucket. And Reports is a visual tool in
+the console that allows you to monitor expenditure based on
+your projects and your services. GCB also implements quotas which limit
+unforeseen extra billing charges. Quotas are designed to prevent the over
+consumption of resources because of an error or a malicious attack. Quotas apply at the level
+of the GCP project. Now, there are two types of quotas. Rate quotas and Allocation quotas. Rate quotas reset after a specific time. For example, by default,
+the GKE service implements a quota of 1,000 calls to its API for
+each GCP project every 100 seconds. After that 100 seconds,
+that limit is reset. Now, very important point. This doesn't limit the rate of calls
+to your applications running in GKE. But rather, calls to the administrative configuration
+of your GKE clusters themselves. It would be very unusual to make that many
+calls in such a short period of time. And that quota might help catch and
+stop that erroneous behavior. Allocation quotas govern the number of
+resources you can have in your projects. This doesn't reset at any interval. Instead, you need to free up those
+resources to stay within them. For example, by default, each GCP project
+has a quota allowing it no more than five VPC networks, or
+Virtual Private Clouds. These quotas are not the same for
+all projects. Although projects start
+with the same quotas, you can change some of them by requesting
+an increase from Google Cloud Support. Some quotas may increase automatically
+based on your usage of a product. And you can use the GCP console to
+explicitly lower some of them for your own products. For example, if you wanted to put a more
+stringent cap on your consumption. Finally, some quotas are fixed for
+all GCP customers. Regardless, in addition to
+the benefits to customers, GCP quotas also protect
+the community of GCP users by reducing the overall risk
+of unforeseen spikes in usage.

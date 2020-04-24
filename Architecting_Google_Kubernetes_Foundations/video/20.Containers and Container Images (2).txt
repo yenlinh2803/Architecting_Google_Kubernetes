@@ -1,0 +1,94 @@
+An application and
+its dependencies are called an image. A container is simply a running
+instance of an image. By building software into container
+images, developers can easily package then ship an application without worrying about
+this system that we'll be running on. You need software to build
+container images and to run them. Docker is one tool that does both. Docker is an open source technology
+that allows you to create and run applications in containers. But it doesn't offer a way to
+orchestrate those applications at scale like Kubernetes does. In this course, we'll use Google's Cloud build to create
+Docker formatted container images. Containers are not an intrinsic
+primitive feature of Linux. Instead, their power to isolate workloads is derived from the composition
+of several technologies. One foundation is the Linux process. Each Linux process has its own
+virtual memory address space separate from all others. And Linux processes are rapidly created,
+and destroyed. Containers use Linux namespaces to
+control what an application can see. Process ID numbers, directory trees,
+IP addresses and more. By the way, Linux namespaces are not
+the same thing as Kubernetes namespaces, which you'll learn more about
+later on in this course. Containers use Linux cgroups to
+control what an application can use. Its maximum consumption of CPU time,
+memory, IO bandwidth, and other resources. Finally, containers use union file systems
+to efficiently encapsulate applications, and their dependencies into
+a set of clean minimal layers. Now let's see how that works. A container image is structured in layers. The tool you use to build
+the image reads instructions from a file called the container manifest. In the case of a Docker-formatted
+container image, that's called a Dockerfile. Each instruction in the Dockerfile
+specifies a layer inside the container image. Each layer is read-only. When a container runs from this image, it will also have a writable
+ephemeral topmost layer. Let's take a look at a simple Dockerfile. This Dockerfile will contain four
+commands, each of which creates a layer. At the end of this discussion, I will explain why this Dockerfile is
+a little over-simplified for modern use. The FROM statement starts
+out by creating a base layer pulled from a public repository. This one happens to be the Ubuntu Linux
+runtime environment of a specific version. The COPY command adds a new layer, containing some files copied in from
+your build tools' current directory. The RUN command builds your application
+using the make command, and puts some result of the build
+into a third layer. And finally, the last layer specifies
+what command to run within the container when it's launched. Each layer is only a set of
+differences from the layer before it. When you write a Dockerfile, you should
+organize the layers least likely to change through to the layers that
+are most likely to change. By the way, I promised that I'd explained
+how the Dockerfile example that you saw here is oversimplified. These days, the best practice
+is not to build your application in the very same container
+that you ship and run. After all, your build tools are at best,
+just cluttered in deployed container, and at worst,
+are an additional attack surface. Today, application packaging relies
+on a multi-stage build process in which one container builds
+the final executable image. And a separate container receives
+only what's needed to actually run the application. Fortunately for us, the tools that
+we use support this practice. When you launch a new
+container from an image, the container runtime adds a new writable
+layer on the top of the underlying layers. This layer is often called
+the container layer. All changes made to the running container,
+such as writing new files, modifying existing files and deleting files are written to this
+thin writable container layer. In the ephemeral, when the container is deleted the contents
+of this writable layer are lost forever. The underlying container image
+itself remains unchanged. This fact about containers has an
+implication for your application design. Whenever you want to store data
+permanently, you must do so somewhere other than
+a running container image. You'll learn that and the several choices that you can
+choose from in this specialization. Because each container has its
+own writable container layer, and all changes are stored in this layer. Multiple containers can share access
+to the same, underlying image, and yet have their own data state. The diagram here shows
+multiple containers, showing the same Ubuntu 15.04 image. Because each layer is only a set of
+differences from the layer before it, you get smaller images. For example, your base application
+image may be 200 megabytes, but the difference of the next point
+release might only be 200 kilobytes. When you build a container,
+instead of copying the whole image, it creates a layer with
+just the differences. When you run a container, the container
+run time pulls down the layers it needs. When you update,
+you only need to copy the difference. This is much faster than
+running a new virtual machine. It's very common to use publicly available
+open source container images as a base for your own images or for unmodified use. For example, you've already
+seen the Ubuntu container image which provides an Ubuntu Linux
+environment inside of a container. Alpine is popular Linux environment and
+a container, noted for being very, very small. The NGINX web server is frequently
+used in its container packaging. Google maintains a container registry,
+gcr.io. This registry contains many
+public open source images. And Google Cloud customers also use
+it to store their own private images in a way that integrates
+well with Cloud IAM. Google container registries
+integrated with Cloud IAM, so for example, you can use it to store your
+images that aren't public, instead, they're private to your project. You can also find container images
+in other public repositories, doc or hub registry, git lab and others. The open-source docker command is
+a popular way to build your own container images. It's widely known and widely available. One downside however, of building
+containers with the Docker command is that you must trust the computer
+that you do your builds on. Google provides a managed service for building containers that's also
+integrated with Cloud IAM. This service is called Cloud Build,
+and we'll use it in this course. Cloud Build can retrieve
+the source code for your builds from a variety of
+different storage locations. Cloud source repositories, Cloud storage,
+which is GZP's object storage service, or GIT compatible repositories
+like GitHub and Bitbucket. To generate a build with Cloud Build,
+you define a series of steps. For example, you can configure build steps
+to fetch dependencies, compile source code, run integration tests or use
+tools such as Dock or Cradle and Maven. Each build step in Cloud Build
+runs in a Docker container. Then Cloud Build can deliver
+your newly built images to various execution environments. Not only GKE but also App Engine,
+and Cloud Functions.

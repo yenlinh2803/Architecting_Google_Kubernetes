@@ -1,0 +1,21 @@
+Welcome to Architecting with Google Kubernetes Engine: Foundations! This course teaches you the basics for getting started with Kubernetes and Google Kubernetes Engine.
+
+What is Kubernetes?
+
+Kubernetes is an orchestration framework for software containers. Containers are a way to package and run code that's more efficient than virtual machines. Kubernetes provides the tools you need to run containerized applications in production and at scale.
+
+What is Google Kubernetes Engine?
+
+Google Kubernetes Engine (GKE) is a managed service for Kubernetes.
+
+What to expect during this training course?
+
+During this training course, you will be presented with modules that will take you through skills you'll use as an architect or administrator of applications running in GKE. Each module contains video lectures, quizzes, and hands-on labs.
+
+In order to get the best training experience, please ensure that you are prepared:
+
+You should have a general familiarity with Google Cloud Platform; if you previously completed GCP Fundamentals: Core Infrastructure, you are well-positioned. You should also be comfortable working at the Linux command line and with a Linux text editor. You should be familiar with IT topics such as IP addresses, virtual machines, and web servers.
+
+What's Next?
+
+Watch the Course Introduction video lecture and then move onto the next lesson!

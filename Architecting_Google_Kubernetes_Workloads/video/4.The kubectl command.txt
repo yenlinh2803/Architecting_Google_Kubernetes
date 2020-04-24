@@ -1,0 +1,99 @@
+Let's start by discussing
+the Kubectl command. Kubectl is a utility used by administrators to control
+Kubernetes clusters. You use it to communicate with the kube-apiserver
+on your master. Kubectl transfers
+your command line entries into API calls. The Senate to the Kube apiserver within your selected
+Kubernetes cluster. Before it can do
+any work for you. Kubectl must be configured with the location and credentials
+of a Kubernetes cluster. For example take
+an administrator who wants to see a list
+of pods in a cluster. After connecting Kubectl
+to the cluster with proper credentials
+the administrator can issue the Kubectl,
+get pods command. Kubectl converts this
+into an API call. Which send it to the
+Kube apiserver through HTTPS on the cluster's
+master server. The Kube apiserver processes the request by querying ETCD. The Kube apiserver then
+returns the results to Kubectl through HTTPS. Finally, Kubectl interprets
+the API response and displays the results to the administrator at
+the command prompt. Before you can use Kubectl
+to configure your cluster. You must configure it first. Kubectl stores its configuration in a file in your home directory, in a hidden folder named.Kube. The configuration file contains
+a list of clusters and the credentials
+that you'll use to attach to each of those clusters. You may be wondering where
+you get these credentials. For GKE, the service provides them to you through
+the G-Cloud command. I'll show you how that
+works in a moment. To view that configuration, you can either open
+the config file or used to Kubectl
+command convict view. Just to be clear here, Kubectl config view
+tells you about the configuration of
+the Kubectl command itself. Other Kubectl commands
+tell you about the configurations of your
+cluster and workloads. To connect to a GKE
+cluster with Kubectl, retrieve your credentials for the specified cluster first. To do this use the get
+credentials G-Cloud command and any other environment
+where you've installed the G-Cloud command
+line tool in the Kubectl. Both of these tools are installed by default in the Cloud Shell. The G-Cloud get
+credentials command writes configuration
+information into a conflict file in the
+.Kube directory in the home directory by default. If you rerun this command
+for a different cluster, it will update the conflict file with the credentials
+for the new cluster. You only need to perform this configuration process once per cluster in your Cloud shell. Because the.Kube
+directory and it's constants stay in
+your home directory. Can you figure out why the
+command is G-Cloud get credentials rather than
+Kubectl get credentials. It's because the Kubectl command requires credentials
+to work at all. The G-Cloud command is
+how authorized users interact with GCP from
+the command line. The G-cloud get
+credentials command gives you the
+credentials you need to connect with a GKE cluster if
+you're authorized to do so. In general, Kubectl is a tool for administrating the internal
+state of an existing cluster. But Kubectl can't create new clusters or change
+the shape of existing clusters. For that, you need
+the GKE control plane which is the G-Cloud command and the GCP console are
+your interfaces to. Once the conflict file in
+the.Kube folder has been configured the Kubectl command automatically references as file. It connects to
+the default cluster without prompting
+you for credentials. Now, let's talk about how
+to use the Kubectl command. Its syntax is composed
+of several parts. The command, the type, the name, and optional flags. Command specifies the action
+you want to perform, such as get, described,
+logs, or exec. Some commands show
+you information while others allow you to change
+the clusters configuration. Type, defines the Kubernetes object that the
+command acts upon. For example, you
+can specify pods, deployments, nodes
+or other objects including the cluster itself. Type used in combination
+with command tells Kubectl what you
+want to do and the type of object you want to
+perform that action on. Name specifies the object
+defined in type. The name field isn't
+always needed, especially when
+you're using commands that lists or show
+you information. For example, if you
+run the command Kubectl get pods without
+specifying a name. The command returns
+a list of all pods. To filter this list you
+specify a pods names such as Kubectl get, pod my-test-app. Kubectl then returns
+information only on the pod name my-test-app. Some commands support
+additional optional flags that you could include at
+the end of the command. Think of this as making
+a special requests like formatting the
+output in a certain way. You could view
+the state of a pod by using the command Kubectl get pod my-test-app-o equals YAML. By the way telling
+Kubectl to give you output in YAML format is
+a really useful tool. You'll often want to
+capture the existing state of a Kubernetes object
+in a YAML file, so that for example, you can recreate it in
+a different cluster. You can also use Flash to display more information than
+you normally see. For instance, you
+can run the command Kubectl get pods-o equals wide. To display the list of
+pods and wide format. Which means that you see
+additional columns of data for each of
+the pods in the list. One noteworthy piece of extra information you
+get in wide format, which node each pod
+is running on. You can do many things
+with the Kubectl command from creating Kubernetes objects, to viewing them, to leading them, and viewing or exploiting
+configuration files. Just remember to configure
+a Kubectl first or use the dash dash Kube config or dash dash contexts parameters. So that the commands you type are performed on a
+cluster you intended.

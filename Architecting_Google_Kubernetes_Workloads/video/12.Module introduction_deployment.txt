@@ -1,0 +1,15 @@
+Hi. I'm Alex. Welcome to the Deployment, Jobs and Scaling module. GKE works with
+containerized applications. Application package is
+a hardware independent, isolated use space instances. In GKE and Kubernetes,
+these containers, whether for applications
+or batch jobs, are collectively
+called workloads. In this module, you'll
+learn about deployments and jobs through the main
+types of workload. You'll also learn about
+the mechanisms that are used to scale the GKE clusters where
+you run your applications. In this module, you'll
+learn how to create and use deployments including
+scaling them, create and run jobs and cronjobs, scale GKE clusters manually
+and automatically, control on which node pods
+may and not get run, and explore ways to get
+software into your cluster.

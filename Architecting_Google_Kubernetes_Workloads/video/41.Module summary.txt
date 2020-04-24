@@ -1,0 +1,4 @@
+That completes deployment,
+jobs, and scaling. In this module, you learned how to create and use deployments, create and run jobs and CronJobs, use Helm Charts, how does scale clusters manually
+and automatically, and how to configure
+Node and Pod affinity.

@@ -1,0 +1,26 @@
+Hi, I'm Brian. Thanks for taking part
+in the Architecting with Google Kubernetes
+Engine specialization. The specialization as
+a whole will teach you how to implement solutions using
+Google Kubernetes Engine. In this course, Architecting with Google Kubernetes
+Engine workloads, each module aims to build on your ability to
+architect with GKE, and includes hands-on
+labs for you to experience
+functionalities firsthand. What the modules in
+this course have in common is that they all focus on the tools at
+your disposal to shape what runs inside your
+Kubernetes cluster. In the Kubernetes
+operations module, you'll be introduced to
+the Kubectl command, a utility used to control
+Kubernetes clusters. The next module addresses how to create and
+use deployments, as well as creating
+run jobs and cron jobs. You'll also be
+introduced to Helm, an open-source package
+manager for Kubernetes, as well as Google Cloud's
+Kubernetes marketplace which allows you to
+conveniently install, package software into
+your Kubernetes cluster. The GKE networking module will introduce the creation
+of services, and the use of load balancers to expose services to
+external clients. Understanding and working with different Kubernetes
+storage abstractions is addressed in the persistent
+data and storage module.

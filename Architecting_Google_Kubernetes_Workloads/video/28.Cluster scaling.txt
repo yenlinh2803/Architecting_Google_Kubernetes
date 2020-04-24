@@ -1,0 +1,85 @@
+In this lesson, we
+look at how you manage cluster scaling in GKE. I'll review the concept
+of node pools. You'll learn how you can modify the capacity of
+your entire cluster, either by manually changing the number of nodes
+and node pools, or by configuring
+additional node pools. You'll then learn how GKE
+cluster auto-scaler works, and how you can
+configure it to manage the size of your cluster
+automatically. The level of resources your applications need
+will vary over time. If you need to change
+the amount of resources available in your
+Kubernetes Engine clusters, you can increase or decrease the number of Google
+Kubernetes Engine nodes in your cluster directly
+from the GCP Console. New nodes created
+during the process automatically self register
+to the cluster, within the GCP environment. A node pool, is a subset of node instances within a cluster. They all have
+the same configuration. Node pools use
+a NodeConfig specification. When you create
+a container cluster, the number and type of
+nodes that you specify, becomes a default node pool. Then, you can add additional custom node pools of different sizes and
+types to your cluster. All nodes at any given node pool are identical to one another. Each node in the pool, has a Kubernetes node label, which has the node
+pool's name as its value. In this example, the name of
+the pool is default-pool. As you add more pools, you'll give each a name that's unique within your cluster. In the GCP Console, you can manually increase
+the size of the cluster by increasing the size of the
+node pools in the cluster. The node pool size represents the number of nodes in
+the node pool per zone. For example, if
+this particular pool spans two compute zones and you increase the node size
+from three to six, each zone will have
+six nodes registered, and the total number of nodes
+in this pool will be 12. Existing pools are not
+moved to the newer nodes, when the cluster size
+is increased. You can also manually
+decrease the cluster size. When you reduce
+the size of a cluster, the nodes to be removed
+are selected randomly. The resize process doesn't differentiate between nodes
+that are running pods, and the ones that are empty. When you remove a node
+from the cluster, all the pods within that node will be terminated gracefully. Graceful termination means that unterm signal is sent to the main process
+in each container. A grace period is then allowed before a kill signal is sent, and the pod is deleted. This grace period is
+defined for each pod. If these pods are managed by
+a replication controller, such as a replication set, or a StatefulSet, they'll be rescheduled on
+the remaining nodes. Otherwise, the pods won't
+be restarted elsewhere. You can also resize
+a cluster manually from the command line using
+the resize G-Cloud command. As with the GCP Console, if you reduce the size
+of the cluster, then nodes that are
+running pods and nodes without pods
+aren't differentiated. Resize will pick instances
+to remove at random, and any running pods will
+be terminated gracefully. If your pods aren't managed
+by a replication controller, they won't be restarted. Cluster auto-scaling
+controls the number of worker nodes and response
+to our workload demands. GKE's cluster auto-scaler can automatically resize a cluster, based on the resource demands
+of your workload. By default, the cluster
+auto-scaler is disabled. Cluster auto-scaling
+allows you to pay only for resources that are
+needed at any given moment, and to automatically get additional resources
+when demand increases. When auto-scaling is enabled, GKE automatically adds
+a node to your cluster, if you've created new pods that don't have enough
+capacity to run. If a node in a cluster
+is underutilized, and it's pods can be
+run on other nodes, GKE can delete the node. Keep in mind that when
+nodes are deleted, your applications can
+experience some disruption. Before enabling auto-scaling,
+you should make sure that your services can tolerate
+the potential disruption. Pods have their own CPU and
+memory resource requirements, based on the resource requests and limits of their containers. When it schedules the pod, the Kubernetes scheduler must allocate that pod to a node, that can meet all the demands of all that pods containers. If there isn't enough
+resource capacity across any of the node pools, the pod will have to wait until either other pods terminate
+to free up capacity, or additional nodes are added. When the pod has to wait
+for resource capacity, the scheduler marks
+the pod as unscheduled, by setting its schedule
+of pod condition to false with the reason,
+unscheduled pod. If you enable auto-scaling, the GKE auto-scaler
+checks whether a scale up action will
+help the situation, as soon as it detects that any pod is considered
+unschedulable. If so, it adds a new
+node to the node pool, where the pod is waiting for resources to become available. The pod is then
+scheduled on that node. However, this requires a new
+VM instance to be deployed, which will need to
+start up and initialize before it can be used
+to schedule pods. Also note, that while
+the auto-scalar ensures that all nodes
+in a single node pool, had a same set of labels applied, labels have been manually added after initial cluster
+or node pool creation, are not automatically
+carried over to the new nodes when
+the cluster auto-scales.

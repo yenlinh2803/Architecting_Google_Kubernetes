@@ -1,0 +1,32 @@
+Let's start by making sure that
+the needed APIs are enabled. In the GCP console,
+we go to APIs and Services. The API usage graphs are empty
+because this is a new project. We click enable APIs and Services and
+type in the name of the GPI we needed. First, we need to check Cloud Build. It says API enabled, that's great. Now, let's go back and try the other
+API we need for this activity, the container-registry API. It's also enabled. We would have otherwise been
+shown a button to enable the API. Now let's launch Cloud Shell. We'll use the simple nano text editor
+to create a short shell script, this will be the useful payload
+of the container we built. This shell script simply prints
+a message whenever it is run. We press Cmd+X to exit and save. Now we create a simple Dockerfile. The base layer of our container
+will be Alpine Linux. We'll place our shell script into
+the root directory of the container, and it will arrange for it to be run
+when the container is launched. We press Cmd+X to exit. We'll set the permissions of
+the container so that it is executable. Now we'll call cloud build to
+build the container image. The build succeeded, so let's go look
+at it in Google Container Registry. Here's our container, it's name is what we called it on
+the gcloud build command-line. Now we're working with two
+variations on this pattern. Their sources are stored in a Git
+repository to save your typing, we claim the menus and get claim. Here's a YAML file that
+describes our build. We're going to create an image
+with the same name as before. Notice that the Dockerfile and the shell
+script are here just like before. We submit the YAML file to cloud build The build succeeded. Now let's go see how this is reflected
+in Google Container Registry. We refresh the display. Still an image by the name
+quickstart-image, but when we click on it we see that there's
+an older version and a newer version. Cloud Build>History records the process
+of building this container images. A powerful capability is cloud build is
+it's ability to include large cloud build Let's take a look at
+a different YAML file. This YAML file runs the just
+built container image. You could use this capability to run
+a test suit that's embedded in your container image. In this example, we have simulated
+test with that always fails. We launch the build once again. The test suite fails, so the build fails. The status is reported
+to the calling shell.

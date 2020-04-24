@@ -1,0 +1,10 @@
+In this lab you'll use the command
+line to build GKE clusters. You'll inspect the kubeconfig file and
+use kubectl to manipulate the cluster. The tasks that you'll learn to perform
+include using Cloud Shell to deploy GKE clusters. Modifying the number of
+nodes in a GKE cluster, and authenticating to a GKE cluster. You'll then use the Cloud Shell
+code editor to inspect the QCTL configuration files. You'll also use Cloud Shell and
+QCTL to inspect the GKE cluster and use Cloud Shell to deploy
+pods to GKE clusters. Lastly, you'll introspect GKE pods by
+connecting to a pod to adjust settings, edit files, and
+make other live changes to the pod

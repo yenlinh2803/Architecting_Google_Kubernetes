@@ -1,0 +1,46 @@
+Now, let's discuss parallel jobs. The parallel job type creates multiple
+pods that work on the same task at the same time. Parallel job types are specified by
+setting the spec.parallelism value for a job greater than one. As I mentioned earlier, there are two
+types of parallel jobs, one with a fixed task completion count, and
+the other which processes a work queue. If you want to launch multiple pods at
+the same time for parallel jobs along with the fixed completion count, you can
+add completions along with parallelism. The job controller will only launch the
+maximum number of pods at the same time specified by the parallelism value, and will continue restarting pods until
+the completions count is reached. In this example, the controller will
+launch up to two pods in parallel to process tasks until three pods
+have terminated successfully. And the controller will wait for one of
+the running pods to complete successfully before launching the next pod. The job controller will track
+successful completions. When the specified number of
+completions has been reached, the job is considered complete. If the remaining number of completions
+is less than the parallelism value, the controller will not schedule new pods,
+as there are sufficient remaining pods running at the point to complete
+the desired total for the job. So what is a parallel
+job with a worker queue? Well, let's look at that next. In a worker queue parallel job, each pod
+works on several items from a queue and then exits when there are no more items. Because the workers, the pods themselves
+attack when the work queue is empty and the job controller doesn't
+know about the work queue. It relies on the workers to signal when
+they're done working, by terminating. You create a parallel job
+to process a worker queue by specifying a parallelism value,
+and leaving spec.completions unset. In this example,
+with parallelism set to 3, the job controller will launch
+three pods simultaneously. The job will consider all tasks complete
+as soon as any of these three pods successfully finishes its task. At some point,
+one of the pods terminates successfully. The applications running in the remaining
+pods detect this completion state and finish, causing the remaining
+pods to shut themselves down. One pod terminating the job successfully
+is considered to be finished successfully. Like other objects, jobs can be inspected
+using a kubectl describe command. The pods can be filtered using the kubectl
+get command, and label selector. Job details can also be
+viewed from the GCP console. Jobs can be scaled either from
+a command line or the GCP console. This is done by changing
+the parallelism value. Pods can fail all the time. One way to limit pod failure is through
+the back-off limit described earlier. Another option is to use the active
+deadline seconds setting, where you set an active deadline
+period for the job to finish. The deadline count starts
+when the job starts. If the deadline is reached, the job and all its pods are terminated with
+a deadline exceeded reason. activeDeadline Seconds has
+precedence over backoffLimit. You can use either one of these kubectl
+delete commands to delete a job. When you delete a job,
+all of its pods are also deleted. If you want to retain job pods, set the
+cascade flag to false during the deletion. Jobs can also be deleted
+directly from the GCP console.

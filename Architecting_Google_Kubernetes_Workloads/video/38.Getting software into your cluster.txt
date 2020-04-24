@@ -1,0 +1,47 @@
+You've now learned several
+useful and expressive ways to manage your workloads in
+your Kubernetes clusters, but what about the software
+that those workloads run? Where do you get it?
+An earlier module in this specialization discuss
+packaging software into containers with tools such
+as Google Cloud Build. You can use the Google
+Container Registry to store private
+container images, and Kubernetes can
+fetch this images from the registry and
+run them in parts, but it's up to you to define
+the deployment patterns and services that make them
+run reliably and usefully. You'll create your own
+YAML manifest and maintain them yourselves in a source control system
+of your choice. You're probably thinking writing YAML files isn't much fun, and having other people already figured out
+the best patterns for deploying popular
+open-source software into Kubernetes Clusters, why we have to figure out
+all that stuff from scratch? Well, you don't. This problem is what Helm helps us solve. Helm is an open-source package
+manager for Kubernetes in the same way that AppGet and YAML are package
+managers for Linux. How much developers organized Kubernetes objects and
+packages called Charts? Charts are easily created, versioned, shared, and published. Charts manages the deployment
+of complex applications. You can think of a chart as a parameterized YAML template. Helm charts know what perimeters are needed
+to make them work. For example, how many instances of each component do you need? What resource constraints
+should they work under? Developers of Helm charts to find these parameters and
+even supply helpful defaults. When you saw a Helm chart, Helm fills in the parameters
+you supply and deploys a release which is a specific instance of
+the chart to the cluster. In the Helm architecture,
+there are two components. First, there's
+a command line client, which is also called
+helm in lowercase that allows you to develop new charts and manage chart repositories. The second component is
+the Helm server called Tiller which runs within
+the Kubernetes cluster. Tiller interacts with the Kubernetes API
+server to install, upgrade, query, and removed
+Kubernetes resources. It also stores the objects that represent a Helm chart releases. Using Helm, lets us deploy
+open-source software into our Kubernetes Clusters with less work and less risk of error. But you still must manage Helm itself and you still must find
+the tools you want to use. Well, if there were
+something even simpler. GCP Marketplace offers ready-to-go development
+stacks, solutions, and services to
+accelerate development of popular or open-source and
+commercial software packages. Marketplace contains many
+Kubernetes based tools that are ready to install on
+your existing GKE clusters. You don't have to set
+up Helm to use it. Instead, you click
+a package you want, specify any needed parameters, and launches installation
+into your cluster. GCP Marketplace uses
+Cube CTL commands or Helm charts to automate
+the installation.

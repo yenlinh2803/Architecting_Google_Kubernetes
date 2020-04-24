@@ -1,0 +1,12 @@
+Welcome to the introduction to containers and kubernetes module. In this module, you'll
+learn what containers are, what their benefits are for
+application deployment, how containers are
+configured in built, what functions
+container management solutions like
+kubernetes provide, and what the advantage of
+Google kubernetes engine are, compared to building your own container management
+infrastructure. In this module, you'll learn how to create
+a container using Cloud Build and store the container and get in
+a container registry, and then compare and
+contrast kubernetes using Google kubernetes
+engine features.

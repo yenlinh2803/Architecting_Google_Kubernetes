@@ -1,0 +1,23 @@
+That concludes Introduction
+to Containers and Kubernetes. In this module, you
+learned how to create a container using Cloud build, which will build and manage
+your application images. In your labs, you create a Docker formatted container images
+and saw how you can privately store them
+in Container Registry. You also learned how
+to securely manage your builds with the native
+integration, with Cloud IAM. You reviewed the four
+compute solutions offered by Google Cloud Platform, starting with Compute Engine for those lift and
+shift workloads, App Engine, GKE, and
+Cloud Functions. Then we weighed
+the benefits of each, and looked at
+some common use cases. Lastly, you learned that GKE supports automatic
+Kubernetes version updates, automatically repair
+for unhealthy nodes, and even scaling of
+the cluster itself for you. All of this allows you
+to focus your time when dreaming up and writing
+your next great application. This means less time worrying
+about infrastructure, managing and maintaining
+deployment environments, worrying about security or building in sharing
+your containers, and allows you to focus on building your next
+idea for scale. In the next module, you'll learn about
+the architecture of Kubernetes.

@@ -1,0 +1,15 @@
+In this lab, you will use the command line to
+build GKE clusters. You'll inspect
+the queue conflict file and use Cube CTL to
+manipulate the cluster. The task that you'll
+learn to perform include using Cloud Shelf to
+deployed GKE clusters, modifying the number of
+nodes in a GKE cluster, and authenticating
+to a GKE cluster. You'll then use the cloud
+shield code editor to inspect the Cube CTL
+configuration files. You'll also use Cloud Shelf and Cube CTL to inspect
+a GKE cluster, and use Cloud Shelf to
+deploy pods to GKE clusters. Lastly, you'll
+introspect GKE pods by connecting to adjust
+settings and files, and make other life
+changes to the pod.

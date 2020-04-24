@@ -1,0 +1,109 @@
+Let's start by
+introducing containers. In this video, you'll learn about the key features of
+containers and the advantages of using containers for application deployment
+compared to alternatives such as deploying apps directly to
+virtual machines. You'll learn about
+Google's Cloud Build, and then you can see
+how you can use it to build and manage
+your application images. It's now not very long ago, the default way to deploy an application was on
+its own physical computer. To set one up, you'd find
+some physical space, power, cooling,
+network connectivity for it, and then install an
+operating system, any software dependencies, and then finally
+the application itself. If you need
+more processing power, redundancy, security, or
+scalability, what'd you do? Well you'd have to simply
+add more computers. It was very common
+for each computer to have a single-purpose. For example, a database, web server, or content delivery. This practice as
+you might imagine, wasted resources
+and it took a lot of time to deploy and
+maintain and scale. It also wasn't very
+portable at all. Applications were built for a specific operating system and sometimes even for
+specific hardware as well. In comes the dawn
+of virtualization. Virtualization helped by
+making it possible to run multiple virtual servers and operating systems on
+the same physical computer. A hypervisor is the
+software layer that breaks the dependencies of
+an operating system with its underlying hardware, and allow several
+virtual machines to share that same hardware. KVM is one well-known hypervisor. Today you can use
+virtualization to deploy new servers
+fairly quickly. Now adopting virtualization
+means that it takes us less time to
+deploy new solutions, we waste less of the resources on those physical computers
+that we're using, and we get some
+improved portability because virtual machines can be imaged and then moved around. However, the application, all of its dependencies and
+operating system are still bundled together and
+it's not very easy to move from a VM from one
+hypervisor product to another. Every time you start up a VM, it's operating system still
+takes time to boot up. Running multiple
+applications within a single VM also creates
+another tricky problem, applications that
+share dependencies are not isolated from each other, the resource requirements
+from one application, can starve out other applications of the resources that they need. Also, a dependency upgrade for one application might cause another to simply stop working. You can try to solve
+this problem with rigorous software
+engineering policies. For example, you could lock down the dependencies
+that no application is allowed to make changes, but this leads to
+new problems because dependencies do need to
+be upgraded occasionally. You can add integration tests to ensure that applications work. Integration tests are great, but dependency problems can cause new failure modes that are
+harder to troubleshoot, and it really slows down development if you have to
+rely on integration tests to simply just perform
+basic integrity checks of your application environment. Now, the VM-centric way to
+solve this problem is to run a dedicated virtual machine
+for each application. Each application maintains
+its own dependencies, and the kernel is isolated. So one application won't affect the performance
+of another. One you can get as
+you can see here, is two complete copies of
+the kernel that are running. But here too we can run into issues as you're
+probably thinking. Scale this approach to hundreds of thousands of applications, and you can quickly
+see the limitation. Just imagine trying to do
+a simple kernel update. So for large systems, dedicated VMs are
+redundant and wasteful. VMs are also relatively
+slow to start up because the entire
+operating system has to boot. A more efficient way to resolve the dependency
+problem is to implement abstraction
+at the level of the application and
+its dependencies. You don't have to virtualize
+the entire machine or even the entire
+operating system, but just the user space. Again, the user space is all the code that resides
+above the kernel, and includes the applications
+and their dependencies. This is what it means
+to create containers. Containers are
+isolated user spaces per running application code. Containers are
+lightweight because they don't carry a full
+operating system, they can be scheduled or packed tightly onto
+the underlying system, which is very efficient. They can be created
+and shut down very quickly because you're
+just starting and stopping the processes
+that make up the application
+and not booting up an entire VM and initializing an operating system
+for each application. Developers appreciate
+this level of abstraction because they don't
+want to worry about the rest of the system. Containerization is the next step in the evolution
+of managing code. You now understand containers as delivery vehicles for
+application code, they're lightweight,
+stand-alone, resource efficient, portable
+execution packages. You develop application
+code in the usual way, on desktops, laptops,
+and servers. The container allows
+you to execute your final code on VMs without worrying about
+software dependencies like application run times, system tools, system libraries,
+and other settings. You package your code with
+all the dependencies it needs, and the engine that
+executes your container, is responsible for making
+them available at runtime. Containers appeal to
+developers because they're an application-centric way to deliver high performance
+and scalable applications. Containers also allow
+developers to safely make assumptions about the underlying
+hardware and software. With a Linux kernel underneath, you no longer have
+code that works in your laptop but doesn't
+work in production, the container's the same
+and runs the same anywhere. You make incremental changes to a container based on
+a production image, you can deploy it very quickly
+with a single file copy, this speeds up
+your development process. Finally, containers
+make it easier to build applications that use the
+microservices design pattern. That is, loosely coupled,
+fine-grained components. This modular design
+pattern allows the operating system to scale and also upgrade components
+of an application without affecting
+the application as a whole.
