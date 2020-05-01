@@ -1,0 +1,6 @@
+That concludes the using GCP managed storage services with Google Kubernetes Engine module. In this module, you learned how to recognize
+the pros and cons of managed storage services versus self-managed
+containerized storage, identify use cases for Cloud Storage for applications running in a Kubernetes cluster, identified the range of GCP
+managed database services, and how to use Cloud SQL
+proxy to simplify the task of connecting to Cloud SQL from within Kubernetes
+applications.

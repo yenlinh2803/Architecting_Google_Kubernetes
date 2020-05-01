@@ -1,0 +1,7 @@
+In this lab, you will
+create namespaces with energy K cluster and then use
+role-based access control, to permit a non-admin
+user to work with ports in a specific namespace. You'll learn, how to
+create namespaces for users to control access
+to cluster resources, and create roles and roll bindings to control
+access within a namespace.

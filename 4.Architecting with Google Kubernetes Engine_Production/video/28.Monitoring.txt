@@ -1,0 +1,84 @@
+This lesson discusses Monitoring. Monitoring allows
+you to visualize your service experience from
+different vantage points. You can monitor from outside the environment to
+view the service from the user's perspective or
+you can monitor from within the environment to gain insights
+on key internal metrics. You may have heard of Site Reliability
+Engineering or SRE. SRE is Google's approach
+to DevOps and it's a fundamental part
+of how Google runs its services reliably
+and at massive scale. One important part of SRE is the service reliability
+hierarchy. Here's a picture. This diagram shows
+what depends on what. The activity at a given level depends on what's beneath it. Notice that monitoring is the most fundamental layer of the service
+reliability hierarchy. Everything else depends on it, all the way up to your service
+or product itself. Monitoring lets you
+make decisions about your application based on
+data rather than emotions. Monitoring is your first line
+of reconnaissance. It's often coupled with
+logging to provide a complete picture of the
+system status and past trends. It can also reveal
+trends and patterns that can help you size and scale
+your systems over time. Monitoring Kubernetes is actually less about watching
+the clusters and nodes, and more about monitoring your application's current state and anything that
+may be impeding it. Setting up a solid monitoring
+solution can really help when you're troubleshooting micro-services
+based applications. Because the services are
+loosely coupled by design, complex troubleshooting
+situations can arise when data is sent
+between different systems. If you're able to accurately monitor the state of the services including the throughput and
+latency of the services, you can more easily track
+down performance bottlenecks. Through aggregated logging
+and debugging in Stackdriver, you can diagnose
+application code issues. In Kubernetes, monitoring can
+be broken into two domains. One domain is the cluster
+which involves monitoring the cluster level components
+such as individual nodes, Kube-APIserver, etcd, and
+Kube controller manager. The other monitoring
+domain is the pods, including the containers and applications that
+run inside them. Cluster monitoring refers
+to the cluster services, nodes, and other
+infrastructure elements. This can be accomplished
+using the monitoring and the GCP Console or through Stackdriver using
+health checks and dashboards. Pod monitoring can be divided
+into several subcategories. System metrics regarding
+container deployments, instances, health
+checks and state, containers specific
+metrics such as resource consumption
+and applications specific metrics
+which are designed by the application developer and exposed to a monitoring solution. Unlike traditional server
+monitoring where you can specify a host
+name to monitor, the abstraction layers
+in Kubernetes, well, containers in general, force
+you to change your approach. Instead of having
+a specific host name or IP address to be monitored, all resources in Kubernetes have labels that you define to
+create a logical structure. These labels give you a logical approach to
+organizing your resources. They also make it easier for you to monitor specific systems or subsystems by selecting a combination of
+different labels. In Stackdriver and other tools, you can filter the logs and focus the monitoring on components
+that match a given label. Here's an example. Remember that Kubernetes labels consist of a key and a value. You could apply
+a label consisting of the key environment and the value production to
+all the components of your production environment and then use that label
+in Stackdriver. Stackdriver monitoring
+provides visibility into the overall health of your GKE cluster and
+the pods it contains. With the collection of
+metrics, events, and metadata, monitoring provides
+the flexibility needed to monitor core metrics
+through custom dashboards. Through uptime checks, you can monitor the availability of your Kubernetes resources within the cluster and also
+the other GCP resources used. Logging can also easily integrate with monitoring
+using custom metrics. You can also monitor your
+logging-based custom metrics. In addition, all these metrics can be configured
+to set up alerting policies to improve the signal to noise ratio of
+your alert messages. All cluster resources
+are topologically aware and are appropriately labeled
+based on resource names, labels, projects, and more. Stackdriver monitoring lets you observe your whole
+Kubernetes environment. You can see metrics, logs, traces, events, and
+metadata in one place. Imagine that your
+application has an error. Stackdriver lets you analyze relevant information such
+as infrastructure metrics, application metrics or logs directly from a single dashboard. Stackdriver can only
+monitor what it can see. To get more information
+out of Stackdriver, you need to put
+more information in. A lot of existing applications
+built for Kubernetes use an open source tool
+to expose custom metrics. Stackdriver offers a
+Prometheus collector. You install it in your cluster in the same Kubernetes pod as
+your Prometheus server. This way, data from Prometheus is available as external metrics
+in Stackdriver.

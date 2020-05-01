@@ -1,0 +1,76 @@
+In this video, we will
+look at ConfigMaps. ConfigMaps decouple
+configuration from Pods. This means that you
+don't have to enter the same information across multiple parts specifications. You store this
+configuration in one place and maintain it as
+a single source of truth. This prevents
+configuration drift. Using ConfigMap, you can store configuration files,
+command-line arguments, environment variables,
+port numbers, and other configuration
+artifacts and make them available
+inside containers. This makes your application
+more portable and manageable without requiring
+them to be Kubernetes aware. ConfigMaps can be created
+from literal values, files, and directories using a simple Kubectl create command. These data sources
+contain key-value pairs. Let's see how each is created. Here a ConfigMap named demo is created using literal values. Two key-value pairs are defined, lab.difficulty equals easy and
+lab.resolution equals high. You can add multiple
+key-value pairs. You can view the details
+of ConfigMaps using kubectl or the GCP Console. Here's another
+configMap, this time created using from file syntax. These files contain
+multiple key values. You can add multiple files
+to a ConfigMap. You could check these files into your source code
+control system to maintain their
+versioning and history. If you want to specify
+names for your keys, you can add a key name as an alternative to using
+the source file names. The syntax here is
+very similar to the default from file syntax
+in the previous slide. But here, an additional key value is inserted to rename the key used for the file called color.properties to
+the key value color, and to rename the key
+used for the file called ui.properties to
+a key called graphics. As always, you can
+verify the contents of your ConfigMap using
+kubectl or GCP console. Instead of specifying each file
+from the same directory, you can simply use
+the directory name directly. All the files within a directory are added
+to the ConfigMap. Here a directory is created
+and files are stored in it. When you look at
+the ConfigMap count contents after adding a directory, you'll see that all the files from the directory
+are stored in it. ConfigMaps can also be
+created from a manifest. Here, the data is the same
+as in the previous examples. Simply applying
+this manifest using a kubectl apply will
+create the ConfigMap. How should you choose among these ways of
+defining ConfigMaps? Well, select whichever way works best for your operations. Remember that the purpose of ConfigMaps is to
+support separation of concerns by ensuring
+that configuration data isn't embedded literally
+in your applications. Pods are referred
+to ConfigMaps in three ways: As a container
+environment variable, in Pod commands, or
+by creating a Volume. Here a single ConfigMap is used in pod as a container
+environment variable. Within an environment variable, a container environment variable is named as variable demo. The values are retrieved
+using configMapKeyRef. Multiple variables can be added from the same or
+different ConfigMaps. After the container environment
+variables are defined, they can be used inside Pod manifest command using
+the syntax shown here. You put a dollar sign and an opening parentheses
+in front of the environment variables name and the closing
+parentheses after it. If you are familiar
+with Linux shells, this may look like
+an error to you. Linux shell use the same syntax
+for a different purpose. You can also add ConfigMap data
+into an ephemeral volume. In this example, a volume
+named config-volume is created in the volume section with a ConfigMap named demo. The result, a ConfigMap volume
+is created for this pod. All the data from
+the ConfigMap is stored in this configMap
+volume as files, and then this volume
+is mounted to the container using
+the mount path directory. Each nodes Kubelet
+periodically syncs with ConfigMap to keep
+the ConfigMap volume updated. When a ConfigMap
+volume is already mounted and the source
+ConfigMap is changed, the projected keys are
+eventually updated. What does eventually mean here? It's on the order of
+seconds or minutes. If you have a piece
+of configuration data that will change more
+rapidly than that, you should probably implement
+a micro-services to provide its value to Pods rather
+than using a ConfigMap.

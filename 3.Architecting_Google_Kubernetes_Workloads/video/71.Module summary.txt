@@ -1,0 +1,15 @@
+That concludes
+persistent data and storage. In this module,
+you learned how to understand and work with
+Kubernetes storage abstractions, which will allow you to
+configure and select the appropriate storage type
+for your applications, run and maintain sets of
+pods with stable identities, and consistent
+storage suitable for stateful applications
+using stateful sets. Use ConfigMap to decouple
+configuration from pods so that you don't have to
+configure variables in individual pods
+specifications, simplify management and
+preventing configuration drift, and manage and store
+sensitive authorization and authentication
+configuration data for pods such as password, or tokens and SSH keys.

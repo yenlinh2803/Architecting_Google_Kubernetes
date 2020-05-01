@@ -1,0 +1,74 @@
+After you've defined
+a pod security policy, you need to authorize it. Otherwise it'll prevent
+any Pod from being created. You can authorize a policy using Kubernetes Role-Based
+Access Control. Here, a cluster role allows the pod security policy
+called demo PSP to be used. Next define a role
+binding to bind the previous cluster role
+to users or groups. In this example, two subjects for the role
+binding are specified. The first is a group containing all service counts within
+the demo name-space. The other is a specific
+service account in the demo name space. The role binding can grant permission to
+the creator of the pod, which might be a deployment, replica set or other
+template controller. It can grant permission to the created pods service account. Note that granting the
+controller access to the policy, would grant access for all pods created by that controller. So the preferred method
+for authorizing policies is to grant access to
+the pods service account. Without a pod security
+policy controller, pod security policies
+mean nothing. You need both to define policies, and to enable the pod
+security policy controller. Careful, the order here matters. If you enable the pod
+security policy controller before defining any policies, you've just commanded that nothing is allowed
+to be deployed. In GKE, the pod security
+policy controller is disabled by default. If you choose to use
+pod security policies, first define them,
+and then enable the controller with
+the G-Cloud command shown here. Name represents the name
+of your cluster. You can take additional security
+measures in kubernetes, and many of these are enabled by default in GKE especially if you choose to run
+recent versions of kubernetes in your GKE cluster. For example, GKE by default uses Google's container optimized
+OS for the node OS. Unlike a general purpose
+Linux distribution, the container optimized
+OS implements a minimal read-only file system. Performs system integrity checks and implements firewalls, audit logging, and
+automatic updates. You can enable
+node auto upgrades to keep all of your nodes running the latest version of Kubernetes. You can choose to run
+private clusters, which contain nodes without
+external IP addresses. You can also choose to run the cluster master
+for a private cluster without a publicly
+reachable end point using Master authorized networks. By default, private
+clusters do not allow TCP IP addresses to access
+the cluster master end point. Using private clusters with
+master authorized networks, makes your cluster master
+reachable only by the specific address
+ranges that you choose. Nodes within
+your cluster VPC network can still access the master, and so can Google's internal production jobs that
+manage it for you. Make sure to protect your secrets by using encrypted secrets. To store sensitive
+configuration information rather than storing
+them in config maps. Whenever possible,
+grant privilege to groups rather than
+individual users. This applies both to Cloud IAM which lets you grant
+rules to Google groups, as well as kubernetes
+are back which lets you grant roles to kubernetes groups. Suppose you grant privileges
+to an administrator named Pat in many places and then
+Pat leaves your company. You now must track down
+all the places where Pat has privileges,
+and remove them. That's tedious and error-prone. If you follow the best practice
+of always granting privileges to groups
+rather than to users, you can remove
+Pat's access simply by taking Pat out of
+the administrator group. The Kubernetes dashboard is a traditional add-on to Kubernetes. It was originally
+intended to provide a convenient web-based way for administrators
+to manage a cluster. In the past, the Kubernetes
+dashboard was backed by a highly privileged
+kubernetes service account by default. Kubernetes dashboards were also often left accessible
+from the Internet. This was a serious problem. The default configuration expose an interface that might be
+vulnerable to remote attacks. GKE takes steps to
+reduce this risk. GKE clusters running with Kubernetes version 1.7 or higher. Do not give the kubernetes
+dashboard admin access. GkE clusters is running with Kubernetes version
+1.10 Or higher, completely disable the
+kubernetes dashboard by default. Instead of using
+the Kubernetes dashboard, use the GSP consoles built-in GKE dashboard or
+the Cube CTL commands. These interfaces provide all the old dashboards
+functionality and more. Without exposing
+an additional attack service. If you must run any earlier
+versions of Kubernetes, Google recommends
+that you disable the Kubernetes dashboard or at least restrict
+it's permissions.

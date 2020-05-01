@@ -1,0 +1,16 @@
+Hi, I'm Sowmya. Welcome to the Google
+Kubernetes engine or GKE Logging and
+Monitoring Module. In this module, you'll learn how logging is implemented
+in Kubernetes, and how GKE extends that basic functionality
+using stackdriver. Stackdriver is a suite of multi-cloud resource
+reconnaissance tools, provided by Google that
+includes monitoring, logging, and debugging for your applications
+and infrastructure. In this module,
+you will learn how to use stackdriver to monitor, and manage the availability, and performance of
+your GCP resources, and applications that are
+built with those resources. Locate and inspect
+Kubernetes logs produced by resources
+inside your GKE clusters, use stackdriver and
+Google BigQuery, for longer-term retention,
+and forensic analysis of the logs that are produced by GKE and the Kubernetes resources, inside your GKE clusters. How to monitor system, and application performance from different vantage points, and how to create probes for wellness checks on the
+applications you are running.

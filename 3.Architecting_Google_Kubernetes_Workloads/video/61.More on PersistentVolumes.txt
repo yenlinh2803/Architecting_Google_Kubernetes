@@ -1,0 +1,103 @@
+Back to persistent volumes. The access modes you
+specify determine how this volume can be read
+from or written to. The types of
+access modes that are available depend on
+the volume type. As we discussed
+the various access modes, we will mention what type
+of volumes offer them. ReadWriteOnce mounts the volume as readwrite to a single node. ReadOnlyMany mounts a volume
+as read-only to many nodes, and ReadWriteMany mounts volumes as readwrite too many nodes. For most applications, persistent disk are
+mounted as ReadWriteOnce. They can also be mounted as ReadOnlyMany when
+the data is static. But GCP persistent disks do
+not support ReadWriteMany. Some other network
+volume types such as NFS do support the
+ReadWriteMany access mode. You can create a
+persistent volume from a YAML manifest using
+a Cube CTL apply command. This PV example shown
+here named PD-volume will have 100 GB of storage allocated and will allow
+ReadWriteOnce access. It will use a
+standard persistent disk based on the storage class name. This PV would be maintained by the cluster
+administrators. For example, among the
+administrators responsibilities would be backing it up. You do backup, right?
+Of course you do. You can backup a persistent disk regardless of whether it is in use by Compute Engine or Kubernetes engine by
+creating snapshots of it. Persistent volumes can't be added to pod
+specifications directly. Instead, you must use
+persistent volume claims. In order for this
+persistent volume claims to claim the persistent volume, there storage class names
+and access modes must match. Also, the amount of
+storage requested in a persistent volume claim must be within a persistent volume
+storage capacity. Otherwise, the claim will fail. Notice that this claim
+wants 100 gigabytes and the persistent volume
+offers 100 gigabytes. So it will succeed assuming that the persistent
+volume is healthy. So let's be sure
+you understand how persistent volumes and persistent
+volume claims are used. Earlier, you saw
+the traditional way to provide that durable or
+persistent storage for a pod by adding an appropriate volume
+specification to a pod manifests as
+shown again here. The modern easier
+to manage way is to use the persistent
+volume abstraction. Add a persistent volume claim to the pod as shown
+here on the left. In our example,
+the Persistent Volume Claim named pd-volume-claim has
+the standard storage class name, the ReadWriteOnce access mode and a requested capacity
+of a 100 gigabytes. When this pod is started, GKE will look for
+a matching PV with the same storage class name and access modes, and
+sufficient capacity. What could go wrong? Well, what a application
+developers claim more storage than the already been allocated to
+persistent volumes. Persistent volumes are managed
+by cluster administrators, but application developers make the persistent volume claims, and this could lead to
+storage allocation failures. So what happens if there isn't an existing persistent volume to satisfy the persistent
+volume claims? If it cannot find an existing
+persistent volume, Kubernetes will try to provide
+a new one dynamically. By default, Kubernetes
+will try to dynamically provision
+of persistent volume if the persistent volume claims storage class name is defined and an appropriate
+persistent volume does not already exist. If a matching persistent
+volume already exist as seen in
+our previous example, Kubernetes will bind
+it to the claim. If you omit storage class name, the persistent volume claims will use the default storage class, which in GKE is named standard. That's standard persistent disk. Dynamic provisioning
+will only work in this case if it is
+enabled on the cluster. All of this is handled by GKE. The application owner does
+not have to ensure that the underlying storage has been provisioned for them to use, and does not need to
+embed the details of the underlying storage
+into the part manifest. By default, deleting
+the persistent volume claim will also delete the
+provisioned persistent volume. If you want to retain
+the persistent volume, set its persistent volume
+reclaim policy to retain. In general, persistent volume
+claims should be deleted then their
+underlying persistent volume is no longer required. What if you want to ensure high availability for
+your persistent volumes? You can improve the
+availability of Compute Engine persistent disk by deploying them as
+regional persistent disk. Regional persistent disks
+replicate data between two zones in the same region, which improves availability. A regional persistent disk
+can be launched manually or dynamically and provisioned by configuring additional fields
+in a storage class. If a zonar outage occurs, Kubernetes can fail over those workloads that use
+the volume to the other zone. You can use regional
+persistent disk to build highly available solutions for
+stateful workloads on GKE. To use regional persistent
+disk in Kubernetes, create a storage class
+that specifies the regional PD replication type
+in its definition. Then use that storage class when you define
+persistent volumes. At the time I made this video, Compute Engine regional
+persistent disk were in Beta. Check the website for
+the current status. In this video, we explained that persistent volumes provide
+durable storage for a pod. You can also use persistent volumes for
+other controllers, such as deployments
+and stateful sets. Remember, a deployment is simply a pod template that runs and maintains a set of
+identical pods, commonly known as replicas. You can use these deployments
+for stateless applications. Deployment replicas can share an existing persistent volume using ReadOnlyMany or
+ReadWriteMany access mode. ReadWriteMany access mode can only be used for storage types
+that support it, such as NFS systems. The other access mode
+you learned about ReadWriteOnce isn't
+recommended for deployments, because the replicas
+need to attach and reattach to persistent
+volumes dynamically. If a first pod needs
+to detach itself, the second pod needs
+to be attached first. However, the second pod cannot attach because the first pod
+is already attached. This creates a deadlock. So neither pod can make progress. Stateful sets resolve
+this deadlock. Whenever your
+application needs to maintain state in
+persistent volumes, managing it with
+a stateful set rather than a deployment
+in the way to go. Oh, lost, seriously? Oh, my God.

@@ -1,0 +1,31 @@
+You learned about many different storage and database services
+in this module. Maybe, it seemed like
+a lot to remember. To help wrap up the topic, I'm going to share
+a simple decision tree that helps you decide
+among the services. Start by asking yourself about the characteristics of the
+data you want to store. Is the data structure
+or is it simply blobs? If it's unstructured data, the object storage provided by Cloud Storage is probably
+the best choice. But what if it's structured? In that case, ask yourself about the nature
+of the workloads. Is it analytics oriented? In other words, is it primarily related to gathering
+insights from data? For now, let's assume your workload is not
+related to analytics. I will return to the case
+that it is in a minute. Now, ask yourself whether your data is
+relationally structured. In other words, is it naturally represented by one or more tables of columns and rows with a unique key
+identifying each row? If not, Cloud Firestore
+is a good choice. It's NoSQL orientation gives
+you the flexibility to represent your data in a way that's best for
+your application. On the other hand, if
+your data is relational, now ask yourself whether
+you need to maintain the ability to scale
+horizontally in the future. Horizontal scaling and
+global transaction consistency are the key benefits
+of Cloud Spanner. If you don't anticipate
+your database growing beyond the terabyte range and if classic scaling strategies
+for relational databases such as read replicas should be enough to help you meet
+your performance schools, Cloud SQL is a good choice. Now, let's return to
+a decision point we left behind. What if your workload is
+related to analytics? Ask yourself whether you need your database service to offer SQL based updates and low latency reads and writes
+of individual data items. If you do, Cloud Bigtable
+is a good choice. Otherwise, assuming your
+analytics workloads are more oriented towards
+drawing conclusions based on streamed data, BigQuery is a good fit.

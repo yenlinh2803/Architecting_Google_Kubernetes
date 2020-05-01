@@ -1,0 +1,75 @@
+Let's start with authentication and
+authorization. In this first lesson,
+you will learn about how user and service accounts work in Kubernetes. You'll then learn about how to create and
+manage those accounts in GKE. In Kubernetes,
+there are two main types of users. Normal users and
+Kubernetes service accounts. Be careful here,
+both Google Cloud platform and Kubernetes have an entity called a service
+account but they're not the same. I'll explain the difference in a minute. For now, keep in mind that your day
+to day focus will be on normal users. Normal users are managed
+outside of Kubernetes, that is Kubernetes relies on
+external identity services. That's through both in Kubernetes
+clusters that you built yourself, as well as in those GKE manages for you. When you use Kubernetes clusters in GKA, you'll define most user accounts
+through Google's identity service. Informally that encompasses the consumer
+Google accounts that you're familiar with, plus accounts in G Suite domains. If you don't have a G Suite domain you
+should get a Google Cloud identity domain for your business, which is at no
+additional charge in most circumstances. A cloud at any domain gives you much
+more organizational control than using consumer Google accounts for
+all of your employees. All these kinds of accounts together
+make up Google Cloud Identity. We use the word member to refer to
+each individual identity defined by the service. It's a flexible service. It lets you define user
+identities directly, or mirror them from your existing directory
+service such as Active Directory. It also lets you group users, which turns out to be the key part
+of an important best practice. I'll tell you about later in this module. GCP is a clouds identity and
+access management service or Cloud IAM is where buying permission
+in you GCP project to members. And then you need tell Kubernetes about
+the members that you want to give permission inside your clusters to. Any cloud and any member can be configure
+as normal user GKE Kubernetes clusters. In contrast to normal users, Kubernetes service account
+are accounts manages by Kubernetes. Kubernetes service accounts provide
+an identity for processes in a pod and are used to interact with
+the Kubernetes cluster. These are different from
+GCP service accounts. Those are managed by Google Cloud
+identity, not Kubernetes and you use them when you want GCP resources to have an
+identity that's tied to an application or virtual machine not a human being. You can even configure GCP service
+accounts as a normal Kubernetes user if that proven necessary. In Kubernetes, every name space has
+a default Kubernetes service account. When processes in containers within a pod
+communicate with the cube API server, they identify themselves as
+a Kubernetes service account. If you're security sensitive, you won't be worried about these
+Kubernetes service accounts. What if an attacker compromised
+a container or a pod? Could they grab service
+account credentials and then use them in further attacks? Yes, they could. In Kubernetes 1.8 and higher,
+thanks to the implementation of RBAC, service accounts have no default
+permissions or access tokens. GKE only supports the last the three
+minor versions of Kubernetes. So if you're running on GKE,
+you already have this enabled. You don't have to worry about
+this potential problem. After an account is authenticated, for
+example, a user authenticating via Cloud identity, there are two main ways to
+authorize what that account can do. One, Cloud Identity and
+Access Management or Cloud IAM. And two, Kubernetes role-based
+access control or RBAC. In fact, you need both controls. Cloud IAM is the access control system for
+managing GCP resources. It lets you grant permissions to users
+to perform operations at the project and cluster levels. In other words,
+outside your Kubernetes clusters. On the other hand, Kubernetes RBAC, gives
+you access control inside your Kubernetes clusters at the cluster level and
+the namespace level. It lets you create fine tune rules in
+granular access to resources within the cluster. So you will use Cloud IAM
+to define who can view or change the configuration
+of your GKE clusters. And you'll use Cloud RBAC
+to define who can view or change Kubernetes objects
+inside those cluster. With both of these methods, it's a best a practice to exercise
+the principle of least privilege. Each person who has access to your cluster
+should have the minimum set of permissions to do their job. In Kubernetes, the API server listens for
+remote requests using HTTPS on port 443. Each request must be authenticated
+before it's acted upon. The API server can perform this
+authentication using various methods. GKE supports as authentication methods,
+OpenID connect tokens, x509 client certs and basic
+authentication using static passwords. OpenID connect is a simple identity
+layer on top of the OAuth 2.0 protocol. It lets clients verify the identity of
+an end user by crewing an authorization server. The clients can also get basic
+profile information about the end user in interruptible way. x509 client certificates and static passwords present a wider
+surface of attack than OpenID. Unless your application is using
+this methods of authentication, you should disable them and use
+the OpenID authentication method instead. In GKE, both x509 and static password
+authentication are disabled by default, in clusters created with
+Kubernetes 1.12 and later. This helps improve the default
+security configuration.

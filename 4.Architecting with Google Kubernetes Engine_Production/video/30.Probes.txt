@@ -1,0 +1,61 @@
+In the last lesson of this
+module we'll discuss probes. When working in AI
+micro-services environment, you'll have service dependencies. If AI isn't ready, another service might
+generate another. Also, some containers
+might appear to be operational because they are
+consuming compute resources. But in fact, they aren't able to serve as client requests. In both of these cases, the other micro-services
+will generate errors that we can prevent by checking the status of a pod, and if it's found to be
+non-responsive redeploying it. In this example, the shopping
+process is broken down into various micro-services
+such as orders, shopping cart, and
+credit card processing. It's vital that the orders are saved appropriately
+in the shopping cart. If the orders aren't saved correctly in the shopping cart, the credit card won't
+be processed correctly. This might eventually lead to a lost conversion and
+ultimately lost revenue. Overall, it's essential to have a functional shopping
+cart micro-service. So how do you know whether the shopping cart is
+functioning properly? It's best to apply
+additional health checks such as liveness and
+readiness probes. With a liveness probe, Kubernetes checks to see whether the container is running. If the liveness pro fails and if the restart policy is set
+to always or on failure, cubelet will restart
+the container. With the readiness probe, Kubernetes checks
+whether the container is ready to accept requests. If a readiness probe fails, the pods IP addresses
+removed from all service endpoints by
+the endpoint controller. These probes can be defined using three types of handlers; command, HTTP, and TCP to allow you to perform different types of
+diagnostic probe tests. How do you decide
+whether you need to use a liveness or
+readiness probe? Consider some common scenarios. If your container can
+fail by itself and the restart policy is set
+to always or on failure, you don't need a aliveness probe
+or a readiness probe. Cubelets will simply act based on the defined restart policy
+and restart the container. However, if an application
+within a container is stuck in a broken state
+and requires a restart, you can set up
+a aliveness probe to detect the broken state
+and restart the container. The third case where a probe can help is where
+your container might be running but your application isn't yet ready to
+solve the traffic. By default, Kubernetes will send traffic to the container
+because it's running even if you've set
+up a liveness probe the liveness probe will simply fail and restart the container. This just ends up in
+a continuous loop with the application never getting to a state when it's ready
+to receive traffic. In this case, you can add a
+readiness probe to make sure your application is ready and running before the
+traffic is sent. Note that if you don't
+specify any of these probes, by default Kubernetes assumes that the pod executed
+successfully. With the command probe handler, cubelets runs a command
+inside the container. If the command succeeds,
+in other words, if it's exit code is zero, the container is
+considered healthy. Otherwise cubelet will
+kill the container. The second type of probe handler, HTTP, uses an HTTP Get request. If the request returns with
+a code range from 200 to 400, cubelets considers
+the container healthy. Anything outside that range
+will kill the container. You can easily set up a lightweight HTTP server on the container
+to use this probe. The third probe
+handler type is TCP. Here, cubelets attempts
+to make a TCP connection. If the connection is established, the container is
+considered healthy. All these methods can be used in a readiness probe in
+exactly the same way. You can refine these probes. The initial delay seconds field sets the number of
+seconds to wait before liveness or readiness
+probes can be initiated. It's important to ensure that the probe isn't initiated before the application is ready otherwise the containers will be trashed in a continuous loop. This value should be updated if your application
+boot time changes. The period seconds field defines the interval
+between probe tests. The timeout seconds field defines the probe timeout and success and failure threshold fields
+can also be set.

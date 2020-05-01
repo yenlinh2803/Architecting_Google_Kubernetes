@@ -1,0 +1,20 @@
+Hi, I'm Priyanka. Welcome to the persistent data
+and storage module. In this module, you
+will learn about the different types of
+Kubernetes storage abstractions. You'll learn about StatefulSets, and how to use them to manage order deployments of
+pods and storage. You'll also learn how
+ConfigMaps can save your time during
+application deployments, by decoupling
+configuration artifacts from container definitions. Finally, you'll learn how to
+keep sensitive information safer from accidental exposures
+using Kubernetes secrets. In this module, you
+will learn how to understand and work with
+Kubernetes storage abstractions, which will allow you to
+select and configure the appropriate storage types
+for your applications. Run and maintains sets of
+pods with stable identities, and consistent storage
+suitable for stateful applications
+using StatefulSets. Use ConfigMaps to decouple configurations from pods so that you don't have to
+configure variables in individual pods
+specifications, which simplifies management and prevents configuration drift. Manage and store sensitive authorization and authentication
+configuration data, for pods such as passwords, OAuth tokens, and SSH keys.

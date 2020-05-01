@@ -1,0 +1,85 @@
+Some volume types like Secrets and ConfigMaps
+are coupled to the life of the Pod and cease to exist when the Pod
+ceases to exist. Secrets are a way to store sensitive encrypted data
+such as passwords or keys. These are used to keep
+you from having to bake sensitive information into
+your pods and containers. Secrets are stored in
+a temporary file systems so that they are never written
+into non-volatile storage. ConfigMaps are
+certainly different. They are used for
+non-sensitive string data. The setting of
+command line variables and the storing of configuration
+and environment variables, are natural use cases
+for ConfigMaps. While the Secret and
+ConfigMap volumes that attached to individual Pods
+that are femoral, the objects are not. All of the examples we've
+looked at so far are volumes and whether the
+data is long lived or not, volumes are tied to the lifecycle of the pods where
+they have defined. A persistent volume in contrast has
+a life cycle of its own, independent of the pod. Kubernetes persistent
+volume objects abstract storage provisioning from
+storage consumption. Remember, Kubernetes enables microservices architecture where an application is decoupled into components that can
+be scaled easily. Persistent storage makes it possible to deal
+with failures and allow for dynamic rescheduling of components without loss of data. However, should application
+developers be responsible for creating and maintaining
+separate volumes for their application components? Also how can developers
+test applications before deploying into production without modifying the Pod manifests
+for their applications? Whenever you have to reconfigure things to go from
+test to production, there's a risk of error. Kubernetes persistent
+volume abstraction resolve both of those issues. Using persistent volumes, a cluster administrator can provision a variety
+of volume types. The cluster
+administrator can simply provision storage and not
+worry about its consumption. Application developers can easily claim and use
+provision storage using PersistentVolume claims
+without creating and maintaining
+storage volumes directly. Notice the separation of roles. It's the job of administrators
+to make persistent volumes available and the job of developers to use
+those volumes in applications. The tool job roles can work
+independently of each other. When application developers
+use persistent volume claims, they don't need to worry about where the application is running. Provision storage capacity
+can be claimed by the application regardless of whether it's running
+on local site, GCP or any other Cloud provider. Let's look at what is required for an application owner to consume Compute Engine
+persistent disk storage. First using Pod level volumes and then using cluster level persistent volumes and persistent volume claims
+in Pod manifests. You will see that the second way
+is more manageable. Google Cloud's Compute Engine services use persistent disk for virtual machines disks
+and Kubernetes engine uses the same technology
+for persistent volumes. Persistent disks are
+network-based block storage that can provide durable storage. First, 100 GB Compute
+Engine persistent disk is created using
+a G-Cloud command. Before this persistent disk
+can be used by any Pod, someone or some process
+must create it, and that person or process must have Compute Engine
+administration rates. As we've seen earlier with
+the NFS volume example, this Compute Engine
+persistent disk can be attached to a pod by specifying a GCE persistent
+disk volume type inside the Pod manifest. In this Pod manifest, the Compute Engine persistent
+disk volume is described in the GCE persistent disk field as pdName demo-disk and file
+system type as ext4. The PD name must correspond to a Compute Engine persistent disk that has already been created. This is the old way of
+attaching the persistent disks, and it's no longer
+the best way to do it. I'm showing it to
+you here because you might see it in
+existing applications. When the Pod is created, Kubernetes uses
+the Compute Engine API to attach the persistent disk to the node on which
+the Pod is running. The volume is automatically formatted and mounted
+to the container. If this pod is moved
+to another node, Kubernetes automatically detaches the persistent disk from the existing node and
+reattached to the newer Node. You can confirm that
+a volume was mounted successfully using the Cube CDL
+described Pod command. Don't forget that
+a persistent disk must be created before it can be used. The persistent disk can have pre-populated data that can be shared by the container
+within a Pod. That's very convenient. However, the application
+owner must include the specific details
+of the persistent disk inside the pod manifest
+for their application, and must confirm that the
+persistent disk already exist. That's not very convenient. Hardcoding volume
+configuration information into parts specifications
+in this way means, you may have difficulty porting data from
+one cloud to another. On GKE, volumes are usually configured to use
+Compute Engine persistent disks. In your own premise
+Kubernetes cluster, they might be VMware vSphere
+Volume files for example, or even physical hard drives. Whenever you need to reconfigure an application to move it from one environment to another, there's a risk of error. To address this problem, Kubernetes provides an abstraction called
+persistent volumes. This abstraction,
+let's a Pod claim of volume of certain size or
+of a certain name from a pool of storage without
+forcing you to define the storage type details
+inside the Pod specification.

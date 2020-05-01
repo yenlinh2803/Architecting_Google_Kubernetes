@@ -1,0 +1,48 @@
+Now let's introduce
+stateful sets. Stateful sets are useful
+for stateful applications. Stateful sets run and maintain a set of pods just
+like deployments do. A stateful set object defines a desired state and
+its controller achieves it. However, unlike
+deployments stateful sets maintain a persistent
+identity for each pod. Each pod in a stateful
+set maintains a persistent identity and has an ordinal index with
+the relevant pod name, a stable host name and stably identified persistent
+storage that is linked to the ordinal index. What's an ordinal index? Well, it's just a unique
+sequential number that is assigned to each pod
+in the stateful set. This number defines
+the pods position in the sets sequence of pods. Deployment, scaling and
+updates are ordered using the ordinal index of the pods within a stateful set. For example, if a stateful set named Demo launches
+three replicas, it will launch pod names Demo-0, Demo-1 and Demo-2 sequentially. This means that all of its predecessors
+must be running and ready before an action
+is taken on a newer pod. For example, if Demo-0 is
+not running and ready, Demo-1 will not be launched. If Demo-0 fails after Demo-1
+is running and ready, but before the
+creation of Demo-2, Demo-2 will not be launched until Demo-0 is relaunched and
+becomes running and ready. Scaling and ruling updates
+happen in reverse order. Which means Demo-2
+would be changed first. This depends on
+the pod management policy being set to the default. Ordered ready state. If you want to launch
+pods in parallel without waiting for the pods to maintain
+running and ready state, change the pod management
+policy to parallel. As the name suggests stateful sets are useful
+for stateful applications. With stable storage,
+stateful sets use a unique persistent volume
+claim for each pod. So that each pod can maintain
+its own individual state. It must have reliable
+long-term storage to which no other pods write. These persistent
+volume claims use read write once access mode
+for applications. Let's look at an example
+of stateful sets. First, stateful sets require a service to control
+their networking. Sometimes you may
+not want or need load balancing and
+a single service IP. In this case, you create a headless service
+by specifying none for the cluster IP in the service definition as
+shown here on the left. The stateful set defined
+on the right refers to the service using
+the service name field. Second, a label selector is required for the service
+and this must match the template labels defined in the template section of
+the stateful set definition. Third, you define
+the container details including the image container pod for the service
+and volume mounts. Most importantly, volumeClaim
+templates are specified under the template section. Here the volumeClaim template is named and the spec is the same as a persistent volumeClaim that is required by the pods
+in the stateful set.

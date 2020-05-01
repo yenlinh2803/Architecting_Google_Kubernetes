@@ -1,0 +1,17 @@
+Hi, I'm Brian. Thanks for taking part in the Architecting with Google Kubernetes Engine specialization. The specialization as a whole, will teach you how to
+implement solutions using Google Kubernetes Engine. In this course, architecting with Google Kubernetes
+Engine production, each module aims to build on your ability to architect with GKE and includes hands-on labs for you to experience
+functionalities firsthand. What the modules in
+this course have in common is that they all focus on issues that will affect how your application
+runs in production. In this access control
+and security module, you'll learn how to define identity and access
+management roles for GKE as well as Kubernetes
+pods security policies. There's no way to
+deliver a reliable and maintainable unless you've built an infrastructure for
+logging and monitoring. Monitoring your application
+lets you make decisions about it based on data rather
+than on good impressions. Lastly, you'll be introduced to use cases for a range of GCP manage storage services within
+Kubernetes applications. You could implement
+your own storage systems and that's a valid choice. But using managed services can help you get into
+production faster, so they're worth
+your consideration.

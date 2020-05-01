@@ -1,0 +1,29 @@
+The last transactional
+GCP database service that we will discuss
+is Cloud Spanner. It's like Cloud
+SQL in a number of phase but it also has
+some important differences. Like cloud SQL, Cloud Spanner is a relational database
+service that offers asset consistency guarantees
+for transactions. Unlike Cloud SQL, Cloud Spanner
+is globally distributed. Even if you choose to host a Cloud Spanner database
+across multiple GCP regions, it offers strong consistency
+guarantees for transactions. Cloud Spanner is semantically indistinguishable from
+single machine database. That property makes it ideal for applications with
+a wide geographic reach. Unlike Cloud SQL, Cloud Spanner
+is horizontally scalable. If you need more storage or transactions per
+second capacity, you can simply add Cloud Spanner notes to your existing instances. At the time of making this video, the maximum capacity of
+a Cloud SQL database is little more than 10 terabytes but Cloud Spanner scales
+into the petabytes range. In global financial
+trading applications, traditional database
+solutions rely on very complex infrastructure to ensure that the
+transactional integrity of trading is maintained
+at a global scale. But Cloud Spanners
+globally consistent data removes much of this complexity needed for these solutions. Similarly, insurance,
+call center, supply chain management,
+telecom, logistics, and e-commerce businesses
+that operate applications or web services on a global scale or a good match
+for Cloud Spanner. Using Cloud Spanner,
+you can build highly interactive online gaming solutions on a global scale. Traditional database
+solutions often require significant trade-offs
+in order to ensure consistent state for players
+which can prevent games from scaling beyond single servers or limited geographic regions

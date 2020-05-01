@@ -1,0 +1,15 @@
+In this lab, you will set up persistent volumes and
+persistent volume claims. Persistent volumes
+are storage that is available to
+a Kubernetes cluster. Persistent volume claims enable pods to access
+persistent volumes. Without persistent volume claims, pods are mostly ephemeral. So you should use persistent volume claims
+for any data that you expect to survive pod scaling,
+updating, and migrating. The tasks that you will perform include creating manifest for persistent volume and
+persistent volume claims for Compute Engine
+persistent disks, mounting Compute Engine
+persistent disk PVCs as volumes in pods and using manifests to
+create stateful sets. You will also mount
+Compute Engine Persistent Disk PVCs as
+volumes in stateful sets and verify the connection of
+pods in the stateful sets to particular PVs as the pods
+are stopped and restarted.

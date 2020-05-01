@@ -1,0 +1,3 @@
+In this lab, you will
+configure and test Kubernetes liveness and
+readiness probes for containers.

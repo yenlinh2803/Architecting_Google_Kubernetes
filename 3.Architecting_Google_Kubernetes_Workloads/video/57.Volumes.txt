@@ -1,0 +1,47 @@
+Let's start by
+introducing volumes. In this video, you
+will learn about the types of storage
+abstractions that Kubernetes provides such as volumes and persistent volumes. You will learn about how these
+differ and how they can be used to store and share
+information between pods. Remember that
+Kubernetes uses objects to represent the
+resources it manages. This rule applies to the
+storage as well as to the pods. All these object functions
+as useful abstractions, which means that you can
+manage the resources they represent without
+laborious attention to implementation details. Kubernetes provides
+storage abstraction as volumes and
+persistent volumes. You will learn about
+them in this lesson. Volumes are the method by which you attach storage to a pod. Some volumes are ephemeral, which means they
+last only as long as the pod to which
+they are attached. You will see examples
+of these types in this lesson such as
+ConfigMap and emptyDir. Some volumes are persistent, which means that they
+can outlive a pod. Regardless of type, volumes are attached to pods,
+not containers. If a pod isn't mapped
+to a node anymore, the volume isn't either. Other volume types can be used to provide storage
+that is persistent. This can be used
+for data that must outlive the life cycle
+of an individual pod. In Kubernetes cluster, you will frequently find these
+volume types backend by NFS volumes or Windows shares or persistent disk from
+the underlying cloud provider. These types of volumes embody block storage or use
+network file systems. On GKE, these volumes
+are typically backed by Compute Engine
+persistent disks. They provide durable storage beyond the existence of a pod. A failing node or a pod
+shouldn't affect these volumes. If that happens, the volumes are simply unmounted
+from the failing pod. Some of these volumes
+might already exist before the creation of the pod and
+can be claimed and mounted. Remember that you can run multiple containers
+in a single pod. You might need to share files between containers and you might need that storage to exist even after the pod
+has terminated. Volumes allow containers
+within a pod to share data and are necessary
+for pods to be stateful. Production applications
+usually need to save states somewhere. So mastering the use of volumes in Kubernetes is
+a valuable skill. I have already mentioned that Kubernetes offers
+a variety of volume types. That includes long-lived,
+durable volumes such as GCE persistent disk type which uses Compute Engine
+persistent disk. Temporary, short-lived
+emptyDir volumes which are used to
+exchange data between containers using the file system
+and other types of network storage such as NFS volumes or
+even iscsi volumes.

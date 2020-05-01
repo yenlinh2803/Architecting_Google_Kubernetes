@@ -1,0 +1,30 @@
+Let's start by learning
+how to use GCP services. In this first video, you will learn about the pros and cons of using GCP managed storage services versus self-managed
+containerized storage. There are several
+storage options for applications running on
+Google Kubernetes Engine. They make different trade-offs, and you can choose whichever is right for your applications. Kubernetes provides
+storage abstractions, volumes and persistent volumes, which you can use to offer storage to applications
+in your cluster. You learned about those in another module in
+this specialization. In this module, you
+will learn about the alternative GCP
+managed storage solutions. Remember that volumes and
+persistent volumes provide file system capacity accessible directly to your applications. You can use these for
+durable file storage, or as a backing store
+for databases, or other storage services that you deploy and
+manage yourself. In GKE, these are
+typically backed by Compute Engine
+persistent disks. However, if you use these Kubernetes
+storage abstractions, you will have to manage the storage services
+you build using them. For example, you can
+build and deploy a MySQL server as
+a container yourself, using a Kubernetes volume
+based on persistent disks, to store the database files. You will however have to manage the server application
+life cycle yourself. You'll be entirely
+responsible for building a resilient unreliable service. You may want to focus
+on your application rather than maintaining
+a storage service for it. Google Clouds fully managed database and storage
+services reduced the work it takes to
+store all kinds of data. The relational and non-relational database and object
+storage services of GCP can help remove
+operational management burden. You will learn more about each of these services later
+in the module.

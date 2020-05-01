@@ -1,0 +1,87 @@
+During the previous lesson, I used Cloud Storage
+in my example of how to consume GCP services. In this lesson, you
+will learn about how to consume Cloud Storage
+solutions within GKE. Cloud Storage is
+an object storage service with a wide variety of uses. Object storage simply means the storage of
+ordered groups of bytes. The storage service
+doesn't know or care about the structure and
+semantics of those bytes. Your application determine stat. Cloud Storage is commonly
+used for media hosting such as serving images for a website or streaming
+music and videos. Cloud Storage can also be used as a data lake for analytics and machine learning
+workloads such as genomics and Data Analytics. You can also use
+Cloud Storage for backups and archives such as tape migrations
+or disaster recovery. Any of these kinds of
+applications and more that require object storage
+can be deployed to GKE. For example, your mobile app back-end might be deployed on GKE and it would probably need to access images from
+Cloud Storage buckets. To sum up Cloud Storage, it provides object storage for unstructured files sometimes
+called Blob storage. You can also use it to
+store structured data but the service isn't optimized
+for query capabilities. If you need to query data, other services are
+ideal for that, and you will learn
+about them soon. Cloud Storage is not designed
+for use as a file system, so it doesn't take the place
+of persistent volumes. Cloud Storage offers
+four storage classes. Careful, Kubernetes
+also has a concept called Storage Classes
+but they are unrelated. Kubernetes storage
+classes are profiles for how persistent volumes
+are provisioned. In contrast, Cloud Storages
+Storage Classes offer you different trade-offs of price
+and geographic redundancy. Multi-regional storage
+is appropriate for storing data that is frequently accessed
+such as website content, interactive workloads or data that supports mobile and
+gaming applications. Regional storage is appropriate
+for storing data in the same regional location as the Compute Engine instances or Google Kubernetes Engine clusters that delivers
+better performance for data intensive
+computation as opposed to storing data in
+a multi-regional location. You pay for regional and
+multi-regional storage based on how much you consume. Nearline storage is ideal
+for data that is read or modified on average
+less than once a month. For example, if you want to continuously
+add files to cloud storage and plan to access those files quarterly
+for analysis. Nearline storage is also
+appropriate for data backup, disaster recovery and
+archival storage. Coldline storage is
+a very low cost, highly durable storage
+service for data archiving, online backup, and
+disaster recovery. Unlike with other cold
+storage services, data is available
+within milliseconds, not hours or days. The pricing structure
+for coldline storage is ideal for data that is retrieved
+less than once a year. Nearline and coldline
+offer a trade-off. They cost less per gigabyte store than do multi-regional
+and regional storage. But they assess additional
+charges for retrieval. So the less frequently you
+anticipate accessing data, the better a candidate it is
+for nearline and coldline. As you would guess, coldline has the lowest storage price and a higher retrieval price
+than nearline. All storage classes offer you low latency and
+high durability. You only need a single API
+for all storage classes. Your application can use several storage classes for
+different kinds of data. Cloud Storage supports comprehensive granular
+access control features. You can use these features
+to ensure that all your objects stored in Cloud Storage are
+protected appropriately. Cloud Storage always encrypts your data on the server side before it is written to disk. Cloud Storage also supports
+server side encryption using either a customer-supplied or customer-managed
+encryption keys. This encryption occurs after Cloud Storage receives your data, but before the data is
+written to disk and stored. You should consider
+these options if you face a regulatory
+requirements that mean the default encryption
+isn't enough. The Cloud Storage Service offers object change notification
+so that an application gets notified through a call to a URL whenever changes are made to a Cloud
+Storage bucket. You can also achieve
+the same effect in a more scalable and
+manageable way using Cloud Storage together
+with Cloud Pub/Sub, which has GCPs fully managed
+real-time messaging service. Cloud Storage supports versioning but you must enable it
+before it can be used. After you have
+enabled versioning, Cloud Storage creates an
+archived version of an object. Each time the live version of the object is
+overwritten or deleted, the arcade version keeps
+the name of the object but is uniquely identified
+by a generation number. Applications within
+your GKE cluster can access Cloud Storage using
+the Cloud Storage APIs. As with other Google Cloud APIs, you must enable
+the Cloud Storage API before your applications
+can use it. Also, don't forget after you
+enable the relevant API, your application will need to use a service account to access
+the service you want to use.

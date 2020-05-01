@@ -1,0 +1,70 @@
+Finally, let's
+discuss pod security. In this lesson you
+will learn how to control what sorts
+of things of pod, or more specifically
+the containers inside a pod, are allowed to do. You'll learn about
+the best practices you should adhere to in order to increase the
+security of your GK environment. By default, users can
+deploy containers inside a pod that will
+allow privilege elevation, and can access the host file
+system and the host network. Sometimes those capabilities
+are convenient, and sometimes they're undesirable from a security perspective. You can define restrictions on what the containers in a pod can do by using security contexts. You can also enforce the use of specific security measures. A security context is a set of security settings defined
+in a pod specification. Here is an extract of
+a pod manifest YAML. The security context definition inside the pod specifies that the first process runs with user ID 1,000 for
+any containers in the pod, and group ID 2,000 is associated with
+all containers in the pod. This provides a specific user and group context
+for the containers. The most important thing
+about this context is that 1000 is not zero. In a Linux system zero is the privileged root
+user's user ID. Taking away root privilege
+from the code running inside the container limits what it can do in case of compromise. If you define a security context
+of the pod level, it's applied to all of
+the pods containers. Using security contexts
+in a pod definition, you can exercise a lot of control over the use of
+the host namespace, networking, file system,
+and volume types, whether privilege
+containers can run, and whether code in the container can escalate to root privileges. You can also control
+other security settings. For example, you can
+enable Seccomp to block code running in containers from
+making system calls. You know that they should
+not legitimately make, you can enable
+AppArmor which uses security profiles to restrict individual programs actions. You can also limit access
+to some Linux capabilities, by granting certain but not
+all privileges to a process. What if you have dozens
+or hundreds of pods? Directly configuring
+security contexts in each individual pod can
+become a lot of work. It's easier to define and manage security
+configurations separately, and then apply them to
+the pods that need them. By defining
+pod security policies, you create reusable
+security contexts. You can apply
+pod security policies to multiple pods without having to specify and manage those details in
+each pod definition. What's an a pod security policy? Each consists of an object
+and an admission controller. The pod security
+policy object is a set of restrictions,
+requirements, and defaults, that are defined
+in the same way as a security context inside a pod, and can be used to control
+the same security features. For pod to be admitted
+to the cluster, it must fulfill all of
+the security conditions that are defined in
+the pod security policy. These rules are only
+applied when a pod is being created, or updated. The pod security
+policy controller is an admission controller
+that validates or modifies requests to create or update pods against one or
+more security policies. You saw earlier in this module
+that a request to perform a specific action has to be authenticated and
+then authorized. But there's an extra step
+called admission control, a validating or non-mutating admission controller,
+just validates requests. A mutating and mission
+controller can modify requests if necessary and
+can also validate requests. A request can be passed
+through multiple controllers, and if the request
+fails at any point the entire request is rejected immediately and
+the end user receives an error. The pod security policy
+admission controller acts on the creation and
+modification of pods, and determines whether
+the pod should be admitted based on
+the requested security context, and the available
+pod security policies. Note that these policies
+are enforced during the creation or update of a pod, but a security context is enforced by
+the Container Runtime. This is an example of
+a pod security policy. You'll learn how to create a pod security policy in the lab.

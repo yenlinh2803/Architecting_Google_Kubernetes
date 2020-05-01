@@ -1,0 +1,22 @@
+Now, let's look at the types of managed database services
+provided by GCP. In this video, we will look at the key features
+of Cloud Bigtable, BigQuery, Cloud Firestore,
+Cloud SQL, and Cloud Spanner. You will also learn how to use Cloud SQL Proxy to simplify the process of connecting GKE applications to
+Cloud SQL instances. You can use the same
+approach that you use to access Cloud Storage for accessing other GCP services
+such as Cloud Bigtable, BigQuery, Cloud Firestore,
+Cloud SQL, and Cloud Spanner. GCP's database services
+serve two overall purposes. Many are suitable for use
+to support an applications online data use such as its storage and
+retrieval of data. On the other hand, GCP also offers an analytics
+database service that's optimized for data mining and discovery of patterns and trends. In turn, the database
+services that back online applications fall into the categories of SQL and NoSQL. SQL database services
+are for relational data, and you choose them when you want the database engine to help you enforce the semantics
+of the database. NoSQL database services are
+for flexibly structured data, and it's up to
+your application to maintain your data's integrity. You will learn how
+to choose among these database services
+later in this lesson. But whichever you choose, make sure that you enable
+the API of the service and give your applications appropriate
+Cloud IAM service accounts. You will do this in
+the lab for Cloud SQL.

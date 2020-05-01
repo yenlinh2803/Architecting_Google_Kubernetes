@@ -1,0 +1,11 @@
+In this lab, you will setup configuration
+information, both encrypted and unencrypted. Encrypted configuration
+information is stored as Secrets. Unencrypted configuration
+information is stored as ConfigMaps. This approach avoids hard coding
+such information into code basis. Credentials such API keys that belong
+in Secrets should never travel inside cooled repositories like GitHub unless
+they're encrypted before going in. Even then, though,
+it's better to keep them separate. The tasks in the lab will provide you with
+the opportunity to create Secrets and ConfigMaps using the kubectl commands and
+manifest files. You'll also consume Secrets and ConfigMaps in containers by using
+environment variables or mounted volumes.

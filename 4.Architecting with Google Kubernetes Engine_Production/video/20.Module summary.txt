@@ -1,0 +1,12 @@
+That concludes access control and security in Kubernetes and
+Google Kubernetes Engine. In this module, you'll learn how to understand the structure
+of GCP Identity and Access Management access
+controls and define Cloud IAM rules and policies for Kubernetes Engine
+cluster administration. You'll also learn how to use Kubernetes authentication and authorization to control who is able to do which things with the objects
+in your clusters. You'll learn how to manage
+access to resources and namespaces using
+Kubernetes RBAC roles. You'll learn how
+to control access to cluster-scoped resources using Kubernetes
+RBAC cluster roles and cluster role bindings, and you'll learn how to configure admission control to enforce a specific security
+related attributes for pods using Kubernetes
+pods security policies.

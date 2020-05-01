@@ -1,0 +1,68 @@
+These native Kubernetes logs and the compressed archives
+aren't persistent. If for any reason a part
+is evicted or restarted, logs and the archives associated
+with that part are lost. As a result, there
+is a need to store logs outside a container
+pod or node. This is called
+cluster-level logging. As mentioned earlier, Kubernetes itself doesn't offer
+any log storage solution, but it does support
+various implementations. In GKE, this is handled for you by the integration
+with Stackdriver. When a container
+starts on a node, a log file is created. Node level logging implements log archiving using
+a rotation mechanism. As the container runs, events happen and
+the log file grows. Either once per day
+or when the log file reaches 100 megabytes,
+whichever comes first, the log rotate utility
+creates a new log and compresses the old log file saving it into an archive. It then deletes all but the five most recent
+compressed log archives. This ensures that logs don't consume all of the available
+storage on the node. If a container restarts, the default behavior
+of kubelet keeps one terminated container
+with its logs. If the container is
+deleted from the node, all the logs are deleted. If a part is deleted
+from the node, all corresponding containers are also deleted along
+with their logs, which leaves you without
+any logs unless you have used a central log management utility
+such as Stackdriver. Now let's discuss
+Stackdriver logging. As you've seen earlier, logging is a fully
+managed service that manages these
+application and system logs. Logging is designed to
+automatically scale and ingest terabytes of
+log data per second. In GKE, logging is
+enabled by default, but it can also be disabled
+on a cluster if required. Logging agents are
+pre-installed on the nodes and pre-configured to push
+your log data to logging. You can also use a public API to write a custom log
+and push it to logging. Additionally, you can filter
+the logs displayed using logging filter language
+either in the Stackdriver logs viewer console, or directly through
+the Stackdriver logging API. GKE installs a logging agent
+on every node of a cluster, and this agent collects and
+pushes the containers logs and system component logs to the Stackdriver logging backend. Stackdriver logging uses FluentD as the node logging agent. FluentD is a log aggregator that will read all of
+the previously mentioned logs, adding helpful metadata and then continuously pushing these logs
+into Stackdriver logging. FluentD is set up using a daemon set because
+daemon sets can be used to ensure that every node in a cluster runs a copy
+of a specific pod. The configuration of
+the FluentD agent is managed through config maps. This increases the scalability of the implementation by
+separating the application, the FluentD daemon set, from the configuration elements
+or the config map. Overall in GKE, Stackdriver
+logging monitor standard output and
+standard error logs from containerized processes, system component logs for
+example kubelet and events. Events are all operations that
+take place in the cluster. Some examples include
+the deletion of a pod, scaling of deployments, and
+a creation of a container. These events are stored as API objects on
+the cluster master. Because these events are only stored temporarily in Kubernetes, GKE deploys an event exporter in the cluster master to capture these events and push them
+into Stackdriver logging. Stackdriver also provides
+extensive features for customizing your monitoring, logging, and alerting solution. Those features include
+the ability to create custom metrics that are based on Stackdriver logging queries. For example, you can create a custom metric monitored using Stackdriver monitoring that
+counts the rate at which a specific event or group of
+events appears in the logs. You can use custom metrics to trigger automatic scaling
+of your infrastructure. You can also use
+them as a part of custom Stackdriver dashboards
+and reports and for alerts. The alerting system is highly customizable and integrates with many third party solutions
+so that you don't have to add another alerting tool
+to your arsenal. The logs are kept in Stackdriver
+for a period of 30 days. At that point, the logs
+are removed automatically, so you should export
+those logs to Cloud Storage or BigQuery if you need
+longer log retention periods.

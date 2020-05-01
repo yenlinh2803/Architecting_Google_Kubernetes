@@ -1,0 +1,36 @@
+Now I'll tell you about Cloud Firestore. Don't confuse this service
+with Cloud Filestore. You learned about Cloud Filestore
+earlier in the specialization. On the other hand, Cloud Firestore is a no
+SQL database service like Cloud Bigtable, but it has some important differences. Cloud Firestone automatically scales and replicates your data to maintain
+high availability, and durability. You can chose whether your data
+is replicated regionally or mighty originally. It offers strong consistency
+guarantees for transactions, because every field is automatically
+indexed, you can do fast queries. You can use Cloud Firestore to setup real
+time sessions for shopping carts and booking events so you can provide the transactional
+compliance these applications require. Cloud Firestore's data
+model is a document store. To understand what the word document means
+in this context, think of a snippet of JSON data containing fields, and
+values, and those fields can be nested. These fields don't always
+have to be the same for everything you store in the database. You can use Cloud Firestore
+to store non homogeneous data without the need to limit
+yourself to rigid schema. For instance, this is ideal if
+you store diverse inventory data. Suppose your application
+maintains profiles for each user. What if six months after
+your application launches, you realize you need to start
+storing a new field for users? Cloud Firestore's flexible schema
+lets you evolve the structure of the user profiles in your
+application as you add new features. Cloud Firestore offers what
+are called ACID transactions. In essence, acid complaints means that the data in
+your database stays internally consistent, because transactions either execute in
+their entirety or do not execute at all. Because of Cloud Firestore's ACID
+compliance, your application can maintain a consistent
+state, even in large implementations. For example, suppose you have
+a large online gaming application. Cloud Firestore is ideal for ensuring
+that a consistent global game state is maintained for a massive number
+of concurrent player sessions. You can use Cloud Firestore as
+a persistent write-through cache, providing a simple key value
+store that prevents data loss and provides persistent state
+if your application fails. Finally, Cloud Firestore is also part of
+Firebase, Google's mobile app platform with integrated unified client libraries
+in various mobile programming languages. Mobile app developers can
+use Firestore to store and synchronize app data at a global scale.

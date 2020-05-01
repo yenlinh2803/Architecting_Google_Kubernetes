@@ -1,0 +1,96 @@
+In this lesson we'll
+look at logging. Logging provides the forensic
+history on what a program, process or service
+has been doing. Whether a service or product is operating well or
+experiencing adders, logging provides visibility into the tasks and events
+that have occurred. Logging is often a passive form
+of systems monitoring. Instead of a monitoring
+service which actively queries
+the health of a service, a logging service passively
+collects the event logs. These logs can then be used to identify patterns or perhaps even help an operator track down the root cause
+of a system failure. Logging should be used in
+conjunction with monitoring. Where monitoring checks
+end user facing metrics, in other words your
+service level indicators, logging can collect data on the internal systems in
+a much less intrusive manner. There are two different
+ways to view logs. You can view container logs using the Cube CTL command or in the Stackdriver web-based
+GCP Console interface. Viewing the logs with
+the Cube CTL command, is a quick way to view the logs
+directly from the pod. However, these logs
+aren't saved to a long-term database
+and logs may be lost if containers are
+restarted or deleted. Stackdriver saves
+the container logs for 30 days although the log data may not be immediately available. Let's explore this next. GKE, automatically streams
+it's logs to Stackdriver to give you better visibility into the events and activity
+of your cluster. All those Stackdrivers
+are paid for a product, a free tier less available for a limited quantity
+of log storage. At the time I'm
+making this video, storing the first 50 gigabytes of log information
+per month is free. You can export logs
+to Cloud Storage or BigQuery for long-term
+retention if you need them for periods beyond 30 days or to perform
+more complex analysis. The basic GKE logs such as
+the system component logs, standard output and the
+standard error messages are stored in the slash var slash log directory
+on the nodes and can be queried using
+the Cube CTL logs command or by directly accessing the slash var slash log directory
+on the nodes. If you want the most
+recent logs for the events that are
+happening right now, then the Cube CTL logs command
+will give you those logs. However, if you want to find an examined logs for
+past events or over a period of time in the last 30 days
+then Stackdriver gives you the tools to find and
+examine those logs. If you let Stackdriver
+handle the logs, you will broaden
+the visibility of GKE events and be able to
+correlate issues better. You'll have a single
+interface where you can review the logs
+from your containers, nodes, and other system services. Note that although Stackdriver
+does collect these logs, the data isn't kept in
+Stackdriver forever. After 30 days it's purged. So if you want to
+keep the data longer, remember to export the logs to Cloud Storage or BigQuery
+for long-term analysis. Let's start by discussing
+Kubernetes native logging. Logs from Kubernetes
+system components such as Cubelets and Q proxy are stored in each node's file system in its slash
+var slash log directory. Messages written by
+each container to its standard output and standard error are also
+logged in the same directory. You may be wondering whether for a real-world application
+those messages are useful. Yes, it's an increasingly common practice
+for applications to simply write log messages to standard output with
+no buffering or filtering. Why? This way these log messages can be captured and
+centrally managed. You can view logs using
+the Cube CTL command. For example, to view the logs
+of a particular pod, use Cube CTL logs followed
+by the name of the pod. If you're not sure of
+the pods exact name or if the pod is a part
+of a deployment, you can run Cube CTL get pods to get a complete
+list of pods. When troubleshooting
+recent issues, it's much more convenient to retrieve only a handful of logs. By including the dash
+dash tail option in the Cube CTL logs command, you can limit the number
+of logs that are returned. The example shown, limits the output to
+the most recent 20 lines. At other times you might not know how many log messages to retrieve but you know the problem occurred
+in the last few hours. Fortunately, you can also restrict the output using time as the criterion by adding the dash dash since option
+followed by a time period. In this example
+Cube CTL will return the logs for this pod from
+the last three hours. You can also view a previous instantiation
+of a container before it crashed and restart it using the dash dash
+previous option. If your pod has
+multiple containers you can specify which containers logs the Cube CTL command
+should return. In Kubernetes,
+the Container Engine direct standard output and standard error streams from the containers to
+a logging driver. This driver is configured to write these container logs in a JSON format and store them in the slash var slash blog
+directory at the node level. As these log files grow, the node this can easily
+become saturated. To avoid this, GKE streams these logs to
+Stackdriver by default, and then regularly runs the Linux log rotate utility
+to clean up these files. Any log file older than
+one day or that has grown to 100 megabytes will be compressed and copied
+into an archive file. Only the five most recent
+archived log files are kept on the node. Previous versions are
+removed in order to avoid logs consuming
+too much disc space. However, all log events are
+streamed to Stackdriver and Stackdriver retains
+all log event data for 30 days by default. If your organization
+requires you to retain long data for
+longer than 30 days, configure Stackdriver
+to export the data to long-term storage such as
+BigQuery or Cloud Storage.

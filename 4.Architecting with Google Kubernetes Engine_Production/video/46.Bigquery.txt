@@ -1,0 +1,40 @@
+You have learned about
+GCP's database services that are suitable for
+backing online applications. Now, I will tell you about GCP's data about hosting service. Even though BigQuery
+supports SQL queries, it's different from
+Google Cloud's other relational
+database services in that it's a columnar store. That means it's
+optimized for analyzing data sets rather than for making row by
+row queries and changes. Running the data by
+host can be a lot of work but BigQuery manages the technical aspects of storing structured data
+including compression, encryption, replication,
+performance tuning, and scaling. Also, a traditional
+data warehouse can be expensive even when
+you're not using it. But a key advantage of BigQuery is that your data
+storage is billed separately from any compute
+charges and you only incur compute charges
+when you're running a query. BigQuery provides a data
+warehousing back end for modern business
+intelligence solutions. It enables data integration,
+transformation, analysis, visualization, and
+reporting using tools from Google
+and third parties. A lot of people use BigQuery
+as part of a real-time inventory logistics and
+supply chain applications. You can load incoming inventory
+and even stream data into BigQuery to provide the data warehousing
+functions and analytics. BigQuery is ideal for storing vast quantities of
+event and sensor data that IoT or Internet of Things
+Applications generate. This type of data tends
+to have the right once, read many Access Profile that BigQuery is optimized to handle. BigQuery can then perform
+ad-hoc analysis or an advanced analytics or create additional derived data for
+reporting and analytics. You can use BigQuery for applications that must
+consume and analyze extremely large volumes of historical or live
+streaming even data. BigQuery is also suitable
+if you have applications that must support logging of
+even data on a large scale. It's default quota for incoming streaming data is
+100,000 rows per second. If that limit is not
+sufficient for your needs, just ask Google Cloud support
+to increase your quota. You can also use BigQuery to store and analyze
+user profile and activity data on
+a large scale for predictive digital
+marketing applications.

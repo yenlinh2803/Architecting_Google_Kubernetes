@@ -1,0 +1,53 @@
+Let's take a closer look at how PersistentVolumes make the use of network storage
+more manageable. The PersistentVolume
+abstraction has two components; PersistentVolume and PersistentVolumeClaim. PersistentVolumes are durable and persistent storage resources managed at the cluster level. Although these
+cluster resources are independent of the
+pods lifecycle, a pod can use these resources
+during its lifecycle. However, if a pod is deleted, a PersistentVolume and
+its data continue to exist. These volumes are managed
+by Kubernetes and can be manually or
+dynamically provisioned. GKE can use Compute Engine persistent disk
+as Persistent Volumes. PersistentVolumeClaims
+are request and claims made by pods to
+use PersistentVolumes. Within a
+PersistentVolumeClaim object, you define a volume size, access mode, and storage class. What's a storage class? It's a set of storage
+characteristics that you have given a name to. You'll learn more about storage classes later
+in this module. A pod uses this
+PersistentVolumeClaim to request a PersistentVolume. If a PersistentVolume matches all the requirements defined
+in a PersistentVolumeClaim, the PersistentVolumeClaim is bound to that PersistentVolume. Now, a pod can consume storage from
+this PersistentVolume. What's the critical
+difference between using pod level volumes and cluster level
+PersistentVolumes for storage? PersistentVolumes provide a level of abstraction that lets you decouple storage administration from application configuration. The storage in a PersistentVolume
+must be bound with a PersistentVolumeClaim in
+order to be accessed by a pod. Earlier, you saw this example
+of how to specify a Compute Engine
+Persistent Disk volume in the sample pod manifest. Here's how you create a PersistentVolume manifest
+for the same storage. Let's take a closer look
+at how this is used to make managing storage
+configurations for pods easier. First, you specify
+the volume capacity, then the storage class name. Storage class is a resource used to implement
+PersistentVolumes. Note that the PVC uses the storage class name when
+you define the PVC and a pod, and it must match the PV storage class name
+for the claim to succeed. GKE has a default storage
+class name standard to use the Compute Engine
+standard Persistent Disk type, as shown here on the right. In this example,
+the PV definition, on the left, matches
+the GKE default storage class. In GKE clusters, a PVC with
+no defined storage class will use this default
+storage class and provide storage using
+a standard Persistent Disk. If you want to use
+an SSD Persistent Disk, you can create
+a new storage class, such as this example named SSD. A PVC that uses this new
+storage class named SSD will only use a PV that also has
+a storage class named SSD. In this instance, an SSD
+persistent disk will be used. Once you create
+the new storage class with the kubectl apply command, you can view it in
+the GCP Console. By the way, don't confuse
+Kubernetes storage classes with storage classes that Google Cloud Storage
+makes available. Although the features
+have the same name, they are unrelated
+because they come from different services and
+govern different features. Google Cloud Storage is
+object store for the web, while Kubernetes
+storage classes are choices for how
+PersistentVolumes are banked.

@@ -1,0 +1,10 @@
+That concludes Google Kubernetes Engine logging and monitoring. In this module, you learned how to use Stackdriver to monitor and manage the availability
+and performance of your GCP resources and applications that are built
+with those resources, locate and inspect
+Kubernetes logs produced by resources
+inside your GKE clusters, use Stackdriver and
+Google BigQuery for longer-term retention and forensic analysis of
+the logs produced by GKE and the Kubernetes resources
+inside your GKE clusters, how to monitor system and application performance from
+different vantage points, and create probes for wellness checks on
+live applications.

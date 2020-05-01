@@ -1,0 +1,13 @@
+In this lab, you will set up
+a Kubernetes deployment of WordPress connect it to
+Cloud SQL, wireless SQL proxy. The SQL proxy lets you interact
+with a Cloud SQL instance as if it was installed
+locally over the port 3306. Even though you're on
+an unsecured port locally, the SQL proxy makes sure you are secure over the wire to
+your Cloud SQL instance. During this lab, you will
+create a GKE cluster, then you will create a Cloud
+SQL instance to connect to, followed by a service account
+to provide permission for your ports to access
+the Cloud SQL instance. Finally, you will deploy
+WordPress on your GKE cluster, with the SQL proxy as a site card connected to
+your Cloud SQL instance.

@@ -1,0 +1,59 @@
+Now that you've
+defined cluster roles, you can attach role bindings and cluster role bindings
+to those roles. Let's attach a role
+binding first. To find the namespace,
+then the subjects. In Kubernetes,
+subject kind can be users, groups, or service accounts. Note that subject name
+is case sensitive. With RBAC and GKE, the type of account
+that you can control access for is either a
+Google account, a GCP Service Account, or Kubernetes Service Account, and they are identified
+using an email address. You bind a role to subjects and the RoleBinding
+using role breath, by defining the role
+kind and the role name. A RoleBinding can refer to
+roles or cluster roles. If a cluster role is
+bound in a RoleBinding, it only grants permissions
+to the resources of the particular
+namespaces defined for the RoleBinding and not
+to the entire cluster. Here's an example of
+a cluster RoleBinding. Note that namespace
+isn't mentioned because a ClusterRoleBinding always
+has a cluster-wide scope. Note that a ClusterRoleBinding
+can only refer to a ClusterRole, not to a role. Here are some examples of how to refer to different subject types. Working from the top left, you see example specifying
+a user and a group. On the bottom left, you have an example of
+a ServiceAccount subject, where the ServiceAccount
+name is Default and the namespace is
+specified as kube-system. Note that you cannot assign kubernetes RBAC permissions
+to Google groups. You can only assign Cloud IAM permissions
+to Google group. However, Kubernetes
+supports groups too and you can assign Kubernetes
+RBAC permissions to Kubernetes groups. In this example, you can see that administrators have created
+a group called Developers. In the right column, you
+have more group types. The example includes
+all service accounts on all namespaces. Note that this is a system group, so it can be used for
+RBAC and GKE environments. The middle example on
+the right includes only the ServiceAccounts
+in the QA namespace. In the example on
+the bottom right, includes all authenticated users. With Kubernetes RBAC,
+you can manage granular permissions
+for the people using users and groups, and for containers using surface counts at both the namespace level
+and the cluster level. Resources and verbs
+are bound using either roles or ClusterRoles. Roles and ClusterRoles are
+then bound to subjects using either a RoleBinding or
+a ClusterRoleBinding. A variety of ClusterRoles and ClusterRoleBindings
+are also predefined within the RBAC system. The Kubernetes documentation
+offers more information. When you create roles
+and ClusterRoles, you should take into
+account whether resource is associated
+with a namespace, or defined at the cluster level. You can use the Cube
+CTL API resources command to list to
+which resources are namespaced and which are not. Typically, cluster-level
+resources should be managed with ClusterRoles and
+namespaced resources should be managed using roles. However, if you need to define RBAC permissions across
+multiple namespaces, then you'll need to
+use a ClusterRole. There is another older authorization option
+in Kubernetes, attribute-based access
+control or ABAC. RBAC is simpler and easier
+to work with than ABAC. Google recommends that use
+RBAC and disable ABAC. ABAC is disabled by default in GKE clusters created with
+Kubernetes 1.8 later. If you upgrade a cluster from an earlier Kubernetes version, you'll have to disable
+ABAC yourself.

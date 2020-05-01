@@ -1,0 +1,65 @@
+Let's look at the next level
+of access control. In this lesson,
+you'll learn about Kubernetes role-based
+access control or RBAC. RBAC is a native Kubernetes security feature
+that provides you with fine grained tools to manage user account permissions. In GKE environments, RBAC
+extends Cloud IAM security, by offering control over Kubernetes resources
+within the cluster, supplementing the control
+provided directly by Cloud IAM, which allow you to
+control access of the GKE and cluster level. There are three main elements to Kubernetes role-based
+access control: subjects, resources, and verbs. With Kubernetes RBAC, you define what operations, the verbs, can be executed
+over which objects, the resources, by
+whom, the subjects. A subject is a set of
+users or processes that can make requests
+to the Kubernetes API. A resource is a set of Kubernetes API objects
+such as a pod, deployment, service
+or persistent volume. A verb is a set of
+operations that can be performed on resources
+such as get, watch, create, and describe. These three elements can be connected by creating
+two types of RBAC API objects: Roles
+and RoleBindings. Roles connect
+API resources and verbs. RoleBindings connect
+Roles to subjects. Roles and RoleBindings
+can be applied at the cluster or namespace level. Kubernetes RBAC is helpful, if you need to grant users access to specific Kubernetes
+namespaces. You can add users as subjects, configure the roles with
+the proper permissions, and then bind them
+to the objects. In this case, the namespaces
+is in the cluster. In Kubernetes, there are
+two types of roles: Role, which we just talked
+about and ClusterRole. RBAC Roles are defined
+at the namespace level, and RBAC ClusterRoles are
+defined at the cluster level. This example manifest defines an RBAC Role at
+the namespace level. Here, the Role-type is defined, rather than a ClusterRole. In this example, the default
+namespace is specified, so that the Role is
+applied to that namespace. You can only define
+a single namespace for a Role. Under rules, API groups
+is defined as empty, to indicate the Role applies
+to the core API group. Resource is specified as pods, and the verbs get, list, and watch are allocated. If you put these three verbs
+in a Role like this, that grants subjects
+who have the Role, the permission to inspect
+the state of pods. It's common practice to
+always allocate get, list, and watch together. Rules are purely additive. There're no deny rules. If a rule grants a user
+a verb on a given resource, that user can't do the action. Here, a ClusterRole is defined. A ClusterRole grants permissions
+at the cluster level. So there's no need to
+specify a namespace. API groups is defined in the same way as it is defined
+when creating a Role. Resources can be cluster scope such as nodes and
+storage classes, or they can be
+namespace resources such as pods and deployments. Here are some examples
+of rule sets, that specify the resources and verbs covered by a Role
+or a ClusterRole. On the top-left, is a basic assignment
+that specifies get, list, and watch operations
+on all pod resources. On the bottom left,
+a sub-resource, log, is added to the resources list to specify access to pod/log. The combination of
+verbs: get, list, and watch are the
+standard read-only verbs. You should typically
+assign them as a unit, all of them or none of them. On the top right, a resource
+name is specified to limit the scope to specific
+instances of a resource, and the verbs specified
+as patch and update. These are also a group
+of verbs that are typically treated as a unit
+and applied together. Note that you can only
+use verbs such as get, update, delete, and patch
+on named resources. Bottom-right shows how
+you can specify get and post actions for
+non-resource endpoints. This form of rule is
+unique to ClusterRoles.

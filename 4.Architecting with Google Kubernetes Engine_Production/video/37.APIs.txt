@@ -1,0 +1,70 @@
+To consume these GCP managed storage services within a GKE
+managed Kubernetes cluster, your containerized
+application must be able to use the Google
+Cloud Platform APIs. To allow your applications
+to use GCP API, you need to enable
+a relevant API and you will need to give the proper credentials to your application. Using these credentials, the application will
+authenticate itself to the service and get
+authorization to perform tasks. When the appropriate
+credentials have been created and made available to
+your application in GKE, they can take full advantage
+of cloud services. Every action in GCP needs to be authenticated
+and authorized. Your application must be able to send credentials for
+the service accounts it uses directly to the API
+for the GCP API to use. For example, in this diagram, a containerized application
+is using resources in Google Cloud Storage by
+presenting credentials. Your applications should use Cloud IAM service accounts for GCP API authentication
+and authorization. Remember, Kubernetes
+has service accounts too but they serve
+a different purpose. Cloud IAM service accounts
+are defined at the GCP level not
+inside Kubernetes. In GKE, you usually provide the authentication
+credentials for Cloud IAM service accounts to applications using
+Kubernetes secrets which you learned about in an earlier module in
+this specialization. These secrets contain
+the credentials in a either JSON or P12 format. The service account must be
+assigned an IAM role that has the permissions
+your application requires. Don't simply update
+the permissions for the existing Compute Engine
+default service account. Instead, create
+a new service account for each application that needs to make a request to GCP services. Using separate service accounts for different applications, let's you minimize the privileges associated with
+each account because having separate accounts makes
+it easier to enable monitoring and auditing of APA requests at
+the application level. It's also easier to
+revoke access from specific applications by
+deleting the service accounts associated with
+those applications instead of revoking access
+for a shadow service account. That would affect
+multiple applications at the same time which could
+be a management problem. In the event of
+a security breach, having separate accounts
+can reduce your exposure. Having many service accounts lowers each accounts
+value to the attacker. The first step in
+the process is to create a new Cloud
+IAM service account. Then, you must choose
+an appropriate Cloud IAM role during the creation of
+the service account. Roles grant permissions to
+the account sparing them. Let's take Cloud Storage
+as an example. Say your application needs to read from Cloud Storage buckets. Giving its service account, the storage object
+viewer role grants the application
+permission to read data from Cloud Storage
+but not change it. After you select
+the required roles, specify whether you
+want to use JSON or P12 format for the credential file then a new key is created for you and saved
+in your chosen format. It is your
+responsibility to manage the rotation of these
+credentials over time. In order to use the service
+account inside GKE, you should create a Kubernetes
+secret resource type to store the service
+account's credential file. Google Cloud key management
+service or KMS can be used to manage and rotate secrets including Cloud IAM
+authentication credentials. That provides further protections for secret resources in GKE. Cloud KMS is out of scope in this specialization but there is a link to learn more about it. You then mount
+the secret as a volume, as part of the part or
+deployment definitions. Application containers
+within the parts can now access the credential as a file and use it to make API calls through
+client libraries. These credentials
+authenticate your application as the service account
+you created. Assuming you give
+the service account a role that the
+right permissions, your application will be able to use the cloud storage service and the objects it manages
+for your application.

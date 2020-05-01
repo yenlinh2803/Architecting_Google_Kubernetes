@@ -1,0 +1,5 @@
+In this lab, you'll build a Google Kubernetes
+Engine cluster, and then deploy pods to use in Stackdriver,
+Monitoring and Logging. You learn how to use Logging
+to view container logs, and use Monitoring to view
+cluster and workload metrics.

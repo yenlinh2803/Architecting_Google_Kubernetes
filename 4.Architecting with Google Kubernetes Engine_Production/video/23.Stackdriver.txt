@@ -1,0 +1,80 @@
+Let's start by
+introducing Stackdriver. In this lesson, I'll introduce its key features and
+describe how you use them to monitor and troubleshoot Google Kubernetes engine
+clusters and applications. Stackdriver is a suite of multi-cloud resource
+reconnaissance tools that includes monitoring, logging, and debugging for your applications
+and infrastructure. Stackdriver provides
+a single pane of glass through which you can view your infrastructure's
+health and manage alerts. Stackdriver can serve
+as a log repository and aggregator for your platform,
+systems, and applications. The logs can be searched
+with the power of BigQuery which simplify some of the most complex searches. Additionally, you can move log data out of
+Stackdriver and into GCP storage services
+namely Cloud Storage or BigQuery for long-term
+archive and reference. Stackdriver logging is
+the native logging solution for many GCP products
+and services. It offers agent-based
+installation software for computer engine instances
+and Amazon EC2 instances. The Stackdriver monitoring
+engine allows you to create custom dashboards and alerts with metrics that represent
+the health of your application. You can customize metrics to gain further insight into
+your applications health, load or behavior. Stack drivers dashboards
+and graphs provide an at-a-glance method to ensure that systems are
+operating properly. More importantly, graphs give you a visual correlation queue for events such as performance bottlenecks
+or service dependencies. By the way, you can also
+integrate Stackdriver monitoring with
+many third party products. Events are different from metrics although they're
+closely related. A metric is a value that you can monitor such as
+CPU or disk usage. These can be values that change up or down over time called gauge values or values that increase over time
+called counters. Events are things that happen to the cluster pod or container. Here are a few
+examples of events. The restart of a pod,
+node or service, scaling up or down of
+the number of deployments in the cluster or an application
+responding to a request. Events typically report
+success, warning, or failure while metrics
+report numerical values. It's important that you monitor
+metrics because they're specific to a resource and can help you
+identify bottlenecks. Events are important because
+they might include errors or warnings that appear when the cluster attempts
+to scale in or out. Stackdriver goes beyond
+simple monitoring and logging to provide deeper insight into
+the errors and performance issues that can delay or hinder
+application development. Three additional tools
+provide you with easy access to debugging
+and co- troubleshooting. Stackdriver Trace
+allows you to quantify the true latency for each
+of the requests made by the components in
+your application and the stacked line charts can help you visually detect bottlenecks. Stackdriver Error
+Reporting notices when an error occurs
+within an application, captures the error information
+and call stack, and then provide
+certain information to you for debugging. This provides
+more information for troubleshooting than is captured by Stackdriver logging alone. Stackdriver Debugger is
+a real-time analysis tool that allows you to walk through your code and set
+watch points to determine the value of key variables
+during code execution. In many ways it's like an integrated
+development environment which allows you to insert break points in
+the code to inspect this current state before
+moving to the next code block. In the case of debugger, these breakpoints are
+called watch points and are actually produced while the application is executing. During the application execution, debugger reads and walks the code and it lists
+the variables currently in use. This gives you
+real-time insight into the values that users
+are entering into the application and can make troubleshooting a running
+application a lot easier. A key benefit of
+Stackdriver Debugger is that it gives you these capabilities
+without measurably impacting the performance
+of your workloads. Stackdriver has a free tier
+for all its services. After you cross a specific
+threshold of usage or storage, your account will be charged. You're also able to
+choose the products that you need for
+a specific project. You begin setting up your Stackdriver account
+by selecting Stackdriver followed
+by the monitoring link in the navigation window. A wizard will appear
+prompting you to select the billing project and set
+several configurations. You'll cover this workflow
+in one of the labs. It's a best practice to create
+a GCP project specifically for Stackdriver if you have multiple projects in
+your organization. You should only use
+this so-called host project for Stackdriver and you then manage all of
+your Stackdriver tools, dashboards, alerts, and
+configurations from there.

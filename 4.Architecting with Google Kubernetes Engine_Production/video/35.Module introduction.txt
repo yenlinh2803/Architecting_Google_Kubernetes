@@ -1,0 +1,12 @@
+Hi, I'm Praveen. Welcome to the using GCP managed storage services
+with GK module. When you implement
+solutions using GK, you can choose to build your own storage solutions by attaching volumes to containers, but these require you to manage and protect your data yourself. You can also choose to use
+GCP managed storage services, so it becomes
+Google's job to manage the availability and
+performance of your data. This is the theme
+for this module. In this module, you
+will learn how to recognize the pros and cons of managed storage services versus self-managed
+containerized storage, identify use cases for Cloud Storage for applications running in a Kubernetes cluster, understand the range of GCP
+managed database services, and how to simplify the task of connecting from within Kubernetes applications
+to Cloud SQL, one of those services
+using the Cloud SQL Proxy.

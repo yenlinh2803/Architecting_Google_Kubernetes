@@ -1,0 +1,5 @@
+In this lab, you will
+control access to GK clusters using Cloud IAM. You'll create
+a pod security policy to restrict privileged
+pod creation, test that policy, and perform IP address and
+credential rotation.

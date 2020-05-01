@@ -1,0 +1,17 @@
+Now I will introduce you to each of the GCP database services. You can use each of them within Kubernetes applications
+running in GK and each of them is suited
+for particular use cases. First, what's Cloud Bigtable? It's Google's NoSQL database
+that's designed for scale. Bigtable stores data in massively scalable tables each of which is a map from a single
+key to a wide column. Choose Bigtable when you have flood data that
+fits in one row per key and when you need
+access latencies for your data to be in
+the millisecond range. Also, choose Bigtable when
+you need a database that scales linearly as you
+add more notes to it. Cloud Bigtable can
+scale up to petabytes of data and smoothly handle millions of operations per second with a latency of
+less than ten milliseconds. This makes it suitable for
+applications that require very high throughput and scalability for
+non-structured key-value data. It is an excellent
+storage solution for MapReduce operations because it uses the same APA for database access as Apache HBase. It's also commonly used for stream processing and analytics and machine learning
+applications. You can use Cloud Bigtable
+for applications that store and query time series data, marketing data, financial data, IOT data and more.

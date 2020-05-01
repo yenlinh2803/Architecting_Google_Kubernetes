@@ -1,0 +1,24 @@
+Hi. I'm Maya. Welcome to the Access
+Control and Security in Kubernetes and
+Google Kubernetes engine module. In previous modules,
+you've learned how to run workloads
+in your cluster. Now, you'll learn how to make sure that appropriate
+access policies are in place to make your cluster and
+applications more secure. In this module, you'll learn how to understand Kubernetes
+authentication and authorization in order to
+control who is able to perform what actions to
+resources in your GKE clusters. You'll learn about
+role-based access control, which we shorten to RBAC. Kubernetes RBAC, lets you
+define roles and role bindings, so you can manage access to resources and
+commodities namespaces. You'll also learn to define Kubernetes are
+back cluster roles and role bindings to manage
+resources that are within the scope of
+a cluster that includes, sharing roles across
+namespaces and granting permissions
+across all namespaces. You'll learn about defining Kubernetes pods
+security policies, to only allow pods with specific security-related
+attributes to run. You'll also learn more
+about the structure of Google Cloud identity
+and access management, which we shorten to Cloud IAM, and define IAM rules
+and policies for Google Kubernetes Engine
+cluster administration.

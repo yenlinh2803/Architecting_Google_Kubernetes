@@ -1,0 +1,72 @@
+Let's look at some volume
+types in more detail. An emptyDir volume is simply
+an empty directory that allows the containers
+within the pod to read and write to and from it. It's created when a pod
+is assigned to a node, and it exists as long
+as the pod exists. However, it will be
+deleted if the pod is removed from a node
+for any reason. So, don't use emptyDir volumes
+for data of lasting value. Applications usually use emptyDir for short-term purposes. Kubernetes creates
+emptyDir volumes from the node's local disk or by using a memory band file system. The config map resource
+provides a way to inject application configuration data
+into pods from Kubernetes. The data stored in config map object can be
+referenced in a volume. As if it were a tree of
+files and directories, your applications can
+then consume the data. For instance, if you were
+using a web server in a pod you might use a config map to set that web servers parameters. Secrets are similar
+to config maps. You should use Secrets to store sensitive information
+such as password, token, and SSH keys. Just like config map, a secret volume is created to pass sensitive
+information to the pods. These secret volumes are backed by in-memory file systems. So the secrets are never
+written to nonvolatile storage, and it's a common practice to obfuscate the values that go into secrets using
+the familiar base-64 encoding. Beyond that though, you
+should not assume that secrets are secret just because of the way
+they are configured. Having a differentiation between config maps and
+secrets allows you to manage nonsensitive and sensitive pod configuration
+data differently. You would probably apply
+different permissions to each. The downward API
+volume type is used to make downward API data
+available to applications. What the downward API? It's a way container skin learn about
+their pod environment. For example, suppose your containerized
+application needs to construct an identifier that's guaranteed to be
+unique in the cluster. Wouldn't it be easier to base that identifier on
+the name of this pod, since pod names are unique
+in the cluster too? The downward API is how your application can fetch the name of the pod
+it's running on, if you choose to
+make it available. All these volume types are
+fundamentally similar. Config map, secret,
+and downward API are essentially emptyDir volumes
+pre-configured to contain configuration
+from the Gk API. Config map and Secret
+are discussed later in this module while downward API is out of this course's scope. At a score, a volume is just a directory that is accessible to
+the containers in a pod. How that directory is created, the medium that backs it, and its contents are determined by the particular
+volume they used. In this case, we will create
+a pod with an NFS volume. The NFS Server that backs
+this could be anywhere. In GCP, the lowest
+overhead way to serve NFS volumes is the Cloud
+file store managed service. In this example, we will create a pod using the kubectl
+create command, using a pod manifest that
+includes an NFS volume type. Here, we're creating
+a pod with an NFS volume. A volume section is added
+under the pod spec. The volume is named and
+fields are configured with the axis details for
+an existing NFS share. This creates an NFS volume
+when the pot is created. In order to mount
+the volume to a container, the volume name and
+mount path must be specified under the volume
+mounts field for the container. The volume is created
+during the part creation. After the volume is created, it's available to
+any container in the pod before the containers
+are brought online. After the volume is
+attached to a container, the data in the volume is mounted into a
+container's file system. In this example, the file stored on the NFS share are made available on /mnt/vol directory
+inside the container. With the data mounted, the containers in the pod
+are brought online and the rest of
+the part initialization happens as before. In this example, you have an nginx pod with
+an NFS volume attached. The volume is attached at the mount volume directory
+when the pod is run, and then the nginx
+container can see that /mnt/vol directory
+and get data from it. For example, maybe
+the content that nginx serves is
+located in that share. Unlike the content of emptyDir volumes which are erased when the pod is deleted, the data saved on NFS volumes
+will outlive the part. When the pod is deleted, the NFS volume will be removed. However, the data isn't erased, it's just unmounted and can be re-mounted on
+new pods if needed.

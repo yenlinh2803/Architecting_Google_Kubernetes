@@ -1,0 +1,69 @@
+Now, let's take a look at Google Cloud IAM Access Control. In this lesson, you
+will learn about how Cloud IAM Access Control
+is configured. You'll also learn how you use Cloud IAM policies and roles to control who can interact with and manage
+your GKE clusters. Three elements are defined
+in Cloud IAM access control; who, what and which. Who, refers to the identity of the person making the request. What, refers to the set of
+permissions that are granted, and which, refers to which resources this policy applies to. In Cloud IAM, you grant
+access to members. Cloud IAM will authenticate
+users against Cloud Identity. Don't forget, Cloud Identity is a service that governs
+Google accounts, G-Suite domain accounts
+and GCP Service accounts, and don't forget
+that you can gather these identities into groups, and groups themselves can
+have their own permissions. What if your company uses Active Directory or
+has an LTI app server? You can configure Google
+Cloud Directory Sync known as GCDS to synchronize data from your directory service
+to your Google domain. It's a one-way sync operation. That means that
+your Google users, groups, and shared contacts are
+synchronized to match the information in
+your directory service, and the data in your directory
+service isn't modified. Use Cloud IAM to grant
+permissions to members, till up and perform certain operations on
+certain resources. GCP permissions are grouped into roles based on common user flows. Permissions can't be individually
+assigned to members. Instead, members
+are assigned roles. Every operation on a GCP resource is performed using an API call, for which access is controlled
+using a permission. If the member trying to
+do the operation doesn't have the permission
+needed by the API call, it gets denied.
+Here's an example. There's a role called
+Compute Viewer, which lets someone who has
+it fetch various kinds of information about
+Compute Engine resources. This role consists of
+many informations, which have names like
+compute.instances.get. These names consists
+of an abbreviated name for a GCP surface, a kind of GCP
+resource, and a verb. The compute.instances.get
+permission, which we'll see again
+later in this module, controls whether someone can view the metadata of a Compute
+Engine virtual machine. A GCP administrator could
+give this role to the member called example@gmail.com at
+the level of a GCP project, which would let
+that member examine any Compute Engine
+resources in the project. So let's put the whole
+Cloud IAM story together. Whenever you make
+a request of GCP, Cloud IAM authenticates you, validates that you
+have the needed permissions for what
+you're trying to do, for the resource that
+you're trying to do it to. Let's look at how a Cloud IAM policy grants roles to users. A Cloud IAM policy is
+a list of bindings, and in each binding a set of members is bound to
+one or more roles. The IAM policy in turn can be attached to
+a specific resource, a project, a project folder, or a whole organization. GCP resources are
+organized hierarchically, starting with the organization. Within an organization, you
+can have multiple folders containing multiple
+projects and so on. An IAM policy attached at the organizational level will automatically have
+access to all folders, all projects, and ultimately
+all relevant resources. In this way, you can set up access control at
+any level within the organizational
+hierarchy and choose the most appropriate level
+for each IAM policy. Cloud IAM policies applied
+at higher levels of a GCP organizational
+hierarchy are inherited by resources
+lower down that hierarchy. So for example,
+policies applied at the organizational level
+apply to every project, and to all resources
+in those projects. Here's a key fact to keep in mind when you're
+designing your policies. There's no way to grant
+a permission at a higher level in the hierarchy and
+then take it away below. In general, the policies you apply at higher levels
+should grant very few permissions and the policies you
+apply at lower levels should grant
+additional permissions to only those who need them.

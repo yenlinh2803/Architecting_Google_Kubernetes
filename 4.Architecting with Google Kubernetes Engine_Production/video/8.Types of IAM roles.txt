@@ -1,0 +1,48 @@
+There are three kinds
+of roles in Cloud IAM, primitive, predefined,
+and custom. Primitive roles are
+the first type of role. Primitive roles existed
+before the introduction of Cloud IAM but can still
+be used with Cloud IAM. These roles can be used
+to grant users global, project-level access to all GCP resources
+within a project. There are three primitive roles. The first primitive role,
+the Viewer role, permits read-only actions
+such as viewing existing resources or data
+across the whole project. Next, the Editor role. In addition to all
+of your permissions, the Editor role is allowed to
+modify existing resources. The final primitive role,
+the Owner role, has all of the
+editor permissions, plus has the right
+to manage roles and permissions and set up
+billing for a project. Any of these roles, since they
+are applied to a project, can access all resources
+such as App Engine, Compute Engine, and Cloud
+Storage within that project. Primitive roles are very broad. I've mentioned the principle
+of least privilege before, the idea that users should have the minimum set of permissions
+needed to do their jobs. If you're using primitive roles, you probably aren't
+adhering to this principle, and you may be
+exposing yourself to unnecessary risks in case
+a user is compromised. Predefined roles are the
+second type of Cloud IAM role. GKE provides several
+predefined Cloud IAM roles that provide granular access to Kubernetes engine resources. The GKE Viewer role gives read-only access as might
+be needed for auditing. The GKE Developer role is suited to developers
+and release engineers. It grants full control to
+all resources within a cluster. The GKE Admin role
+gives full access to clusters and the Kubernetes
+engine resources inside the clusters. Example users are project owners, system administrators,
+and on-call engineers. The GKE Cluster Admin role
+is used to create, delete, update, and view clusters, but provides no access
+to Kubernetes resources. The GKE Host Service Agent User is another role intended for use by service accounts
+and is used for network management inside
+a shared VPC environment. Lastly, the third type of role. If the primitive roles and the GKE predefined roles
+are too permissive, or the assumptions don't
+fit your business case, you can craft customer roles
+with more granular control. To build a custom role, you specify each individual permission that will
+make up the role. For example, suppose you needed to create a specific user account that'll be used solely
+to manage the software running inside
+a certain GKE cluster, but who should not have any
+access to view GCP resources. You can create
+a custom IAM role that has just the permissions
+needed to authenticate to the cluster and nothing else. In the next section, we'll
+discuss how you can give permissions within
+Kubernetes to such a user.
